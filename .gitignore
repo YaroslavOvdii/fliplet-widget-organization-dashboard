@@ -1,3 +1,4 @@
 node_modules
 *.map
 .history
+.DS_Store
