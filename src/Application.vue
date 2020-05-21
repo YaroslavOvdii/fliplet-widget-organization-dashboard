@@ -10,11 +10,11 @@
       </div>
       <div v-else>
         <div v-if="Object.keys(this.analyticsData).length > 0">
+          <Data-Table></Data-Table>
           <span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span>
         </div>
         <div v-else>
           <span>There is no data to show</span>
-          <First-Component></First-Component>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import FirstComponent from './components/FirstComponent';
+import DataTable from './components/tables/dataTable';
 import getAnalyticsData from './services/analytics';
 
 export default {
@@ -35,7 +35,7 @@ export default {
     };
   },
   components: {
-    FirstComponent
+    DataTable
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
