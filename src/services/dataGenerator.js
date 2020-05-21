@@ -1,7 +1,6 @@
 import faker from 'faker';
 
 const generateFakeData = (amount, dateData) => {
-  debugger;
   let fakeData = {};
   let startDate = previousePeriod(dateData);
   let dateRange = {startDate: startDate, endDate: dateData.endDate};
@@ -23,7 +22,6 @@ const previousePeriod = (dateData) => {
 
   startDate.setDate(startDate.getDate() - diffDays);
 
-  debugger;
   return startDate.toLocaleString();
 };
 

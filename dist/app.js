@@ -156,17 +156,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [
-        _vm._v("Your organization-dashboard widget will be added here.")
-      ]),
-      _vm._v(" "),
-      _c("First-Component")
-    ],
-    1
-  )
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      {
+        staticClass: "row",
+        staticStyle: {
+          display: "flex",
+          "justify-content": "center",
+          "align-items": "center",
+          "margin-top": "15px"
+        }
+      },
+      [
+        this.isLoading
+          ? _c("div", { staticClass: "spinner-holder animated" }, [
+              _c("div", { staticClass: "spinner-overlay" }, [
+                _vm._v("Loading...")
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Loading...")])
+            ])
+          : this.hasError
+          ? _c("div", [
+              _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errorMessage))
+              ])
+            ])
+          : _c("div", [
+              Object.keys(this.analyticsData).length > 0
+                ? _c("div", [
+                    _c("span", [
+                      _vm._v("We have loaded "),
+                      _c("strong", [
+                        _vm._v(_vm._s(this.analyticsData.appSessions.length))
+                      ]),
+                      _vm._v(" entries")
+                    ])
+                  ])
+                : _c(
+                    "div",
+                    [
+                      _c("span", [_vm._v("There is no data to show")]),
+                      _vm._v(" "),
+                      _c("First-Component")
+                    ],
+                    1
+                  )
+            ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -197,21 +237,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      isLoading: false,
+      analyticsData: {},
+      errorMessage: '',
+      hasError: false
+    };
   },
   components: {
     FirstComponent: _components_FirstComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  created: function created() {
+  mounted: function mounted() {
     // TODO: at the start of the app we should load data for the current month
-    console.log(Object(_services_analytics__WEBPACK_IMPORTED_MODULE_1__["default"])({
-      startDate: '2020-04-01',
-      endDate: '2020-05-31'
-    }));
+    this.loadData('2020-04-01', '2020-05-01');
+  },
+  methods: {
+    loadData: function loadData(startDate, endDate) {
+      var _this = this;
+
+      this.isLoading = true;
+      Object(_services_analytics__WEBPACK_IMPORTED_MODULE_1__["default"])(startDate, endDate).then(function (result) {
+        _this.analyticsData = result;
+        _this.isLoading = false;
+      })["catch"](function (error) {
+        _this.isLoading = false;
+        _this.hasError = true;
+        _this.errorMessage = error;
+      });
+    }
   }
 });
 
@@ -416,26 +489,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dataGenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(13);
 
 
-var getAnalytics = function getAnalytics(dates) {
-  return Object(_dataGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(50, dates); // TODO: Uncoment when real endpoint will be ready to use.
+var getAnalyticsData = function getAnalyticsData(startDate, endDate) {
+  // 50 - is an amount of fake data to generate
+  // dates - time period in witch we generates data
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(Object(_dataGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(50, {
+        startDate: startDate,
+        endDate: endDate
+      }));
+    }, 2000);
+  }); // TODO: Uncoment when real endpoint will be ready to use.
   // TODO: should we check dates for ISO format?
   // return Fliplet.Organizations.get().then(function(organizations) {
   //   return Fliplet.API.request({
   //     url: `v1/organizations/${organizations[0].id}/analytics`,
   //     method: 'POST',
   //     data: {
-  //       startDate: startDate,
-  //       endDate: endDate
+  //       startDate,
+  //       endDate
   //     }
-  //   }).then(function onSuccess(response) {
-  //     return response;
-  //   }).catch(function onError(error) {
-  //     return {error: error};
   //   });
   // });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (getAnalytics);
+/* harmony default export */ __webpack_exports__["default"] = (getAnalyticsData);
 
 /***/ }),
 /* 13 */
@@ -448,7 +526,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var generateFakeData = function generateFakeData(amount, dateData) {
-  debugger;
   var fakeData = {};
   var startDate = previousePeriod(dateData);
   var dateRange = {
@@ -469,7 +546,6 @@ var previousePeriod = function previousePeriod(dateData) {
   var diffTime = Math.abs(startDate - endDate);
   var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   startDate.setDate(startDate.getDate() - diffDays);
-  debugger;
   return startDate.toLocaleString();
 };
 
