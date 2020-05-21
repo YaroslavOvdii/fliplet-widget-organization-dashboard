@@ -11,6 +11,7 @@
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
         <div class="loaded-data-msg"><span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span></div>
         <AnalyticsSummary :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
+        <Data-Table></Data-Table>
       </div>
       <div v-else>
         <span>There is no data to show</span>
@@ -21,6 +22,7 @@
 
 <script>
 import AnalyticsSummary from './components/AnalyticsSummary.vue';
+import DataTable from './components/tables/dataTable';
 import getAnalyticsData from './services/analytics';
 
 export default {
@@ -33,7 +35,8 @@ export default {
     };
   },
   components: {
-    AnalyticsSummary
+    AnalyticsSummary,
+    DataTable
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
