@@ -278,11 +278,11 @@ __webpack_require__.r(__webpack_exports__);
       this.isLoading = true;
       Object(_services_analytics__WEBPACK_IMPORTED_MODULE_1__["default"])(startDate, endDate).then(function (result) {
         _this.analyticsData = result;
-        _this.isLoading = false;
       })["catch"](function (error) {
-        _this.isLoading = false;
         _this.hasError = true;
         _this.errorMessage = error;
+      })["finally"](function () {
+        _this.isLoading = false;
       });
     }
   }
@@ -492,8 +492,9 @@ __webpack_require__.r(__webpack_exports__);
 var getAnalyticsData = function getAnalyticsData(startDate, endDate) {
   // 50 - is an amount of fake data to generate
   // dates - time period in witch we generates data
-  return new Promise(function (resolve) {
+  return new Promise(function (resolve, reject) {
     setTimeout(function () {
+      reject('Error');
       resolve(Object(_dataGenerator__WEBPACK_IMPORTED_MODULE_0__["default"])(50, {
         startDate: startDate,
         endDate: endDate

@@ -44,15 +44,17 @@ export default {
   methods: {
     loadData: function(startDate, endDate) {
       this.isLoading = true;
+
       getAnalyticsData(startDate, endDate)
         .then((result) => {
           this.analyticsData = result;
-          this.isLoading = false;
         })
         .catch((error) => {
-          this.isLoading = false;
           this.hasError = true;
           this.errorMessage = error;
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     }
   }
