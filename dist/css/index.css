@@ -1,0 +1,91 @@
+.dashbord-container {
+  margin: 0 20px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  width: auto;
+  max-width: none;
+  min-width: auto; }
+  .dashbord-container .dashbord-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%; }
+    .dashbord-container .dashbord-holder .nav.nav-tabs {
+      margin-bottom: 20px; }
+    .dashbord-container .dashbord-holder .analytics {
+      flex: 1; }
+      .dashbord-container .dashbord-holder .analytics .component:nth-child(1) {
+        margin-top: 15px; }
+      .dashbord-container .dashbord-holder .analytics .component {
+        margin-bottom: 15px; }
+
+.main-container {
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  margin: 0 0 5%;
+  width: auto;
+  max-width: none;
+  min-width: auto; }
+
+.analytics-container {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black; }
+
+.summary-cell {
+  flex: 1;
+  border: 1px solid #9e9e9e; }
+  .summary-cell h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 34px; }
+  .summary-cell small {
+    display: flex;
+    justify-content: center;
+    font-size: 10px; }
+    .summary-cell small.up {
+      color: green; }
+    .summary-cell small.down {
+      color: red; }
+  .summary-cell p {
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+    font-size: 13px; }
+
+.date-selection {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px; }
+  .date-selection .daterangepicker {
+    top: 50px; }
+  .date-selection .reportrange-text {
+    font-size: 20px; }
+
+.date-dropdown {
+  width: auto;
+  background-color: #fff;
+  font-size: 20px;
+  margin: 0 20px;
+  border: 1px solid #ccc; }
+
+.data-table-container {
+  width: 100%; }
+  .data-table-container .data-table {
+    table-layout: fixed;
+    width: 100%; }
+    .data-table-container .data-table .filter {
+      width: 100%; }
+    .data-table-container .data-table td, .data-table-container .data-table th {
+      word-wrap: break-word; }
+    .data-table-container .data-table .cell-multiple-data {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center; }
