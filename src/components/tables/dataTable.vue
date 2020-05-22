@@ -52,8 +52,8 @@ export default {
 
     // Adding col filters
     this.dTable.columns().every(function() {
-      var column = this;
-      var input = $('<input type="text" class="filter" />');
+      const column = this;
+      const input = $('<input type="text" class="filter" />');
       input.appendTo($(column.header()));
       input.on('click', function(event) {
         event.stopPropagation();
