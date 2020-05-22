@@ -1,0 +1,29 @@
+<template>
+  <div>
+    <i :data-content="content" ref="info" class="fas fa-info-circle"></i>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    content: {
+      type: String,
+      default: 'Testing content'
+    }
+  },
+  data() {
+    return {
+
+    };
+  },
+  mounted: function() {
+    this.initPopover();
+  },
+  methods: {
+    initPopover: function() {
+      $(this.$refs.info).popover();
+    }
+  }
+};
+</script>

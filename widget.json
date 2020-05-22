@@ -16,7 +16,10 @@
     ],
     "assets": [
       "dist/css/index.css",
-      "dist/app.js"
+      "dist/app.js",
+      "vendors/font-awesome/all.min.css",
+      "vendors/poper.min.js",
+      "vendors/bootstrap.js"
     ]
   },
   "build": {
