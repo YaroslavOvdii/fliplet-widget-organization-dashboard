@@ -9,7 +9,7 @@
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
-        <AnalyticsChart :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
+        <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
         <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="#">Apps</a></li>
