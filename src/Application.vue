@@ -9,6 +9,7 @@
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
+        <InfoIcon :content="'SomeText to see'"></InfoIcon>
         <div class="loaded-data-msg"><span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span></div>
         <AnalyticsSummary :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
         <Data-Table></Data-Table>
@@ -23,6 +24,7 @@
 <script>
 import AnalyticsSummary from './components/AnalyticsSummary.vue';
 import DataTable from './components/tables/dataTable';
+import InfoIcon from './components/InfoIcon';
 import getAnalyticsData from './services/analytics';
 
 export default {
@@ -36,7 +38,8 @@ export default {
   },
   components: {
     AnalyticsSummary,
-    DataTable
+    DataTable,
+    InfoIcon
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
