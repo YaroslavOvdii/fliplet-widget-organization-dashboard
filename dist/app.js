@@ -27826,15 +27826,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.content
-      ? _c("i", {
-          ref: "info",
-          staticClass: "fas fa-info-circle",
-          attrs: { "data-content": _vm.content }
-        })
-      : _vm._e()
-  ])
+  return _vm.content
+    ? _c("i", {
+        ref: "info",
+        staticClass: "fas fa-info-circle",
+        attrs: { "data-content": _vm.content }
+      })
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -27856,8 +27854,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
