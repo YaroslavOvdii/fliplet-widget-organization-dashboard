@@ -1,8 +1,26 @@
-.analytics {
-  flex: 1;
+.dashbord-container {
+  margin: 0px 20px;
 
-  .loaded-data-msg {
+  .dashbord-holder {
     display: flex;
     justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  
+    .nav.nav-tabs {
+      margin-bottom: 20px;
+    }
+
+    .analytics {
+      flex: 1;
+
+      .component:nth-child(1) {
+        margin-top: 15px;
+      }
+
+      .component {
+        margin-bottom: 15px;
+      }
+    }  
   }
 }

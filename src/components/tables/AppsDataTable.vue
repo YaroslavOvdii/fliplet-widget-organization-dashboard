@@ -21,13 +21,50 @@ export default {
   data() {
     return {
       cols: [
-        'App',
-        'Created',
-        'Last Edit',
-        'Last publish',
-        'Apple',
-        'Android',
-        'Web'
+        {
+          name: 'App',
+          help: ''
+        },
+        {
+          name: 'Created',
+          help: 'Discription'
+        },
+        {
+          name: 'Last Edit',
+          help: ''
+        },
+        {
+          name: 'Last publish',
+          help: ''
+        },
+        {
+          name: 'Apple',
+          help: ''
+        },
+        {
+          name: 'Android',
+          help: ''
+        },
+        {
+          name: 'Web',
+          help: ''
+        },
+        {
+          name: 'Users',
+          help: ''
+        },
+        {
+          name: 'Sessions',
+          help: ''
+        },
+        {
+          name: 'Edits',
+          help: ''
+        },
+        {
+          name: 'Published',
+          help: ''
+        }
       ],
       rows: [],
       dataTransfotmed: false
@@ -44,13 +81,17 @@ export default {
       this.apps.forEach(app => {
         this.rows.push(
           [
-            app.name,
-            app.createdAt,
-            app.updatedAt,
-            app.publishedAt,
-            app.publishedAppleAt,
-            app.publishedGoogleAt,
-            app.publishedWebAt
+            [ app.name],
+            [app.createdAt],
+            [app.updatedAt],
+            [app.publishedAt],
+            [app.publishedAppleAt],
+            [app.publishedGoogleAt],
+            [app.publishedWebAt],
+            [app.stats.users.count, app.stats.users.previousPeriodCount],
+            [app.stats.sessions.count, app.stats.sessions.previousPeriodCount],
+            [app.stats.updates.count, app.stats.updates.previousPeriodCount],
+            [app.stats.publishes.count, app.stats.publishes.previousPeriodCount]
           ]
         );
 

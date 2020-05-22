@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="row" style="display:flex; justify-content:center; align-items:center; margin-top: 15px">
+  <div class="dashbord-container">
+    <div class="dashbord-holder">
       <div v-if="this.isLoading" class="spinner-holder animated">
         <div class="spinner-overlay">Loading...</div>
         <p>Loading...</p>
@@ -9,10 +9,12 @@
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
-        <InfoIcon :content="'SomeText to see'"></InfoIcon>
-        <div class="loaded-data-msg"><span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span></div>
-        <AnalyticsSummary :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
-        <AppDataTable :apps="this.analyticsData.apps"></AppDataTable>
+        <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#">Apps</a></li>
+          <li role="presentation"><a href="#">Users</a></li>
+        </ul>
+        <AppDataTable class="component" :apps="this.analyticsData.apps"></AppDataTable>
       </div>
       <div v-else>
         <span>There is no data to show</span>
