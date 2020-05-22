@@ -10,7 +10,7 @@
       </div>
       <div v-else>
         <div v-if="Object.keys(this.analyticsData).length > 0">
-          <Data-Table></Data-Table>
+          <DataTable></DataTable>
           <span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span>
         </div>
         <div v-else>
