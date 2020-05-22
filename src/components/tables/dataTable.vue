@@ -3,8 +3,10 @@
     <table ref="table" class="table-responsive d-print-inline">
       <thead>
         <tr>
-          <th v-for="col in columns" :key="col">
+          <th v-for="(col, colIndex) in columns" :key="col">
             {{ col }}
+            <i>Text</i>
+            <input v-on:click.stop v-on:input="filter($event, colIndex)" data type="text" class="filter" />
           </th>
         </tr>
       </thead>
@@ -18,6 +20,7 @@
     </table>
   </div>
 </template>
+
 <script>
 import $ from 'jquery';
 
@@ -29,43 +32,33 @@ export default {
     columns: {
       type: Array,
       default() {
-        return ['Test column 1', 'Test column 2', 'Test column 3', 'Test column 4'];
+        return [];
       }
     },
     rows: {
       type: Array,
       default() {
-        return [
-          ['Test value 1.1', 'Test value 1.2', 'Test value 1.3', 'Test value 1.4'],
-          ['Test value 2.1', 'Test value 2.2', 'Test value 2.3', 'Test value 2.4']
-        ];
+        return [];
       }
     }
   },
   data() {
     return {
-      dTable: {}
+      component: {}
     };
   },
   mounted: function() {
-    this.dTable = $(this.$refs.table).DataTable();
-
-    // Adding col filters
-    this.dTable.columns().every(function() {
-      const column = this;
-      const input = $('<input type="text" class="filter" />');
-      input.appendTo($(column.header()));
-      input.on('click', function(event) {
-        event.stopPropagation();
-      });
-      input.on('input', function() {
-        column
-          .search(this.value)
-          .draw();
-      });
-    });
+    this.initTable();
   },
   methods: {
+    initTable: function() {
+      this.component = $(this.$refs.table).DataTable();
+    },
+    filter: function(event, colIndex) {
+      this.component.columns(colIndex)
+        .search(event.target.value)
+        .draw();
+    }
   }
 };
 </script>
