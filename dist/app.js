@@ -177,6 +177,14 @@ var render = function() {
             "div",
             { staticClass: "analytics" },
             [
+              _c("AnalyticsChart", {
+                staticClass: "component",
+                attrs: {
+                  appsSessions: this.analyticsData.appSessions,
+                  studioSessions: this.analyticsData.studioSessions
+                }
+              }),
+              _vm._v(" "),
               _c("AnalyticsSummary", {
                 staticClass: "component",
                 attrs: { analyticsData: this.analyticsData.stats }
@@ -233,6 +241,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AnalyticsSummary_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
 /* harmony import */ var _components_tables_AppsDataTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(50);
+/* harmony import */ var _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1100);
 //
 //
 //
@@ -258,6 +267,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -272,7 +283,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     AnalyticsSummary: _components_AnalyticsSummary_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    AppDataTable: _components_tables_AppsDataTable__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AppDataTable: _components_tables_AppsDataTable__WEBPACK_IMPORTED_MODULE_1__["default"],
+    AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   mounted: function mounted() {
     // TODO: at the start of the app we should load data for the current month
@@ -28255,8 +28267,8 @@ var generateFakeData = function generateFakeData(amount, dateData) {
     startDate: startDate,
     endDate: dateData.endDate
   };
-  fakeData['appSessions'] = generateFakeAppSessions(amount, dateRange);
-  fakeData['studioSessions'] = generateStudioSessions(amount, dateRange);
+  fakeData['appSessions'] = generateFakeAppSessions();
+  fakeData['studioSessions'] = generateStudioSessions();
   fakeData['stats'] = generateStats();
   fakeData['apps'] = generateApps(amount, dateRange);
   fakeData['users'] = generateUsers(amount, dateRange);
@@ -28446,27 +28458,31 @@ var generateStats = function generateStats() {
   };
 };
 
-var generateFakeAppSessions = function generateFakeAppSessions(amount, dateRange) {
+var generateFakeAppSessions = function generateFakeAppSessions() {
   var appSessions = [];
+  var month = 1;
 
-  while (appSessions.length < amount) {
+  while (appSessions.length < 7) {
     appSessions.push({
-      day: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'dayMonth'),
+      day: "2020-".concat(month > 9 ? month : "0".concat(month)),
       count: faker__WEBPACK_IMPORTED_MODULE_0___default.a.random.number(10)
     });
+    month++;
   }
 
   return appSessions;
 };
 
-var generateStudioSessions = function generateStudioSessions(amount, dateRange) {
+var generateStudioSessions = function generateStudioSessions() {
   var studioSessions = [];
+  var month = 1;
 
-  while (studioSessions.length < amount) {
+  while (studioSessions.length < 7) {
     studioSessions.push({
-      day: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'dayMonth'),
+      day: "2020-".concat(month > 9 ? month : "0".concat(month)),
       count: faker__WEBPACK_IMPORTED_MODULE_0___default.a.random.number(10)
     });
+    month++;
   }
 
   return studioSessions;
@@ -117660,6 +117676,186 @@ module["exports"] = [
   "09##-######"
 ];
 
+
+/***/ }),
+/* 1100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AnalyticsChart_vue_vue_type_template_id_14496228___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1101);
+/* harmony import */ var _AnalyticsChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1103);
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(16);
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AnalyticsChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AnalyticsChart_vue_vue_type_template_id_14496228___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AnalyticsChart_vue_vue_type_template_id_14496228___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/components/AnalyticsChart.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+/* 1101 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnalyticsChart_vue_vue_type_template_id_14496228___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1102);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnalyticsChart_vue_vue_type_template_id_14496228___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnalyticsChart_vue_vue_type_template_id_14496228___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+/* 1102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { ref: "chartContainer" })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+/* 1103 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AnalyticsChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1104);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AnalyticsChart_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+/* 1104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    appsSessions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    studioSessions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      chartInstance: {},
+      chartOptions: {
+        title: {
+          text: ''
+        },
+        xAxis: {
+          categories: []
+        },
+        yAxis: {
+          title: {
+            text: ''
+          },
+          plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        navigation: {
+          buttonOptions: {
+            enabled: false
+          }
+        },
+        legend: {
+          layout: 'horizontal',
+          align: 'center',
+          verticalAlign: 'bottom',
+          borderWidth: 0,
+          showInLegend: false
+        },
+        series: [{
+          name: 'Apps Sessions',
+          color: '#03b1fc',
+          data: []
+        }, {
+          name: 'Studio sessions',
+          color: '#27799c',
+          data: []
+        }]
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.initChart();
+  },
+  methods: {
+    initChart: function initChart() {
+      var _this = this;
+
+      this.manageData().then(function () {
+        _this.chartInstance = Highcharts.chart(_this.$refs.chartContainer, _this.chartOptions);
+      });
+    },
+    manageData: function manageData() {
+      var _this2 = this;
+
+      return new Promise(function (resolve) {
+        var categories = [];
+        var appSessionVal = [];
+
+        _this2.appsSessions.forEach(function (appSession) {
+          categories.push(appSession.day);
+          appSessionVal.push(appSession.count);
+        });
+
+        var studioSessionVal = [];
+
+        _this2.studioSessions.forEach(function (studioSession) {
+          studioSessionVal.push(studioSession.count);
+        });
+
+        _this2.chartOptions.xAxis.categories = categories;
+        _this2.chartOptions.series[0].data = appSessionVal;
+        _this2.chartOptions.series[1].data = studioSessionVal;
+        resolve();
+      });
+    }
+  }
+});
 
 /***/ })
 /******/ ]);
