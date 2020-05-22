@@ -22,12 +22,12 @@ export default {
     return {
       chartInstance: {},
       chartOptions: {
+        title: {
+          text: ''
+        },
         xAxis: {
           categories:
-          [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-          ]
+          []
         },
         yAxis: {
           title: {
@@ -38,6 +38,11 @@ export default {
             width: 1,
             color: '#808080'
           }]
+        },
+        navigation: {
+          buttonOptions: {
+            enabled: false
+          }
         },
         legend: {
           layout: 'horizontal',
@@ -50,23 +55,48 @@ export default {
           {
             name: 'Apps Sessions',
             color: '#03b1fc',
-            data: [...Array(12)].map(Math.random)
+            data: []
           },
           {
             name: 'Studio sessions',
             color: '#27799c',
-            data: [...Array(12)].map(Math.random)
+            data: []
           }
         ]
       }
     };
   },
   mounted: function() {
-    this.chartInstance = Highcharts.chart(this.$refs.chartContainer, this.chartOptions);
+    this.initChart();
   },
   methods: {
     initChart: function() {
-      
+      this.manageData()
+        .then(() => {
+          this.chartInstance = Highcharts.chart(this.$refs.chartContainer, this.chartOptions);
+        });
+    },
+    manageData: function() {
+      return new Promise((resolve) => {
+        let categories = [];
+        let appSessionVal = [];
+
+        this.appsSessions.forEach((appSession) => {
+          categories.push(appSession.day);
+          appSessionVal.push(appSession.count);
+        });
+
+        let studioSessionVal = [];
+
+        this.studioSessions.forEach((studioSession) => {
+          studioSessionVal.push(studioSession.count);
+        });
+
+        this.chartOptions.xAxis.categories = categories;
+        this.chartOptions.series[0].data = appSessionVal;
+        this.chartOptions.series[1].data = studioSessionVal;
+        resolve();
+      });
     }
   }
 };
