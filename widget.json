@@ -12,7 +12,8 @@
     "dependencies": [
       "vue.js",
       "fliplet-core",
-      "fliplet-studio-ui"
+      "fliplet-studio-ui",
+      "highcharts"
     ],
     "assets": [
       "dist/css/index.css",

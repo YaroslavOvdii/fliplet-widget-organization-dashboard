@@ -9,6 +9,7 @@
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
+        <AnalyticsChart></AnalyticsChart>
         <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="#">Apps</a></li>
@@ -27,6 +28,7 @@
 import AnalyticsSummary from './components/AnalyticsSummary.vue';
 import AppDataTable from './components/tables/AppsDataTable';
 import getAnalyticsData from './services/analytics';
+import AnalyticsChart from './components/AnalyticsChart';
 
 export default {
   data() {
@@ -39,7 +41,8 @@ export default {
   },
   components: {
     AnalyticsSummary,
-    AppDataTable
+    AppDataTable,
+    AnalyticsChart
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
