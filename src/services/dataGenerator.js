@@ -5,8 +5,8 @@ const generateFakeData = (amount, dateData) => {
   let startDate = previousePeriod(dateData);
   let dateRange = {startDate: startDate, endDate: dateData.endDate};
 
-  fakeData['appSessions'] = generateFakeAppSessions(dateRange);
-  fakeData['studioSessions'] = generateStudioSessions(dateRange);
+  fakeData['appSessions'] = generateFakeAppSessions();
+  fakeData['studioSessions'] = generateStudioSessions();
   fakeData['stats'] = generateStats();
   fakeData['apps'] = generateApps(amount, dateRange);
   fakeData['users'] = generateUsers(amount, dateRange);
@@ -125,27 +125,32 @@ const generateStats = () => {
   };
 };
 
-const generateFakeAppSessions = (dateRange) => {
+const generateFakeAppSessions = () => {
   let appSessions = [];
+  let month = 1;
 
   while (appSessions.length < 7) {
     appSessions.push({
-      day: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'dayMonth'),
+      day: `2020-${ month > 9 ? month : `0${month}`}`,
       count: faker.random.number(10)
     });
+    month++;
   }
 
   return appSessions;
 };
 
-const generateStudioSessions = (dateRange) => {
+const generateStudioSessions = () => {
   let studioSessions = [];
+  let month = 1;
 
   while (studioSessions.length < 7) {
     studioSessions.push({
-      day: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'dayMonth'),
+      day: `2020-${ month > 9 ? month : `0${month}`}`,
       count: faker.random.number(10)
     });
+
+    month++;
   }
 
   return studioSessions;
