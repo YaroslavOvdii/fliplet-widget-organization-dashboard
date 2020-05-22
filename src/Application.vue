@@ -9,7 +9,7 @@
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
-        <div class="data-found"><span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span></div>
+        <div class="loaded-data-msg"><span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span></div>
         <AnalyticsSummary :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
       </div>
       <div v-else>
@@ -35,7 +35,7 @@ export default {
   components: {
     AnalyticsSummary
   },
-  created: function() {
+  mounted: function() {
     // TODO: at the start of the app we should load data for the current month
     this.loadData('2020-04-01', '2020-05-01');
   },

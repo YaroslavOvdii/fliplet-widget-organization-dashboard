@@ -188,7 +188,7 @@ var render = function() {
               "div",
               { staticClass: "analytics" },
               [
-                _c("div", { staticClass: "data-found" }, [
+                _c("div", { staticClass: "loaded-data-msg" }, [
                   _c("span", [
                     _vm._v("We have loaded "),
                     _c("strong", [
@@ -266,7 +266,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AnalyticsSummary: _components_AnalyticsSummary_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  created: function created() {
+  mounted: function mounted() {
     // TODO: at the start of the app we should load data for the current month
     this.loadData('2020-04-01', '2020-05-01');
   },
@@ -347,7 +347,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "analytics-container" },
-    _vm._l(_vm.transformedData, function(item, index) {
+    _vm._l(_vm.summaryData, function(item, index) {
       return _c("SummaryCell", {
         key: index,
         attrs: { data: item, description: _vm.cellInformation[index] }
@@ -388,14 +388,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       cellInformation: ['Studio sessions', 'Total users', 'New studio users', 'Apps created', 'Apps edited', 'Apps published'],
-      transformedData: undefined
+      summaryData: undefined
     };
   },
   props: {
     analyticsData: Object
   },
   created: function created() {
-    this.transformedData = Object.values(this.analyticsData);
+    this.summaryData = Object.values(this.analyticsData);
   },
   components: {
     SummaryCell: _SummaryCell_vue__WEBPACK_IMPORTED_MODULE_0__["default"]

@@ -1,6 +1,6 @@
 <template>
   <div class="analytics-container">
-    <SummaryCell v-for="(item, index) in transformedData" :data="item" :description="cellInformation[index]" :key="index"></SummaryCell>
+    <SummaryCell v-for="(item, index) in summaryData" :data="item" :description="cellInformation[index]" :key="index"></SummaryCell>
   </div>
 </template>
 
@@ -11,14 +11,14 @@ export default {
   data() {
     return {
       cellInformation: ['Studio sessions', 'Total users', 'New studio users', 'Apps created', 'Apps edited', 'Apps published'],
-      transformedData: undefined
+      summaryData: undefined
     };
   },
   props: {
     analyticsData: Object
   },
   created() {
-    this.transformedData = Object.values(this.analyticsData);
+    this.summaryData = Object.values(this.analyticsData);
   },
   components: {
     SummaryCell
