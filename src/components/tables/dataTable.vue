@@ -1,71 +1,73 @@
 <template>
-  <div>
-    <table ref="table" class="table-responsive d-print-inline">
+  <div class="data-table-container">
+    <table ref="table" class="data-table table-responsive d-print-inline" style="width:100%">
       <thead>
         <tr>
-          <th v-for="col in columns" :key="col">
-            {{ col }}
+          <th v-for="(col, colIndex) in columns" :key="col">
+            {{ col.name }}
+            <InfoIcon v-on:click.stop :content="col.help"></InfoIcon>
+            <input v-on:click.stop v-on:input="filter($event, colIndex)" data type="text" class="filter" />
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="row in rows" :key="row">
           <td v-for="value in row" :key="value">
-            {{ value }}
+            <DataTableCell :cellValue="value"></DataTableCell>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
+
 <script>
 import $ from 'jquery';
 
 import 'datatables.net';
 import 'datatables.net-dt/css/jquery.dataTables.css';
+import InfoIcon from '../InfoIcon';
+import DataTableCell from './DataTableCell';
 
 export default {
   props: {
     columns: {
       type: Array,
       default() {
-        return ['Test column 1', 'Test column 2', 'Test column 3', 'Test column 4'];
+        return [];
       }
     },
     rows: {
       type: Array,
       default() {
-        return [
-          ['Test value 1.1', 'Test value 1.2', 'Test value 1.3', 'Test value 1.4'],
-          ['Test value 2.1', 'Test value 2.2', 'Test value 2.3', 'Test value 2.4']
-        ];
+        return [];
       }
     }
   },
   data() {
     return {
-      dTable: {}
+      component: {}
     };
   },
+  components: {
+    InfoIcon,
+    DataTableCell
+  },
   mounted: function() {
-    this.dTable = $(this.$refs.table).DataTable();
-
-    // Adding col filters
-    this.dTable.columns().every(function() {
-      const column = this;
-      const input = $('<input type="text" class="filter" />');
-      input.appendTo($(column.header()));
-      input.on('click', function(event) {
-        event.stopPropagation();
-      });
-      input.on('input', function() {
-        column
-          .search(this.value)
-          .draw();
-      });
-    });
+    this.initTable();
   },
   methods: {
+    initTable: function() {
+      this.component = $(this.$refs.table).DataTable({
+        responsive: true
+      });
+      $(window).trigger('resize');
+    },
+    filter: function(event, colIndex) {
+      this.component.columns(colIndex)
+        .search(event.target.value)
+        .draw();
+    }
   }
 };
 </script>

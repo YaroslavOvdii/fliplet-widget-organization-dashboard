@@ -1,0 +1,24 @@
+.data-table-container{
+  width: 100%;
+
+  .data-table {
+    table-layout: fixed;
+    width: 100%;
+
+    .filter {
+      width: 100%;
+    }
+
+    td, th {
+      word-wrap: break-word;;
+    }
+
+    .cell-multiple-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+  }
+}
