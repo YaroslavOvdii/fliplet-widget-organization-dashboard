@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i :data-content="content" ref="info" class="fas fa-info-circle"></i>
+    <i v-if="content" :data-content="content" ref="info" class="fas fa-info-circle"></i>
   </div>
 </template>
 

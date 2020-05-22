@@ -27827,11 +27827,13 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("i", {
-      ref: "info",
-      staticClass: "fas fa-info-circle",
-      attrs: { "data-content": _vm.content }
-    })
+    _vm.content
+      ? _c("i", {
+          ref: "info",
+          staticClass: "fas fa-info-circle",
+          attrs: { "data-content": _vm.content }
+        })
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
