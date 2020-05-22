@@ -9,7 +9,7 @@
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
-        <InfoIcon></InfoIcon>
+        <InfoIcon :content="'SomeText to see'"></InfoIcon>
         <div class="loaded-data-msg"><span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span></div>
         <AnalyticsSummary :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
         <Data-Table></Data-Table>

@@ -188,7 +188,7 @@ var render = function() {
               "div",
               { staticClass: "analytics" },
               [
-                _c("InfoIcon"),
+                _c("InfoIcon", { attrs: { content: "SomeText to see" } }),
                 _vm._v(" "),
                 _c("div", { staticClass: "loaded-data-msg" }, [
                   _c("span", [
@@ -27864,7 +27864,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     content: {
       type: String,
-      "default": 'Testing content'
+      "default": ''
     }
   },
   data: function data() {

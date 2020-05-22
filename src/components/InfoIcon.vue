@@ -9,7 +9,7 @@ export default {
   props: {
     content: {
       type: String,
-      default: 'Testing content'
+      default: ''
     }
   },
   data() {
