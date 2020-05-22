@@ -35,7 +35,7 @@ export default {
         endDate
       },
       dateFormat: {
-        format: 'dd/mm/yyyy,
+        format: 'dd/mm/yyyy',
         separator: ' - ',
         monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       }
