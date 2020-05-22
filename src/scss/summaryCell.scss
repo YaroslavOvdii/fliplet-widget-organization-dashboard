@@ -1,0 +1,31 @@
+.summary-cell {
+  flex: 1;
+  border: 1px solid lavender;
+
+  h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 34px;
+  }
+
+  small {
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+
+    &.up {
+      color: green;
+    }
+
+    &.down {
+      color: red;
+    }
+  }
+
+  p {
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+    font-size: 13px;
+  }
+}

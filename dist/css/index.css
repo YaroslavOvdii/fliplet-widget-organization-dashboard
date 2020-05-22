@@ -1,0 +1,42 @@
+.analytics {
+  flex: 1; }
+  .analytics .loaded-data-msg {
+    display: flex;
+    justify-content: center; }
+
+.main-container {
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 60px;
+  margin: 0 0 5%;
+  width: auto;
+  max-width: none;
+  min-width: auto; }
+
+.analytics-container {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black; }
+
+.summary-cell {
+  flex: 1;
+  border: 1px solid lavender; }
+  .summary-cell h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 34px; }
+  .summary-cell small {
+    display: flex;
+    justify-content: center;
+    font-size: 10px; }
+    .summary-cell small.up {
+      color: green; }
+    .summary-cell small.down {
+      color: red; }
+  .summary-cell p {
+    margin-top: 10px;
+    padding: 5px;
+    text-align: center;
+    font-size: 13px; }

@@ -8,21 +8,19 @@
       <div v-else-if="this.hasError">
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
+      <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
+        <div class="loaded-data-msg"><span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span></div>
+        <AnalyticsSummary :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
+      </div>
       <div v-else>
-        <div v-if="Object.keys(this.analyticsData).length > 0">
-          <span>We have loaded <strong>{{this.analyticsData.appSessions.length}}</strong> entries</span>
-        </div>
-        <div v-else>
-          <span>There is no data to show</span>
-          <First-Component></First-Component>
-        </div>
+        <span>There is no data to show</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import FirstComponent from './components/FirstComponent';
+import AnalyticsSummary from './components/AnalyticsSummary.vue';
 import getAnalyticsData from './services/analytics';
 
 export default {
@@ -35,7 +33,7 @@ export default {
     };
   },
   components: {
-    FirstComponent
+    AnalyticsSummary
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
