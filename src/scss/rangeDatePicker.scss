@@ -1,0 +1,14 @@
+.range-date-picker {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+
+  .daterangepicker {
+    top: 50px;
+  }
+
+  .reportrange-text {
+    font-size: 20px;
+  }
+}
