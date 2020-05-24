@@ -1,18 +1,20 @@
 <template>
   <div class="summary-cell">
     <h2>{{ data.count }}</h2>
-    <small v-if="periodIncrease" class="up">(&#8593;X%)</small>
+    <small v-if="isPeriodPositive" class="up">(&#8593;X%)</small>
     <small v-else class="down">(&#8595;X%)</small>
     <small>{{ data.previousPeriodCount }} previous period</small>
-    <p>{{ description }}</p>
+    <p>{{ description }} <InfoIcon :content="description"></InfoIcon></p>
   </div>
 </template>
 
 <script>
+import InfoIcon from './InfoIcon.vue';
+
 export default {
   data() {
     return {
-      periodIncrease: true
+      isPeriodPositive: undefined
     };
   },
   props: {
@@ -20,9 +22,10 @@ export default {
     data: Array
   },
   mounted() {
-    if (this.data.previousPeriodCount > this.data.count) {
-      this.periodIncrease = false;
-    }
+    this.isPeriodPositive = this.data.count > this.data.previousPeriodCount;
+  },
+  components: {
+    InfoIcon
   },
   name: 'SummaryCell'
 };

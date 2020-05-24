@@ -9,7 +9,8 @@
         <span class="text-danger">{{this.errorMessage}}</span>
       </div>
       <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
-        <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
+        <DateSelectionContainer></DateSelectionContainer>
+<!--        <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>-->
         <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="#">Apps</a></li>
@@ -27,8 +28,9 @@
 <script>
 import AnalyticsSummary from './components/AnalyticsSummary.vue';
 import AppDataTable from './components/tables/AppsDataTable';
+import DateSelectionContainer from './components/RangeDatePicker.vue';
 import getAnalyticsData from './services/analytics';
-import AnalyticsChart from './components/AnalyticsChart';
+// import AnalyticsChart from './components/AnalyticsChart';
 
 export default {
   data() {
@@ -42,7 +44,8 @@ export default {
   components: {
     AnalyticsSummary,
     AppDataTable,
-    AnalyticsChart
+    DateSelectionContainer
+    // AnalyticsChart
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
