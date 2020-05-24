@@ -1,11 +1,12 @@
 <template>
-  <select v-model="selectedRange" name="dateRange" id="dateRange" class="date-dropdown form-control">
-    <option value="24hours">Last 24 hours</option>
-    <option value="7days">Last 7 days</option>
-    <option value="30days">Last 30 days</option>
-    <option value="90days">Last 90 days</option>
-    <option value="6months">Last 6 months</option>
-    <option value="12months">Last 12 months</option>
+  <select v-model="selectedRange" @change="dropdownHandler(selectedRange)" name="dateRange" id="dateRange" class="date-dropdown form-control">
+    <option value="1">Last 24 hours</option>
+    <option value="7">Last 7 days</option>
+    <option value="30">Last 30 days</option>
+    <option value="90">Last 90 days</option>
+    <option value="183">Last 6 months</option>
+    <option value="365">Last 12 months</option>
+    <option value="none">Custom dates</option>
   </select>
 </template>
 
@@ -13,13 +14,18 @@
 export default {
   data() {
     return {
-      selectedRange: '30days'
+      selectedRange: '30'
     };
+  },
+  watch: {
+    customDates(newVal) {
+      this.selectedRange = newVal ? 'none' : this.selectedRange;
+    }
+  },
+  props: {
+    dropdownHandler: Function,
+    customDates: Boolean
   },
   name: 'DateDropdown'
 };
 </script>
-
-<style scoped>
-
-</style>

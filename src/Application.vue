@@ -28,7 +28,7 @@
 <script>
 import AnalyticsSummary from './components/AnalyticsSummary.vue';
 import AppDataTable from './components/tables/AppsDataTable';
-import DateSelectionContainer from './components/DateSelection.vue';
+import DateSelectionContainer from './components/RangeDatePicker.vue';
 import getAnalyticsData from './services/analytics';
 // import AnalyticsChart from './components/AnalyticsChart';
 

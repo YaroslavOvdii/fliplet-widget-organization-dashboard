@@ -1,6 +1,6 @@
 <template>
-  <div class="date-selection">
-    <DateDropdown></DateDropdown>
+  <div class="range-date-picker">
+    <DateDropdown :dropdownHandler="dropdownHandler" :customDates="customDates"></DateDropdown>
     <date-range-picker
       ref="picker"
       opens="left"
@@ -36,20 +36,32 @@ export default {
       },
       dateFormat: {
         format: 'dd/mm/yyyy',
-        separator: ' - ',
-        monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      }
+        separator: ' - '
+      },
+      customDates: false
     };
   },
   methods: {
     updateValues() {
+      this.customDates = true;
+    },
+    dropdownHandler(range) {
+      if (range === 'none') {
+        return;
+      }
 
+      let startDate = new Date();
+      let endDate = new Date();
+
+      this.customDates = false;
+      this.dateRange.startDate = startDate.setDate(endDate.getDate() - range);
+      this.dateRange.endDate = endDate;
     }
   },
   components: {
     DateDropdown,
     DateRangePicker
   },
-  name: 'DateSelection'
+  name: 'RangeDatePicker'
 };
 </script>
