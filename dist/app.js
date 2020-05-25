@@ -13740,14 +13740,6 @@ __webpack_require__.r(__webpack_exports__);
     RangeDatePicker: _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  mounted: function mounted() {
-    // TODO: at the start of the app we should load data for the current month
-    this.loadData('2020-04-01', '2020-05-01');
-    Fliplet.Widget.autosize();
-  },
-  updated: function updated() {
-    Fliplet.Widget.autosize();
-  },
   methods: {
     loadData: function loadData(startDate, endDate) {
       var _this = this;
@@ -13762,6 +13754,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.isLoading = false;
       });
     }
+  },
+  mounted: function mounted() {
+    // TODO: at the start of the app we should load data for the current month
+    this.loadData('2020-04-01', '2020-05-01');
+    Fliplet.Widget.autosize();
+  },
+  updated: function updated() {
+    Fliplet.Widget.autosize();
   }
 });
 
@@ -14309,8 +14309,6 @@ var previousePeriod = function previousePeriod(dateData) {
 var generateApps = function generateApps(amount, dateRange) {
   var apps = [];
   var id = 1;
-  console.log(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate));
-  console.log(dateRange.startDate);
 
   while (apps.length < amount) {
     apps.push({
@@ -14513,17 +14511,15 @@ var generateStudioSessions = function generateStudioSessions() {
 };
 
 var setCorrectDate = function setCorrectDate(date, format) {
-  var newDate = date;
-
   switch (format) {
     case 'dayMonth':
-      return "".concat(newDate.getFullYear(), "-0").concat(newDate.getMonth() + 1);
+      return "".concat(date.getFullYear(), "-0").concat(date.getMonth() + 1);
 
     case 'ISO':
-      return newDate.toISOString();
+      return date.toISOString();
 
     case 'standart':
-      return "".concat(newDate.getFullYear(), "-").concat(newDate.getDate() > 9 ? newDate.getDate() : "0".concat(newDate.getDate()), "-0").concat(newDate.getMonth() + 1);
+      return "".concat(date.getFullYear(), "-").concat(date.getDate() > 9 ? date.getDate() : "0".concat(date.getDate()), "-0").concat(date.getMonth() + 1);
 
     default:
       break;
@@ -131660,20 +131656,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    appsSessions: {
-      type: Array,
-      "default": function _default() {
-        return [];
-      }
-    },
-    studioSessions: {
-      type: Array,
-      "default": function _default() {
-        return [];
-      }
-    }
-  },
   data: function data() {
     return {
       chartInstance: {},
@@ -131717,6 +131699,20 @@ __webpack_require__.r(__webpack_exports__);
         }]
       }
     };
+  },
+  props: {
+    appsSessions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    studioSessions: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
   },
   methods: {
     initChart: function initChart() {
