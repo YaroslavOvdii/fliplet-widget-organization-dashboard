@@ -42,7 +42,7 @@ const generateApps = (amount, dateRange) => {
       stats: {
         users: {
           count: faker.random.number({min: 500, max: 600}),
-          previousPeriodCount: faker.random.number({min: 100, max: 500})
+          previousPeriodCount: faker.random.number({min: 500, max: 700})
         },
         sessions: {
           count: faker.random.number({min: 500, max: 600}),

@@ -30,6 +30,15 @@ import Tooltip from '../Tooltip';
 import DataTableCell from './DataTableCell';
 
 export default {
+  data() {
+    return {
+      component: {}
+    };
+  },
+  components: {
+    Tooltip,
+    DataTableCell
+  },
   props: {
     columns: {
       type: Array,
@@ -44,18 +53,6 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      component: {}
-    };
-  },
-  components: {
-    Tooltip,
-    DataTableCell
-  },
-  mounted: function() {
-    this.initTable();
-  },
   methods: {
     initTable: function() {
       this.component = $(this.$refs.table).DataTable({
@@ -68,6 +65,9 @@ export default {
         .search(event.target.value)
         .draw();
     }
+  },
+  mounted: function() {
+    this.initTable();
   }
 };
 </script>

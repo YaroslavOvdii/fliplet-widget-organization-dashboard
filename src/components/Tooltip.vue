@@ -7,13 +7,13 @@ export default {
   props: {
     content: String
   },
-  mounted: function() {
-    this.initPopover();
-  },
   methods: {
     initPopover: function() {
       $(this.$refs.info).popover();
     }
+  },
+  mounted: function() {
+    this.initPopover();
   }
 };
 </script>

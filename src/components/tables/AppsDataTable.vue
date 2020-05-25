@@ -10,14 +10,6 @@
 import DataTable from './DataTable';
 
 export default {
-  props: {
-    apps: {
-      type: Array,
-      default() {
-        return [];
-      }
-    }
-  },
   data() {
     return {
       cols: [
@@ -73,8 +65,13 @@ export default {
   components: {
     DataTable
   },
-  mounted: function() {
-    this.transformData();
+  props: {
+    apps: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   methods: {
     transformData: function() {
@@ -98,6 +95,9 @@ export default {
         this.isDataTransformed = true;
       });
     }
+  },
+  mounted: function() {
+    this.transformData();
   }
 };
 </script>
