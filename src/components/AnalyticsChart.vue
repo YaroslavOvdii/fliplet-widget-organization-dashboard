@@ -4,20 +4,6 @@
 
 <script>
 export default {
-  props: {
-    appsSessions: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    studioSessions: {
-      type: Array,
-      default() {
-        return [];
-      }
-    }
-  },
   data() {
     return {
       chartInstance: {},
@@ -65,6 +51,20 @@ export default {
         ]
       }
     };
+  },
+  props: {
+    appsSessions: {
+      type: Array,
+      default() {
+        return [];
+      }
+    },
+    studioSessions: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   methods: {
     initChart: function() {

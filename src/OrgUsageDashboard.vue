@@ -45,14 +45,6 @@ export default {
     RangeDatePicker,
     AnalyticsChart
   },
-  mounted: function() {
-    // TODO: at the start of the app we should load data for the current month
-    this.loadData('2020-04-01', '2020-05-01');
-    Fliplet.Widget.autosize();
-  },
-  updated() {
-    Fliplet.Widget.autosize();
-  },
   methods: {
     loadData: function(startDate, endDate) {
       this.isLoading = true;
@@ -69,6 +61,14 @@ export default {
           this.isLoading = false;
         });
     }
+  },
+  mounted: function() {
+    // TODO: at the start of the app we should load data for the current month
+    this.loadData('2020-04-01', '2020-05-01');
+    Fliplet.Widget.autosize();
+  },
+  updated() {
+    Fliplet.Widget.autosize();
   }
 };
 </script>
