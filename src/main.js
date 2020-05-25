@@ -1,8 +1,8 @@
-import Application from './Application.vue';
+import OrgUsageDashboard from './OrgUsageDashboard.vue';
 
 new Vue({
   el: '#organization-dashboard',
   render: (createElement) => {
-    return createElement(Application);
+    return createElement(OrgUsageDashboard);
   }
 });

@@ -66,17 +66,14 @@ export default {
       }
     };
   },
-  mounted: function() {
-    this.initChart();
-  },
   methods: {
     initChart: function() {
-      this.manageData()
+      this.transformData()
         .then(() => {
           this.chartInstance = Highcharts.chart(this.$refs.chartContainer, this.chartOptions);
         });
     },
-    manageData: function() {
+    transformData: function() {
       return new Promise((resolve) => {
         let categories = [];
         let appSessionVal = [];
@@ -98,6 +95,9 @@ export default {
         resolve();
       });
     }
+  },
+  mounted: function() {
+    this.initChart();
   }
 };
 </script>
