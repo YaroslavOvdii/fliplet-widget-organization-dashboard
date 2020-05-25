@@ -14,15 +14,14 @@ export default {
       summaryData: undefined
     };
   },
+  components: {
+    SummaryCell
+  },
   props: {
     analyticsData: Object
   },
   created() {
     this.summaryData = Object.values(this.analyticsData);
-  },
-  components: {
-    SummaryCell
-  },
-  name: 'AnalyticsSummary'
+  }
 };
 </script>

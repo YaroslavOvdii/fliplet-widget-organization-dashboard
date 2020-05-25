@@ -1,6 +1,6 @@
 <template>
   <div class="dataTable">
-    <table ref="table" class="table-responsive d-print-inline" style="width:100%">
+    <table ref="table" class="data-table table-responsive d-print-inline" style="width:100%">
       <thead>
         <tr>
           <th v-for="(col, colIndex) in columns" :key="col">

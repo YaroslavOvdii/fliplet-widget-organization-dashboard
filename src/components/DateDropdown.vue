@@ -1,5 +1,5 @@
 <template>
-  <select v-model="selectedRange" @change="dropdownHandler(selectedRange)" name="dateRange" id="dateRange" class="date-dropdown form-control">
+  <select v-model="selectedRange" @change="dropdownHandler(selectedRange)" name="dateRange" id="dateRange" class="date-dropdown">
     <option value="1">Last 24 hours</option>
     <option value="7">Last 7 days</option>
     <option value="30">Last 30 days</option>
@@ -17,15 +17,14 @@ export default {
       selectedRange: '30'
     };
   },
-  watch: {
-    customDates(newVal) {
-      this.selectedRange = newVal ? 'none' : this.selectedRange;
-    }
-  },
   props: {
     dropdownHandler: Function,
     customDates: Boolean
   },
-  name: 'DateDropdown'
+  watch: {
+    customDates(newVal) {
+      this.selectedRange = newVal ? 'none' : this.selectedRange;
+    }
+  }
 };
 </script>
