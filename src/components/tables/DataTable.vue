@@ -56,7 +56,7 @@ export default {
   methods: {
     initTable: function() {
       this.component = $(this.$refs.table).DataTable({
-        responsive: true
+        scrollX: true
       });
       $(window).trigger('resize');
     },
