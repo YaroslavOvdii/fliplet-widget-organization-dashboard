@@ -1,12 +1,12 @@
 <template>
-  <div class="data-table-container">
-    <table ref="table" class="data-table table-responsive d-print-inline" style="width:100%">
+  <div class="dataTable">
+    <table ref="table" class="table-responsive d-print-inline" style="width:100%">
       <thead>
         <tr>
           <th v-for="(col, colIndex) in columns" :key="col">
             {{ col.name }}
-            <InfoIcon v-on:click.stop :content="col.help"></InfoIcon>
-            <input v-on:click.stop v-on:input="filter($event, colIndex)" data type="text" class="filter" />
+            <Tooltip @click.stop :content="col.help"></Tooltip>
+            <input @click.stop @input="filter($event, colIndex)" data type="text" class="filter" />
           </th>
         </tr>
       </thead>
@@ -26,7 +26,7 @@ import $ from 'jquery';
 
 import 'datatables.net';
 import 'datatables.net-dt/css/jquery.dataTables.css';
-import InfoIcon from '../InfoIcon';
+import Tooltip from '../Tooltip';
 import DataTableCell from './DataTableCell';
 
 export default {
@@ -50,7 +50,7 @@ export default {
     };
   },
   components: {
-    InfoIcon,
+    Tooltip,
     DataTableCell
   },
   mounted: function() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="dataTransfotmed">
+    <div v-if="isDataTransformed">
       <DataTable :columns="cols" :rows="rows"></DataTable>
     </div>
   </div>
@@ -67,7 +67,7 @@ export default {
         }
       ],
       rows: [],
-      dataTransfotmed: false
+      isDataTransformed: false
     };
   },
   components: {
@@ -81,7 +81,7 @@ export default {
       this.apps.forEach(app => {
         this.rows.push(
           [
-            [ app.name],
+            [app.name],
             [app.createdAt],
             [app.updatedAt],
             [app.publishedAt],
@@ -95,7 +95,7 @@ export default {
           ]
         );
 
-        this.dataTransfotmed = true;
+        this.isDataTransformed = true;
       });
     }
   }
