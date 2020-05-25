@@ -19,7 +19,7 @@
     margin: 0 10px;
   }
 
-  .data-table {
+  .table-responsive {
     table-layout: fixed;
     width: 100%;
 
@@ -32,11 +32,10 @@
     }
 
     .multiline-cell {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       text-align: center;
+      small {
+        display: block;
+      }
     }
   }
 }
