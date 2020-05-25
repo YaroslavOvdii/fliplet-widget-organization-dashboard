@@ -1,0 +1,15 @@
+.dashbord-container {
+  overflow: hidden;
+
+  .dashbord-holder {
+    max-width: 100%;
+
+    .spinner-holder p {
+      text-align: center;
+    }
+  }
+
+  .range-date-picker, .analytics-container, .nav.nav-tabs {
+    margin-top: 40px;
+  }
+}

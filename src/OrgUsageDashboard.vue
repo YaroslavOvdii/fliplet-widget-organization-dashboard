@@ -6,10 +6,10 @@
         <p>Loading...</p>
       </div>
       <div v-else-if="this.hasError">
-        <span class="text-danger">{{this.errorMessage}}</span>
+        <span class="text-danger">{{ this.errorMessage }}</span>
       </div>
-      <div v-else-if="Object.keys(this.analyticsData).length > 0" class="analytics">
-        <DateSelectionContainer></DateSelectionContainer>
+      <div v-else-if="Object.keys(this.analyticsData).length > 0">
+        <RangeDatePicker></RangeDatePicker>
         <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
         <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
         <ul class="nav nav-tabs">
@@ -28,7 +28,7 @@
 <script>
 import AnalyticsSummary from './components/AnalyticsSummary.vue';
 import AppDataTable from './components/tables/AppsDataTable';
-import DateSelectionContainer from './components/RangeDatePicker.vue';
+import RangeDatePicker from './components/RangeDatePicker.vue';
 import getAnalyticsData from './services/analytics';
 import AnalyticsChart from './components/AnalyticsChart';
 
@@ -44,12 +44,15 @@ export default {
   components: {
     AnalyticsSummary,
     AppDataTable,
-    DateSelectionContainer,
+    RangeDatePicker,
     AnalyticsChart
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
     this.loadData('2020-04-01', '2020-05-01');
+  },
+  updated() {
+    Fliplet.Widget.autosize();
   },
   methods: {
     loadData: function(startDate, endDate) {

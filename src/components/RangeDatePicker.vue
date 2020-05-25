@@ -41,6 +41,10 @@ export default {
       customDates: false
     };
   },
+  components: {
+    DateDropdown,
+    DateRangePicker
+  },
   methods: {
     updateValues() {
       this.customDates = true;
@@ -57,11 +61,6 @@ export default {
       this.dateRange.startDate = startDate.setDate(endDate.getDate() - range);
       this.dateRange.endDate = endDate;
     }
-  },
-  components: {
-    DateDropdown,
-    DateRangePicker
-  },
-  name: 'RangeDatePicker'
+  }
 };
 </script>
