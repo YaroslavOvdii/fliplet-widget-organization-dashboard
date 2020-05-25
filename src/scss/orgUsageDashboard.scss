@@ -1,12 +1,8 @@
-.dashbord-container {
+.org-usage-dashboard {
   overflow: hidden;
 
-  .dashbord-holder {
-    max-width: 100%;
-
-    .spinner-holder p {
+  .spinner-holder p {
       text-align: center;
-    }
   }
 
   .analytics-container, .nav.nav-tabs {

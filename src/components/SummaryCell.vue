@@ -1,8 +1,8 @@
 <template>
   <div class="summary-cell">
     <h2>{{ data.count }}</h2>
-    <small v-if="data.count > data.previousPeriodCount" class="text-success">(&#8593; {{ changeFromPreviousPeriod }}%)</small>
-    <small v-else class="text-danger">(&#8595; {{ changeFromPreviousPeriod }}%)</small>
+    <small v-if="data.count > data.previousPeriodCount" class="text-success">(&#8593; {{ perсent }}%)</small>
+    <small v-else class="text-danger">(&#8595; {{ perсent }}%)</small>
     <small>{{ data.previousPeriodCount }} previous period</small>
     <p>{{ description }} <Tooltip :content="description"></Tooltip></p>
   </div>
@@ -10,11 +10,12 @@
 
 <script>
 import Tooltip from './Tooltip.vue';
+import { calculateDynamic } from '../services/analytics';
 
 export default {
   data() {
     return {
-      changeFromPreviousPeriod: undefined
+      perсent: 0
     };
   },
   components: {
@@ -25,11 +26,7 @@ export default {
     data: Array
   },
   mounted() {
-    if (this.data.previousPeriodCount > this.data.count) {
-      this.changeFromPreviousPeriod = Math.round((( this.data.previousPeriodCount - this.data.count ) / this.data.count) * 100);
-    } else {
-      this.changeFromPreviousPeriod = Math.round((( this.data.count - this.data.previousPeriodCount ) / this.data.count) * 100);
-    }
+    this.perсent = calculateDynamic(this.data.count, this.data.previousPeriodCount);
   }
 };
 </script>

@@ -1,17 +1,17 @@
 .range-date-picker {
-  flex: 1;
   display: flex;
   justify-content: flex-end;
   border-radius: 2px;
   margin-bottom: 10px;
 
   .daterangepicker {
-    top: 40px;
+    top: 35px;
   }
 
   .reportrange-text {
-    font-size: 18px;
+    font-size: 14px;
     border-radius: 2px;
-    height: 36px;
+    height: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
   }
 }
