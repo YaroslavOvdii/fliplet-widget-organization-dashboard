@@ -4,12 +4,12 @@
     <small v-if="isPeriodPositive" class="up">(&#8593;X%)</small>
     <small v-else class="down">(&#8595;X%)</small>
     <small>{{ data.previousPeriodCount }} previous period</small>
-    <p>{{ description }} <InfoIcon :content="description"></InfoIcon></p>
+    <p>{{ description }} <Tooltip :content="description"></Tooltip></p>
   </div>
 </template>
 
 <script>
-import InfoIcon from './InfoIcon.vue';
+import Tooltip from './Tooltip.vue';
 
 export default {
   data() {
@@ -25,7 +25,7 @@ export default {
     this.isPeriodPositive = this.data.count > this.data.previousPeriodCount;
   },
   components: {
-    InfoIcon
+    Tooltip
   },
   name: 'SummaryCell'
 };

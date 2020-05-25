@@ -5,15 +5,7 @@
 <script>
 export default {
   props: {
-    content: {
-      type: String,
-      default: ''
-    }
-  },
-  data() {
-    return {
-
-    };
+    content: String
   },
   mounted: function() {
     this.initPopover();
