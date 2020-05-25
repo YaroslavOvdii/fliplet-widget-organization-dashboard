@@ -23,4 +23,12 @@ const getAnalyticsData = (startDate, endDate) => {
   // });
 };
 
+export const calculateDynamic = (currentValue, previousValue) => {
+  if (currentValue > previousValue) {
+    return Math.round((( currentValue - previousValue ) / previousValue) * 100);
+  }
+
+  return Math.round((( previousValue - currentValue ) / previousValue) * 100);
+};
+
 export default getAnalyticsData;

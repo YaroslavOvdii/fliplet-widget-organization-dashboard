@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { calculateDynamic } from '../../services/analytics';
+
 export default {
   data() {
     return {
@@ -30,18 +32,9 @@ export default {
       }
     }
   },
-  methods: {
-    calculatePerсent: function() {
-      if (this.cellValue[0] > this.cellValue[1]) {
-        this.perсent = Math.round((( this.cellValue[0] - this.cellValue[1] ) / this.cellValue[1]) * 100);
-      } else {
-        this.perсent = Math.round((( this.cellValue[1] - this.cellValue[0] ) / this.cellValue[1]) * 100);
-      }
-    }
-  },
   mounted: function() {
     if (this.cellValue.length > 1) {
-      this.calculatePerсent();
+      this.perсent = calculateDynamic(this.cellValue[0], this.cellValue[1]);
     }
   }
 };
