@@ -10,60 +10,52 @@
 import DataTable from './DataTable';
 
 export default {
-  props: {
-    apps: {
-      type: Array,
-      default() {
-        return [];
-      }
-    }
-  },
   data() {
     return {
       cols: [
         {
           name: 'App',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Created',
-          help: 'Discription'
+          help: 'Test description'
         },
         {
           name: 'Last Edit',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Last publish',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Apple',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Android',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Web',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Users',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Sessions',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Edits',
-          help: ''
+          help: 'Test description'
         },
         {
           name: 'Published',
-          help: ''
+          help: 'Test description'
         }
       ],
       rows: [],
@@ -73,8 +65,13 @@ export default {
   components: {
     DataTable
   },
-  mounted: function() {
-    this.transformData();
+  props: {
+    apps: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   methods: {
     transformData: function() {
@@ -98,6 +95,9 @@ export default {
         this.isDataTransformed = true;
       });
     }
+  },
+  mounted: function() {
+    this.transformData();
   }
 };
 </script>

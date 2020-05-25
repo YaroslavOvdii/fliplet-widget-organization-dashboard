@@ -42,7 +42,7 @@ const generateApps = (amount, dateRange) => {
       stats: {
         users: {
           count: faker.random.number({min: 500, max: 600}),
-          previousPeriodCount: faker.random.number({min: 100, max: 500})
+          previousPeriodCount: faker.random.number({min: 500, max: 700})
         },
         sessions: {
           count: faker.random.number({min: 500, max: 600}),
@@ -99,8 +99,8 @@ const generateUsers = (amount, dateRange) => {
 const generateStats = () => {
   return {
     studioSessions: {
-      count: faker.random.number({min: 500, max: 1000}),
-      previousPeriodCount: faker.random.number({min: 100, max: 499})
+      count: faker.random.number({min: 500, max: 600}),
+      previousPeriodCount: faker.random.number({min: 500, max: 600})
     },
     totalUsers: {
       count: faker.random.number({min: 500, max: 1000}),
