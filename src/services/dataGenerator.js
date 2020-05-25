@@ -22,7 +22,7 @@ const previousePeriod = (dateData) => {
 
   startDate.setDate(startDate.getDate() - diffDays);
 
-  return startDate.toLocaleString();
+  return startDate;
 };
 
 const generateApps = (amount, dateRange) => {
@@ -157,15 +157,13 @@ const generateStudioSessions = () => {
 };
 
 const setCorrectDate = (date, format) => {
-  var newDate = new Date(date);
-
   switch (format) {
     case 'dayMonth':
-      return `${newDate.getFullYear()}-0${newDate.getMonth() + 1}`;
+      return `${date.getFullYear()}-0${date.getMonth() + 1}`;
     case 'ISO':
-      return newDate.toISOString();
+      return date.toISOString();
     case 'standart':
-      return `${newDate.getFullYear()}-${newDate.getDate() > 9 ? newDate.getDate() : `0${newDate.getDate()}` }-0${newDate.getMonth() + 1}`;
+      return `${date.getFullYear()}-${date.getDate() > 9 ? date.getDate() : `0${date.getDate()}` }-0${date.getMonth() + 1}`;
     default:
       break;
   }
