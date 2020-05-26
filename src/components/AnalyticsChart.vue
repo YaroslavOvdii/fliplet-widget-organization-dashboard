@@ -75,15 +75,15 @@ export default {
     },
     transformData: function() {
       return new Promise((resolve) => {
-        let categories = [];
-        let appSessionVal = [];
+        const categories = [];
+        const appSessionVal = [];
 
         this.appsSessions.forEach((appSession) => {
           categories.push(appSession.day);
           appSessionVal.push(appSession.count);
         });
 
-        let studioSessionVal = [];
+        const studioSessionVal = [];
 
         this.studioSessions.forEach((studioSession) => {
           studioSessionVal.push(studioSession.count);

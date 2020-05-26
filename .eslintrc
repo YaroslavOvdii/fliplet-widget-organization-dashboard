@@ -7,7 +7,8 @@
   ],
   "globals": {
     "Vue": true,
-    "Highcharts": true
+    "Highcharts": true,
+    "$": true
   },
   "rules": {
     "no-new": 0
