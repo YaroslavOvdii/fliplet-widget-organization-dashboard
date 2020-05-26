@@ -159,11 +159,11 @@ const generateStudioSessions = () => {
 const setCorrectDate = (date, format) => {
   switch (format) {
     case 'dayMonth':
-      return `${date.getFullYear()}-0${date.getMonth() + 1}`;
+      return moment(date).format('YYYY-MM');
     case 'ISO':
       return date.toISOString();
     case 'standart':
-      return `${date.getFullYear()}-${date.getDate() > 9 ? date.getDate() : `0${date.getDate()}` }-0${date.getMonth() + 1}`;
+      return date;
     default:
       break;
   }

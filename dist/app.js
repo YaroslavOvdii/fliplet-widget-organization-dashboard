@@ -14564,13 +14564,13 @@ var generateStudioSessions = function generateStudioSessions() {
 var setCorrectDate = function setCorrectDate(date, format) {
   switch (format) {
     case 'dayMonth':
-      return "".concat(date.getFullYear(), "-0").concat(date.getMonth() + 1);
+      return moment(date).format('YYYY-MM');
 
     case 'ISO':
       return date.toISOString();
 
     case 'standart':
-      return "".concat(date.getFullYear(), "-").concat(date.getDate() > 9 ? date.getDate() : "0".concat(date.getDate()), "-0").concat(date.getMonth() + 1);
+      return date;
 
     default:
       break;
@@ -103902,7 +103902,39 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.apps.forEach(function (app) {
-        _this.rows.push([[app.name], [app.createdAt], [app.updatedAt], [app.publishedAt], [app.publishedAppleAt], [app.publishedGoogleAt], [app.publishedWebAt], [app.stats.users.count, app.stats.users.previousPeriodCount], [app.stats.sessions.count, app.stats.sessions.previousPeriodCount], [app.stats.updates.count, app.stats.updates.previousPeriodCount], [app.stats.publishes.count, app.stats.publishes.previousPeriodCount]]);
+        _this.rows.push([{
+          value: app.name
+        }, {
+          value: app.createdAt,
+          type: 'date'
+        }, {
+          value: app.updatedAt,
+          type: 'date'
+        }, {
+          value: app.publishedAt,
+          type: 'date'
+        }, {
+          value: app.publishedAppleAt,
+          type: 'date'
+        }, {
+          value: app.publishedGoogleAt,
+          type: 'date'
+        }, {
+          value: app.publishedWebAt,
+          type: 'date'
+        }, {
+          value: [app.stats.users.count, app.stats.users.previousPeriodCount],
+          type: 'dynamic'
+        }, {
+          value: [app.stats.sessions.count, app.stats.sessions.previousPeriodCount],
+          type: 'dynamic'
+        }, {
+          value: [app.stats.updates.count, app.stats.updates.previousPeriodCount],
+          type: 'dynamic'
+        }, {
+          value: [app.stats.publishes.count, app.stats.publishes.previousPeriodCount],
+          type: 'dynamic'
+        }]);
 
         _this.isDataTransformed = true;
       });
@@ -104023,11 +104055,15 @@ var render = function() {
             return _c(
               "tr",
               { key: row },
-              _vm._l(row, function(value) {
+              _vm._l(row, function(cell) {
                 return _c(
                   "td",
-                  { key: value },
-                  [_c("DataTableCell", { attrs: { cellValue: value } })],
+                  { key: cell.value },
+                  [
+                    _c("DataTableCell", {
+                      attrs: { cellValue: cell.value, cellType: cell.type }
+                    })
+                  ],
                   1
                 )
               }),
@@ -104185,7 +104221,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.cellValue.length > 1
+    _vm.cellType === "date"
+      ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
+      : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
           _c("p", [_vm._v(_vm._s(_vm.cellValue[0]))]),
           _vm._v(" "),
@@ -104203,7 +104241,7 @@ var render = function() {
           _vm._v(" "),
           _c("small", [_vm._v("\n      Previous Period\n    ")])
         ])
-      : _c("span", [_vm._v(_vm._s(_vm.cellValue[0]))])
+      : _c("span", [_vm._v("\n    " + _vm._s(_vm.cellValue) + "\n  ")])
   ])
 }
 var staticRenderFns = []
@@ -104244,6 +104282,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -104257,10 +104298,19 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return [];
       }
+    },
+    cellType: {
+      type: String,
+      "default": 'raw'
+    }
+  },
+  methods: {
+    transformDate: function transformDate(date) {
+      return moment(date).format('D MMM YYYY');
     }
   },
   mounted: function mounted() {
-    if (this.cellValue.length > 1) {
+    if (this.cellType === 'dynamic') {
       this.perсent = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_0__["calculateDynamic"])(this.cellValue[0], this.cellValue[1]);
     }
   }
@@ -105591,7 +105641,25 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.users.forEach(function (user) {
-        _this.rows.push([[user.email], [user.lastSeenAt], [user.createdAt], [user.stats.studioSessions.count], [user.stats.viewerSessions.count], [user.stats.appPublishes.count], [user.stats.appsAvailable.count], [user.stats.appsCreated.count]]);
+        _this.rows.push([{
+          value: user.email
+        }, {
+          value: user.lastSeenAt,
+          type: 'date'
+        }, {
+          value: user.createdAt,
+          type: 'date'
+        }, {
+          value: user.stats.studioSessions.count
+        }, {
+          value: user.stats.viewerSessions.count
+        }, {
+          value: user.stats.appPublishes.count
+        }, {
+          value: user.stats.appsAvailable.count
+        }, {
+          value: user.stats.appsCreated.count
+        }]);
 
         _this.isDataTransformed = true;
       });
