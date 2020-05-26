@@ -13749,7 +13749,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.analyticsData = result;
       })["catch"](function (error) {
         _this.hasError = true;
-        _this.errorMessage = error;
+        _this.errorMessage = Fliplet.parseError(error);
       })["finally"](function () {
         _this.isLoading = false;
       });

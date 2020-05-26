@@ -55,7 +55,7 @@ export default {
         })
         .catch((error) => {
           this.hasError = true;
-          this.errorMessage = error;
+          this.errorMessage = Fliplet.parseError(error);
         })
         .finally(() => {
           this.isLoading = false;
