@@ -13643,34 +13643,75 @@ var render = function() {
               attrs: { analyticsData: this.analyticsData.stats }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("ul", { staticClass: "nav nav-tabs" }, [
+              _c(
+                "li",
+                {
+                  class: [this.activeTab === "apps" ? "active" : ""],
+                  attrs: { role: "presentation" },
+                  on: {
+                    click: function($event) {
+                      _vm.activeTab = "apps"
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                        }
+                      }
+                    },
+                    [_vm._v("Apps")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  class: [this.activeTab === "users" ? "active" : ""],
+                  attrs: { role: "presentation" },
+                  on: {
+                    click: function($event) {
+                      _vm.activeTab = "users"
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                        }
+                      }
+                    },
+                    [_vm._v("Users")]
+                  )
+                ]
+              )
+            ]),
             _vm._v(" "),
-            _c("AppDataTable", {
-              staticClass: "component",
-              attrs: { apps: this.analyticsData.apps }
-            })
+            _vm.activeTab === "apps"
+              ? _c("AppDataTable", {
+                  staticClass: "component",
+                  attrs: { apps: this.analyticsData.apps }
+                })
+              : _vm._e()
           ],
           1
         )
       : _c("div", [_c("span", [_vm._v("There is no data to show")])])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav nav-tabs" }, [
-      _c("li", { staticClass: "active", attrs: { role: "presentation" } }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Apps")])
-      ]),
-      _vm._v(" "),
-      _c("li", { attrs: { role: "presentation" } }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Users")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -13731,7 +13772,8 @@ __webpack_require__.r(__webpack_exports__);
       isLoading: false,
       analyticsData: {},
       errorMessage: '',
-      hasError: false
+      hasError: false,
+      activeTab: 'apps'
     };
   },
   components: {

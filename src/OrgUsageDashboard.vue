@@ -12,10 +12,10 @@
       <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
       <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Apps</a></li>
-        <li role="presentation"><a href="#">Users</a></li>
+        <li role="presentation" @click="activeTab = 'apps'" :class="[this.activeTab === 'apps' ? 'active' : '']"><a @click.prevent href="#">Apps</a></li>
+        <li role="presentation" @click="activeTab = 'users'" :class="[this.activeTab === 'users' ? 'active' : '']"><a @click.prevent href="#">Users</a></li>
       </ul>
-      <AppDataTable class="component" :apps="this.analyticsData.apps"></AppDataTable>
+      <AppDataTable v-if="activeTab === 'apps'" class="component" :apps="this.analyticsData.apps"></AppDataTable>
     </div>
     <div v-else>
       <span>There is no data to show</span>
@@ -36,7 +36,8 @@ export default {
       isLoading: false,
       analyticsData: {},
       errorMessage: '',
-      hasError: false
+      hasError: false,
+      activeTab: 'apps'
     };
   },
   components: {
