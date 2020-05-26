@@ -13704,6 +13704,11 @@ var render = function() {
                   staticClass: "component",
                   attrs: { apps: this.analyticsData.apps }
                 })
+              : _vm.activeTab === "users"
+              ? _c("UsersDataTable", {
+                  staticClass: "component",
+                  attrs: { users: this.analyticsData.users }
+                })
               : _vm._e()
           ],
           1
@@ -13736,6 +13741,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1463);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(398);
 /* harmony import */ var _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1479);
+/* harmony import */ var _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1484);
 //
 //
 //
@@ -13761,6 +13767,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -13780,7 +13788,8 @@ __webpack_require__.r(__webpack_exports__);
     AnalyticsSummary: _components_AnalyticsSummary_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppDataTable: _components_tables_AppsDataTable__WEBPACK_IMPORTED_MODULE_1__["default"],
     RangeDatePicker: _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"]
+    AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"],
+    UsersDataTable: _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   methods: {
     loadData: function loadData(startDate, endDate) {
@@ -105434,6 +105443,162 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.initChart();
+  }
+});
+
+/***/ }),
+/* 1484 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1485);
+/* harmony import */ var _UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1487);
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(397);
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/components/tables/UsersDataTable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+/* 1485 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1486);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+/* 1486 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.isDataTransformed
+      ? _c(
+          "div",
+          [_c("DataTable", { attrs: { columns: _vm.cols, rows: _vm.rows } })],
+          1
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+/* 1487 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1488);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+/* 1488 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DataTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1453);
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      cols: [{
+        name: 'Users',
+        help: 'Test description'
+      }, {
+        name: 'Last seen',
+        help: 'Test description'
+      }, {
+        name: 'Created',
+        help: 'Test description'
+      }, {
+        name: 'Studio sessions',
+        help: 'Test description'
+      }, {
+        name: 'Viewer sessions',
+        help: 'Test description'
+      }, {
+        name: 'App Publishes',
+        help: 'Test description'
+      }, {
+        name: 'Apps available',
+        help: 'Test description'
+      }, {
+        name: 'Apps created',
+        help: 'Test description'
+      }],
+      rows: [],
+      isDataTransformed: false
+    };
+  },
+  components: {
+    DataTable: _DataTable__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    users: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
+  },
+  methods: {
+    transformData: function transformData() {
+      var _this = this;
+
+      this.users.forEach(function (user) {
+        _this.rows.push([[user.email], [user.lastSeenAt], [user.createdAt], [user.stats.studioSessions.count], [user.stats.viewerSessions.count], [user.stats.appPublishes.count], [user.stats.appsAvailable.count], [user.stats.appsCreated.count]]);
+
+        _this.isDataTransformed = true;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.transformData();
   }
 });
 
