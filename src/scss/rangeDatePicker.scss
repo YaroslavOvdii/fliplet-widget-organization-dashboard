@@ -1,0 +1,17 @@
+.range-date-picker {
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 2px;
+  margin-bottom: 10px;
+
+  .daterangepicker {
+    top: 35px;
+  }
+
+  .reportrange-text {
+    font-size: 14px;
+    border-radius: 2px;
+    height: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+}

@@ -10,7 +10,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/',
+    publicPath: './dist/',
     filename: '[name].js'
   },
   module: {
@@ -27,6 +27,20 @@ module.exports = {
           },
           'sass-loader'
         ]
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            outputPath: 'images/',
+            name: '[name][hash].[ext]'
+          }
+        }
       },
       {
         test: /\.vue$/,

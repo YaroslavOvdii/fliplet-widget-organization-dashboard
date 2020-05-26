@@ -12,7 +12,10 @@
     "dependencies": [
       "vue.js",
       "fliplet-core",
-      "fliplet-studio-ui"
+      "fliplet-studio-ui",
+      "highcharts",
+      "font-awesome",
+      "bootstrap-js"
     ],
     "assets": [
       "dist/css/index.css",

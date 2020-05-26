@@ -6,7 +6,9 @@
     "plugin:vue/essential"
   ],
   "globals": {
-    "Vue": true
+    "Vue": true,
+    "Highcharts": true,
+    "$": true
   },
   "rules": {
     "no-new": 0

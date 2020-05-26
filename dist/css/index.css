@@ -1,0 +1,85 @@
+.org-usage-dashboard {
+  overflow: hidden; }
+  .org-usage-dashboard .spinner-holder p {
+    text-align: center; }
+  .org-usage-dashboard .analytics-container, .org-usage-dashboard .nav.nav-tabs {
+    margin-top: 40px; }
+  .org-usage-dashboard .range-date-picker {
+    margin-top: 20px; }
+
+.analytics-container {
+  width: 100%;
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: none; }
+
+.summary-cell {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.1); }
+  .summary-cell h2 {
+    margin-top: 10px;
+    font-size: 34px; }
+  .summary-cell small {
+    display: block;
+    font-size: 10px; }
+  .summary-cell p {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 13px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
+.range-date-picker {
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 2px;
+  margin-bottom: 10px; }
+  .range-date-picker .daterangepicker {
+    top: 35px; }
+  .range-date-picker .reportrange-text {
+    font-size: 14px;
+    border-radius: 2px;
+    height: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important; }
+
+.date-dropdown {
+  background-color: #fff;
+  font-size: 14px;
+  margin: 0 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  height: 32px; }
+
+.dataTable {
+  width: 100%;
+  margin-top: 20px; }
+  .dataTable .dataTables_wrapper input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: normal;
+    height: 32px;
+    width: 250px;
+    background-color: transparent;
+    margin-bottom: 10px; }
+  .dataTable .dataTables_wrapper select {
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    height: 34px;
+    margin: 0 10px; }
+  .dataTable .table-responsive {
+    table-layout: fixed;
+    width: 100%; }
+    .dataTable .table-responsive .filter {
+      width: 100%;
+      height: 25px;
+      margin-top: 5px;
+      font-size: 12px;
+      padding-left: 5px; }
+    .dataTable .table-responsive td, .dataTable .table-responsive th {
+      word-wrap: break-word; }
+    .dataTable .table-responsive .multiline-cell {
+      text-align: center; }
+      .dataTable .table-responsive .multiline-cell small {
+        display: block; }
