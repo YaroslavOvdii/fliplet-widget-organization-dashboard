@@ -12,8 +12,8 @@
       <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
       <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
       <ul class="nav nav-tabs">
-        <li role="presentation" @click="activeTab = 'apps'" :class="[this.activeTab === 'apps' ? 'active' : '']"><a @click.prevent href="#">Apps</a></li>
-        <li role="presentation" @click="activeTab = 'users'" :class="[this.activeTab === 'users' ? 'active' : '']"><a @click.prevent href="#">Users</a></li>
+        <li role="presentation" @click="activeTab = 'apps'" :class="[this.activeTab === 'apps' ? 'active' : '']">Apps</li>
+        <li role="presentation" @click="activeTab = 'users'" :class="[this.activeTab === 'users' ? 'active' : '']">Users</li>
       </ul>
       <AppDataTable v-if="activeTab === 'apps'" class="component" :apps="this.analyticsData.apps"></AppDataTable>
       <UsersDataTable v-else-if="activeTab === 'users'" class="component" :users="this.analyticsData.users"></UsersDataTable>

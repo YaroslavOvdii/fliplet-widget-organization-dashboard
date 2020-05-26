@@ -5,8 +5,29 @@
       text-align: center;
   }
 
-  .analytics-container, .nav.nav-tabs {
+  .analytics-container, .tabs {
     margin-top: 40px;
+  }
+
+  .tabs {
+    li {
+      font-size: 14px;
+      cursor: pointer;
+      padding: 4px 10px;
+      margin: 10px 3px 0 0;
+      border-radius: 20px;
+      border: 1px solid rgba(21, 60, 73, 0.2);
+      opacity: 0.7;
+      display: inline-block;
+      transition: all 0.25s linear;
+      font-weight: normal;
+    }
+
+    li.active {
+      background-color: #333333;
+      opacity: 1;
+      color: white;
+    }
   }
 
   .range-date-picker {

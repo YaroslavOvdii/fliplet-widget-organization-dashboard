@@ -13655,20 +13655,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                        }
-                      }
-                    },
-                    [_vm._v("Apps")]
-                  )
-                ]
+                [_vm._v("Apps")]
               ),
               _vm._v(" "),
               _c(
@@ -13682,20 +13669,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                        }
-                      }
-                    },
-                    [_vm._v("Users")]
-                  )
-                ]
+                [_vm._v("Users")]
               )
             ]),
             _vm._v(" "),
