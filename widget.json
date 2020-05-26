@@ -14,13 +14,12 @@
       "fliplet-core",
       "fliplet-studio-ui",
       "highcharts",
-      "font-awesome"
+      "font-awesome",
+      "bootstrap-js"
     ],
     "assets": [
       "dist/css/index.css",
-      "dist/app.js",
-      "vendors/poper.min.js",
-      "vendors/bootstrap.js"
+      "dist/app.js"
     ]
   },
   "build": {
