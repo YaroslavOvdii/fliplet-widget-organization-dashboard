@@ -2,8 +2,23 @@
   overflow: hidden; }
   .org-usage-dashboard .spinner-holder p {
     text-align: center; }
-  .org-usage-dashboard .analytics-container, .org-usage-dashboard .nav.nav-tabs {
+  .org-usage-dashboard .analytics-container, .org-usage-dashboard .tabs {
     margin-top: 40px; }
+  .org-usage-dashboard .tabs li {
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 10px;
+    margin: 10px 3px 0 0;
+    border-radius: 20px;
+    border: 1px solid rgba(21, 60, 73, 0.2);
+    opacity: 0.7;
+    display: inline-block;
+    transition: all 0.25s linear;
+    font-weight: normal; }
+  .org-usage-dashboard .tabs li.active {
+    background-color: #333333;
+    opacity: 1;
+    color: white; }
   .org-usage-dashboard .range-date-picker {
     margin-top: 20px; }
 
