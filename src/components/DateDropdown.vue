@@ -5,7 +5,7 @@
     name="dateRange"
     id="dateRange"
     class="date-dropdown"
-    :disabled="isLoading"
+    :disabled="!isEnabled"
   >
     <option value="1">Last 24 hours</option>
     <option value="7">Last 7 days</option>
@@ -26,7 +26,7 @@ export default {
   },
   props: {
     dropdownHandler: Function,
-    isLoading: Boolean,
+    isEnabled: Boolean,
     customDates: Boolean
   },
   watch: {

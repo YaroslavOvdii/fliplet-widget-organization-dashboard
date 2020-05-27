@@ -1,17 +1,17 @@
 <template>
   <div class="range-date-picker">
-    <DateDropdown :dropdownHandler="dropdownHandler" :isLoading="isLoading" :customDates="customDates"></DateDropdown>
+    <DateDropdown :dropdownHandler="dropdownHandler" :isEnabled="isEnabled" :customDates="customDates"></DateDropdown>
     <date-range-picker
       ref="picker"
       opens="left"
-      :disabled="isLoading"
+      :disabled="!isEnabled"
       :locale-data="dateFormat"
       :autoApply=true
       :ranges=false
       v-model="dateRange"
       @update="updateValues"
       :linkedCalendars=false
-      :class="{ disabled: isLoading }"
+      :class="{ disabled: !isEnabled }"
     >
       <template v-slot:input="picker" style="min-width: 350px;">
         {{ picker.startDate }} - {{ picker.endDate }}
@@ -50,7 +50,7 @@ export default {
   },
   props: {
     onChange: Function,
-    isLoading: Boolean
+    isEnabled: Boolean
   },
   methods: {
     updateValues() {

@@ -13617,7 +13617,7 @@ var render = function() {
     [
       _vm.showDatePicker
         ? _c("RangeDatePicker", {
-            attrs: { onChange: _vm.loadData, isLoading: _vm.isLoading }
+            attrs: { onChange: _vm.loadData, isEnabled: !_vm.isLoading }
           })
         : _vm._e(),
       _vm._v(" "),
@@ -104376,17 +104376,17 @@ var render = function() {
       _c("DateDropdown", {
         attrs: {
           dropdownHandler: _vm.dropdownHandler,
-          isLoading: _vm.isLoading,
+          isEnabled: _vm.isEnabled,
           customDates: _vm.customDates
         }
       }),
       _vm._v(" "),
       _c("date-range-picker", {
         ref: "picker",
-        class: { disabled: _vm.isLoading },
+        class: { disabled: !_vm.isEnabled },
         attrs: {
           opens: "left",
-          disabled: _vm.isLoading,
+          disabled: !_vm.isEnabled,
           "locale-data": _vm.dateFormat,
           autoApply: true,
           ranges: false,
@@ -104494,7 +104494,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     onChange: Function,
-    isLoading: Boolean
+    isEnabled: Boolean
   },
   methods: {
     updateValues: function updateValues() {
@@ -104598,7 +104598,7 @@ var render = function() {
         }
       ],
       staticClass: "date-dropdown",
-      attrs: { name: "dateRange", id: "dateRange", disabled: _vm.isLoading },
+      attrs: { name: "dateRange", id: "dateRange", disabled: !_vm.isEnabled },
       on: {
         change: [
           function($event) {
@@ -104684,7 +104684,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     dropdownHandler: Function,
-    isLoading: Boolean,
+    isEnabled: Boolean,
     customDates: Boolean
   },
   watch: {
