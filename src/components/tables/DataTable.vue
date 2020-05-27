@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import 'datatables.net';
-import 'datatables.net-dt/css/jquery.dataTables.css';
 import Tooltip from '../Tooltip';
 import DataTableCell from './DataTableCell';
 
