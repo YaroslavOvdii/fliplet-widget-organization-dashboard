@@ -13643,34 +13643,54 @@ var render = function() {
               attrs: { analyticsData: this.analyticsData.stats }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("ul", { staticClass: "tabs" }, [
+              _c(
+                "li",
+                {
+                  class: { active: _vm.activeTab === "apps" },
+                  attrs: { role: "presentation" },
+                  on: {
+                    click: function($event) {
+                      _vm.activeTab = "apps"
+                    }
+                  }
+                },
+                [_vm._v("Apps")]
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                {
+                  class: { active: _vm.activeTab === "users" },
+                  attrs: { role: "presentation" },
+                  on: {
+                    click: function($event) {
+                      _vm.activeTab = "users"
+                    }
+                  }
+                },
+                [_vm._v("Users")]
+              )
+            ]),
             _vm._v(" "),
-            _c("AppDataTable", {
-              staticClass: "component",
-              attrs: { apps: this.analyticsData.apps }
-            })
+            _vm.activeTab === "apps"
+              ? _c("AppDataTable", {
+                  staticClass: "component",
+                  attrs: { apps: this.analyticsData.apps }
+                })
+              : _vm.activeTab === "users"
+              ? _c("UsersDataTable", {
+                  staticClass: "component",
+                  attrs: { users: this.analyticsData.users }
+                })
+              : _vm._e()
           ],
           1
         )
       : _c("div", [_c("span", [_vm._v("There is no data to show")])])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav nav-tabs" }, [
-      _c("li", { staticClass: "active", attrs: { role: "presentation" } }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Apps")])
-      ]),
-      _vm._v(" "),
-      _c("li", { attrs: { role: "presentation" } }, [
-        _c("a", { attrs: { href: "#" } }, [_vm._v("Users")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -13695,6 +13715,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1463);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(398);
 /* harmony import */ var _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1479);
+/* harmony import */ var _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1484);
 //
 //
 //
@@ -13720,6 +13741,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -13731,14 +13754,16 @@ __webpack_require__.r(__webpack_exports__);
       isLoading: false,
       analyticsData: {},
       errorMessage: '',
-      hasError: false
+      hasError: false,
+      activeTab: 'apps'
     };
   },
   components: {
     AnalyticsSummary: _components_AnalyticsSummary_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     AppDataTable: _components_tables_AppsDataTable__WEBPACK_IMPORTED_MODULE_1__["default"],
     RangeDatePicker: _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"]
+    AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"],
+    UsersDataTable: _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   methods: {
     loadData: function loadData(startDate, endDate) {
@@ -14319,12 +14344,12 @@ var generateApps = function generateApps(amount, dateRange) {
     apps.push({
       id: id,
       name: 'Internal Comms',
-      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      updatedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedAppleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedGoogleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedWebAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
+      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      updatedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedAppleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedGoogleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedWebAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
       stats: {
         users: {
           count: faker__WEBPACK_IMPORTED_MODULE_0___default.a.random.number({
@@ -14380,8 +14405,8 @@ var generateUsers = function generateUsers(amount, dateRange) {
   while (users.length < amount) {
     users.push({
       email: faker__WEBPACK_IMPORTED_MODULE_0___default.a.internet.email(),
-      lastSeenAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
+      lastSeenAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
       stats: {
         studioSessions: {
           count: faker__WEBPACK_IMPORTED_MODULE_0___default.a.random.number({
@@ -14518,13 +14543,13 @@ var generateStudioSessions = function generateStudioSessions() {
 var setCorrectDate = function setCorrectDate(date, format) {
   switch (format) {
     case 'dayMonth':
-      return "".concat(date.getFullYear(), "-0").concat(date.getMonth() + 1);
+      return moment(date).format('YYYY-MM');
 
     case 'ISO':
       return date.toISOString();
 
-    case 'standart':
-      return "".concat(date.getFullYear(), "-").concat(date.getDate() > 9 ? date.getDate() : "0".concat(date.getDate()), "-0").concat(date.getMonth() + 1);
+    case 'standard':
+      return date;
 
     default:
       break;
@@ -103856,7 +103881,39 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.apps.forEach(function (app) {
-        _this.rows.push([[app.name], [app.createdAt], [app.updatedAt], [app.publishedAt], [app.publishedAppleAt], [app.publishedGoogleAt], [app.publishedWebAt], [app.stats.users.count, app.stats.users.previousPeriodCount], [app.stats.sessions.count, app.stats.sessions.previousPeriodCount], [app.stats.updates.count, app.stats.updates.previousPeriodCount], [app.stats.publishes.count, app.stats.publishes.previousPeriodCount]]);
+        _this.rows.push([{
+          value: app.name
+        }, {
+          value: app.createdAt,
+          type: 'date'
+        }, {
+          value: app.updatedAt,
+          type: 'date'
+        }, {
+          value: app.publishedAt,
+          type: 'date'
+        }, {
+          value: app.publishedAppleAt,
+          type: 'date'
+        }, {
+          value: app.publishedGoogleAt,
+          type: 'date'
+        }, {
+          value: app.publishedWebAt,
+          type: 'date'
+        }, {
+          value: [app.stats.users.count, app.stats.users.previousPeriodCount],
+          type: 'dynamic'
+        }, {
+          value: [app.stats.sessions.count, app.stats.sessions.previousPeriodCount],
+          type: 'dynamic'
+        }, {
+          value: [app.stats.updates.count, app.stats.updates.previousPeriodCount],
+          type: 'dynamic'
+        }, {
+          value: [app.stats.publishes.count, app.stats.publishes.previousPeriodCount],
+          type: 'dynamic'
+        }]);
 
         _this.isDataTransformed = true;
       });
@@ -103977,11 +104034,15 @@ var render = function() {
             return _c(
               "tr",
               { key: row },
-              _vm._l(row, function(value) {
+              _vm._l(row, function(cell) {
                 return _c(
                   "td",
-                  { key: value },
-                  [_c("DataTableCell", { attrs: { cellValue: value } })],
+                  { key: cell.value },
+                  [
+                    _c("DataTableCell", {
+                      attrs: { cellValue: cell.value, cellType: cell.type }
+                    })
+                  ],
                   1
                 )
               }),
@@ -104139,7 +104200,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.cellValue.length > 1
+    _vm.cellType === "date"
+      ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
+      : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
           _c("p", [_vm._v(_vm._s(_vm.cellValue[0]))]),
           _vm._v(" "),
@@ -104157,7 +104220,7 @@ var render = function() {
           _vm._v(" "),
           _c("small", [_vm._v("\n      Previous Period\n    ")])
         ])
-      : _c("span", [_vm._v(_vm._s(_vm.cellValue[0]))])
+      : _c("span", [_vm._v("\n    " + _vm._s(_vm.cellValue) + "\n  ")])
   ])
 }
 var staticRenderFns = []
@@ -104198,6 +104261,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -104211,10 +104277,19 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return [];
       }
+    },
+    cellType: {
+      type: String,
+      "default": 'raw'
+    }
+  },
+  methods: {
+    transformDate: function transformDate(date) {
+      return moment(date).format('D MMM YYYY');
     }
   },
   mounted: function mounted() {
-    if (this.cellValue.length > 1) {
+    if (this.cellType === 'dynamic') {
       this.perсent = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_0__["calculateDynamic"])(this.cellValue[0], this.cellValue[1]);
     }
   }
@@ -105422,6 +105497,180 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.initChart();
+  }
+});
+
+/***/ }),
+/* 1484 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1485);
+/* harmony import */ var _UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1487);
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(397);
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/components/tables/UsersDataTable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+/* 1485 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1486);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_template_id_17958346___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+/* 1486 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.isDataTransformed
+      ? _c(
+          "div",
+          [_c("DataTable", { attrs: { columns: _vm.cols, rows: _vm.rows } })],
+          1
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+/* 1487 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1488);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UsersDataTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+/* 1488 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DataTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1453);
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      cols: [{
+        name: 'Users',
+        help: 'Test description'
+      }, {
+        name: 'Last seen',
+        help: 'Test description'
+      }, {
+        name: 'Created',
+        help: 'Test description'
+      }, {
+        name: 'Studio sessions',
+        help: 'Test description'
+      }, {
+        name: 'Viewer sessions',
+        help: 'Test description'
+      }, {
+        name: 'App Publishes',
+        help: 'Test description'
+      }, {
+        name: 'Apps available',
+        help: 'Test description'
+      }, {
+        name: 'Apps created',
+        help: 'Test description'
+      }],
+      rows: [],
+      isDataTransformed: false
+    };
+  },
+  components: {
+    DataTable: _DataTable__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    users: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
+  },
+  methods: {
+    transformData: function transformData() {
+      var _this = this;
+
+      this.users.forEach(function (user) {
+        _this.rows.push([{
+          value: user.email
+        }, {
+          value: user.lastSeenAt,
+          type: 'date'
+        }, {
+          value: user.createdAt,
+          type: 'date'
+        }, {
+          value: user.stats.studioSessions.count
+        }, {
+          value: user.stats.viewerSessions.count
+        }, {
+          value: user.stats.appPublishes.count
+        }, {
+          value: user.stats.appsAvailable.count
+        }, {
+          value: user.stats.appsCreated.count
+        }]);
+
+        _this.isDataTransformed = true;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.transformData();
   }
 });
 

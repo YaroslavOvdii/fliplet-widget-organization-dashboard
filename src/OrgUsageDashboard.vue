@@ -11,9 +11,9 @@
       <RangeDatePicker></RangeDatePicker>
       <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
       <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
-      <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Apps</a></li>
-        <li role="presentation"><a href="#">Users</a></li>
+      <ul class="tabs">
+        <li role="presentation" @click="activeTab = 'apps'" :class="{active: activeTab === 'apps'}">Apps</li>
+        <li role="presentation" @click="activeTab = 'users'" :class="{active: activeTab === 'users'}">Users</li>
       </ul>
       <AppDataTable v-if="activeTab === 'apps'" class="component" :apps="this.analyticsData.apps"></AppDataTable>
       <UsersDataTable v-else-if="activeTab === 'users'" class="component" :users="this.analyticsData.users"></UsersDataTable>
@@ -38,7 +38,8 @@ export default {
       isLoading: false,
       analyticsData: {},
       errorMessage: '',
-      hasError: false
+      hasError: false,
+      activeTab: 'apps'
     };
   },
   components: {
