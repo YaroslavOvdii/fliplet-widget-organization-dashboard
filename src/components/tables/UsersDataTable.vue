@@ -66,14 +66,14 @@ export default {
       this.users.forEach(user => {
         this.rows.push(
           [
-            [user.email],
-            [user.lastSeenAt],
-            [user.createdAt],
-            [user.stats.studioSessions.count],
-            [user.stats.viewerSessions.count],
-            [user.stats.appPublishes.count],
-            [user.stats.appsAvailable.count],
-            [user.stats.appsCreated.count]
+            { value: user.email },
+            { value: user.lastSeenAt, type: 'date'},
+            { value: user.createdAt, type: 'date'},
+            { value: user.stats.studioSessions.count },
+            { value: user.stats.viewerSessions.count },
+            { value: user.stats.appPublishes.count },
+            { value: user.stats.appsAvailable.count },
+            { value: user.stats.appsCreated.count }
           ]
         );
 
