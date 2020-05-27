@@ -52,7 +52,20 @@ export default {
   methods: {
     initTable: function() {
       this.component = $(this.$refs.table).DataTable({
-        scrollX: true
+        scrollX: true,
+        dom: 'Blfrtip',
+        buttons: [
+          {
+            extend: 'excelHtml5',
+            text: 'Export to Excel'
+          },
+          {
+            extend: 'csvHtml5',
+            text: 'Export to CSV'
+          }
+        ],
+        lengthMenu: [10, 25, 50, 100, 500],
+        pageLength: 10
       });
       $(window).trigger('resize');
     },
