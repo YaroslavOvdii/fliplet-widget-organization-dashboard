@@ -14077,11 +14077,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _vm.content
-    ? _c("i", {
-        ref: "info",
-        staticClass: "fa fa-info-circle",
-        attrs: { "data-content": _vm.content, "data-trigger": "hover" }
-      })
+    ? _c(
+        "span",
+        {
+          ref: "info",
+          attrs: { "data-content": _vm.content, "data-trigger": "hover" }
+        },
+        [_c("i", { staticClass: "fa fa-info-circle" })]
+      )
     : _vm._e()
 }
 var staticRenderFns = []
@@ -14104,6 +14107,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
