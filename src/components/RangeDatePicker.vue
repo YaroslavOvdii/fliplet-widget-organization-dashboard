@@ -1,15 +1,17 @@
 <template>
   <div class="range-date-picker">
-    <DateDropdown :dropdownHandler="dropdownHandler" :customDates="customDates"></DateDropdown>
+    <DateDropdown :dropdownHandler="dropdownHandler" :isLoading="isLoading" :customDates="customDates"></DateDropdown>
     <date-range-picker
       ref="picker"
       opens="left"
+      :disabled="isLoading"
       :locale-data="dateFormat"
       :autoApply=true
       :ranges=false
       v-model="dateRange"
       @update="updateValues"
       :linkedCalendars=false
+      :class="{ disabled: isLoading }"
     >
       <template v-slot:input="picker" style="min-width: 350px;">
         {{ picker.startDate }} - {{ picker.endDate }}
@@ -47,12 +49,16 @@ export default {
     DateRangePicker
   },
   props: {
-    loadData: Function
+    onChange: Function,
+    isLoading: Boolean
   },
   methods: {
     updateValues() {
       this.customDates = true;
-      this.loadData(this.dateRange.startDate, this.dateRange.endDate);
+
+      if (this.onChange && typeof this.onChange === 'function') {
+        this.onChange(this.dateRange.startDate, this.dateRange.endDate);
+      }
     },
     dropdownHandler(range) {
       if (range === 'none') {
@@ -65,7 +71,10 @@ export default {
       this.customDates = false;
       this.dateRange.startDate = startDate.setDate(endDate.getDate() - range);
       this.dateRange.endDate = endDate;
-      this.loadData(this.dateRange.startDate, this.dateRange.endDate);
+
+      if (this.onChange && typeof this.onChange === 'function') {
+        this.onChange(this.dateRange.startDate, this.dateRange.endDate);
+      }
     }
   }
 };

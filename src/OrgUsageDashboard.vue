@@ -1,6 +1,6 @@
 <template>
   <div class="org-usage-dashboard">
-    <RangeDatePicker :loadData="loadData" v-if="showDatePicker"></RangeDatePicker>
+    <RangeDatePicker :onChange="loadData" :isLoading="isLoading" v-if="showDatePicker"></RangeDatePicker>
     <div v-if="this.isLoading" class="spinner-holder animated">
       <div class="spinner-overlay">Loading...</div>
       <p>Loading...</p>
@@ -52,6 +52,10 @@ export default {
   },
   methods: {
     loadData: function(startDate, endDate) {
+      if (this.isLoading) {
+        return;
+      }
+
       this.isLoading = true;
 
       getAnalyticsData(startDate, endDate)

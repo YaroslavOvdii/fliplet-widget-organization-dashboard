@@ -13616,7 +13616,9 @@ var render = function() {
     { staticClass: "org-usage-dashboard" },
     [
       _vm.showDatePicker
-        ? _c("RangeDatePicker", { attrs: { loadData: _vm.loadData } })
+        ? _c("RangeDatePicker", {
+            attrs: { onChange: _vm.loadData, isLoading: _vm.isLoading }
+          })
         : _vm._e(),
       _vm._v(" "),
       this.isLoading
@@ -13778,6 +13780,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     loadData: function loadData(startDate, endDate) {
       var _this = this;
+
+      if (this.isLoading) {
+        return;
+      }
 
       this.isLoading = true;
       Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["default"])(startDate, endDate).then(function (result) {
@@ -104370,14 +104376,17 @@ var render = function() {
       _c("DateDropdown", {
         attrs: {
           dropdownHandler: _vm.dropdownHandler,
+          isLoading: _vm.isLoading,
           customDates: _vm.customDates
         }
       }),
       _vm._v(" "),
       _c("date-range-picker", {
         ref: "picker",
+        class: { disabled: _vm.isLoading },
         attrs: {
           opens: "left",
+          disabled: _vm.isLoading,
           "locale-data": _vm.dateFormat,
           autoApply: true,
           ranges: false,
@@ -104457,6 +104466,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -104482,12 +104493,16 @@ __webpack_require__.r(__webpack_exports__);
     DateRangePicker: vue2_daterange_picker__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   props: {
-    loadData: Function
+    onChange: Function,
+    isLoading: Boolean
   },
   methods: {
     updateValues: function updateValues() {
       this.customDates = true;
-      this.loadData(this.dateRange.startDate, this.dateRange.endDate);
+
+      if (this.onChange && typeof this.onChange === 'function') {
+        this.onChange(this.dateRange.startDate, this.dateRange.endDate);
+      }
     },
     dropdownHandler: function dropdownHandler(range) {
       if (range === 'none') {
@@ -104499,7 +104514,10 @@ __webpack_require__.r(__webpack_exports__);
       this.customDates = false;
       this.dateRange.startDate = startDate.setDate(endDate.getDate() - range);
       this.dateRange.endDate = endDate;
-      this.loadData(this.dateRange.startDate, this.dateRange.endDate);
+
+      if (this.onChange && typeof this.onChange === 'function') {
+        this.onChange(this.dateRange.startDate, this.dateRange.endDate);
+      }
     }
   }
 });
@@ -104580,7 +104598,7 @@ var render = function() {
         }
       ],
       staticClass: "date-dropdown",
-      attrs: { name: "dateRange", id: "dateRange" },
+      attrs: { name: "dateRange", id: "dateRange", disabled: _vm.isLoading },
       on: {
         change: [
           function($event) {
@@ -104657,6 +104675,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -104665,6 +104684,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     dropdownHandler: Function,
+    isLoading: Boolean,
     customDates: Boolean
   },
   watch: {
