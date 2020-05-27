@@ -1,5 +1,6 @@
 <template>
   <div class="org-usage-dashboard">
+    <RangeDatePicker :loadData="loadData" v-if="showDatePicker"></RangeDatePicker>
     <div v-if="this.isLoading" class="spinner-holder animated">
       <div class="spinner-overlay">Loading...</div>
       <p>Loading...</p>
@@ -8,7 +9,6 @@
       <span class="text-danger">{{ this.errorMessage }}</span>
     </div>
     <div v-else-if="Object.keys(this.analyticsData).length > 0">
-      <RangeDatePicker></RangeDatePicker>
       <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
       <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
       <ul class="tabs">
@@ -39,7 +39,8 @@ export default {
       analyticsData: {},
       errorMessage: '',
       hasError: false,
-      activeTab: 'apps'
+      activeTab: 'apps',
+      showDatePicker: false
     };
   },
   components: {
@@ -63,6 +64,7 @@ export default {
         })
         .finally(() => {
           this.isLoading = false;
+          this.showDatePicker = true;
         });
     }
   },

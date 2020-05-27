@@ -46,9 +46,13 @@ export default {
     DateDropdown,
     DateRangePicker
   },
+  props: {
+    loadData: Function
+  },
   methods: {
     updateValues() {
       this.customDates = true;
+      this.loadData(this.dateRange.startDate, this.dateRange.endDate);
     },
     dropdownHandler(range) {
       if (range === 'none') {
@@ -61,6 +65,7 @@ export default {
       this.customDates = false;
       this.dateRange.startDate = startDate.setDate(endDate.getDate() - range);
       this.dateRange.endDate = endDate;
+      this.loadData(this.dateRange.startDate, this.dateRange.endDate);
     }
   }
 };
