@@ -19,7 +19,8 @@
     ],
     "assets": [
       "dist/css/index.css",
-      "dist/app.js"
+      "dist/app.js",
+      "vendor/hichartsExportModule.js"
     ]
   },
   "build": {
