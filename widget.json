@@ -25,7 +25,8 @@
       "vendor/responsive.dataTables.min.css",
       "vendor/jquery.dataTables.min.js",
       "vendor/dataTables.responsive.min.js",
-      "vendor/dataTables.buttons.js"
+      "vendor/dataTables.buttons.js",
+      "vendor/hichartsExportModule.js"
     ]
   },
   "build": {
