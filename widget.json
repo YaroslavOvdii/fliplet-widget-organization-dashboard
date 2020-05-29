@@ -19,7 +19,12 @@
     ],
     "assets": [
       "dist/css/index.css",
-      "dist/app.js"
+      "dist/app.js",
+      "vendor/jquery.dataTables.min.css",
+      "vendor/responsive.dataTables.min.css",
+      "vendor/jquery.dataTables.min.js",
+      "vendor/dataTables.responsive.min.js",
+      "vendor/dataTables.buttons.js"
     ]
   },
   "build": {

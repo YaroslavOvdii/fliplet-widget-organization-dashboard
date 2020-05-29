@@ -27,6 +27,7 @@ export default {
   data() {
     let startDate = new Date();
     let endDate = new Date();
+
     startDate.setDate(endDate.getDate() - 30);
 
     return {
