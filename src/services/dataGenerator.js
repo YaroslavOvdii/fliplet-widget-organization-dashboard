@@ -33,12 +33,12 @@ const generateApps = (amount, dateRange) => {
     apps.push({
       id: id,
       name: 'Internal Comms',
-      createdAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      updatedAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedAppleAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedGoogleAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedWebAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
+      createdAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      updatedAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedAppleAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedGoogleAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedWebAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
       stats: {
         users: {
           count: faker.random.number({min: 500, max: 600}),
@@ -71,8 +71,8 @@ const generateUsers = (amount, dateRange) => {
   while (users.length < amount) {
     users.push({
       email: faker.internet.email(),
-      lastSeenAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      createdAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
+      lastSeenAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      createdAt: setCorrectDate(faker.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
       stats: {
         studioSessions: {
           count: faker.random.number({min: 500, max: 600})
@@ -162,7 +162,7 @@ const setCorrectDate = (date, format) => {
       return moment(date).format('YYYY-MM');
     case 'ISO':
       return date.toISOString();
-    case 'standart':
+    case 'standard':
       return date;
     default:
       break;
