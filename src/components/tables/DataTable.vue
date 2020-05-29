@@ -12,8 +12,8 @@
       </thead>
       <tbody>
         <tr v-for="row in rows" :key="row">
-          <td v-for="value in row" :key="value">
-            <DataTableCell :cellValue="value"></DataTableCell>
+          <td v-for="cell in row" :key="cell.value">
+            <DataTableCell :cellValue="cell.value" :cellType="cell.type"></DataTableCell>
           </td>
         </tr>
       </tbody>
@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import 'datatables.net';
-import 'datatables.net-dt/css/jquery.dataTables.css';
 import Tooltip from '../Tooltip';
 import DataTableCell from './DataTableCell';
 
