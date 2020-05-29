@@ -1,5 +1,7 @@
 <template>
-  <i v-if="content" :data-content="content" data-trigger="hover" ref="info" class="fa fa-info-circle"></i>
+  <span v-if="content" :data-content="content" data-trigger="hover" ref="info">
+    <i class="fa fa-info-circle"></i>
+  </span>
 </template>
 
 <script>
