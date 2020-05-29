@@ -80,7 +80,10 @@ export default {
               connectorAllowed: false
             }
           }
-        ]
+        ],
+        credits: {
+          enabled: false
+        }
       }
     };
   },

@@ -105451,7 +105451,10 @@ __webpack_require__.r(__webpack_exports__);
             enabled: false,
             connectorAllowed: false
           }
-        }]
+        }],
+        credits: {
+          enabled: false
+        }
       }
     };
   },
