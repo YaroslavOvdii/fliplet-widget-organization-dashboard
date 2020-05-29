@@ -105308,6 +105308,19 @@ __webpack_require__.r(__webpack_exports__);
     return {
       chartInstance: {},
       chartOptions: {
+        chart: {
+          type: 'areaspline',
+          style: {
+            fontSize: '12px',
+            fontWeight: 'normal',
+            fontStyle: 'normal'
+          },
+          backgroundColor: 'transparent',
+          spacingLeft: 0,
+          spacingRight: 0,
+          spacingBottom: 0,
+          spacingTop: 5
+        },
         title: {
           text: ''
         },
@@ -105338,12 +105351,24 @@ __webpack_require__.r(__webpack_exports__);
         },
         series: [{
           name: 'Apps Sessions',
-          color: '#03b1fc',
-          data: []
+          color: '#43ccf0',
+          fillColor: 'rgba(67,204,240,0.4)',
+          type: 'areaspline',
+          data: [],
+          label: {
+            enabled: false,
+            connectorAllowed: false
+          }
         }, {
           name: 'Studio sessions',
-          color: '#27799c',
-          data: []
+          color: '#b6bdcc',
+          fillColor: 'rgba(182,189,204,0.2)',
+          type: 'areaspline',
+          data: [],
+          label: {
+            enabled: false,
+            connectorAllowed: false
+          }
         }]
       }
     };
