@@ -15,6 +15,7 @@
       "fliplet-studio-ui",
       "highcharts",
       "font-awesome",
+      "moment",
       "bootstrap-js"
     ],
     "assets": [

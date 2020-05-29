@@ -2,6 +2,10 @@
   width: 100%;
   margin-top: 20px;
 
+  .dataTables_wrapper .dataTables_filter {
+    display: none;
+  }
+
   .dataTables_wrapper input {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 2px;

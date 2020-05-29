@@ -15,7 +15,8 @@
         <li role="presentation" class="active"><a href="#">Apps</a></li>
         <li role="presentation"><a href="#">Users</a></li>
       </ul>
-      <AppDataTable class="component" :apps="this.analyticsData.apps"></AppDataTable>
+      <AppDataTable v-if="activeTab === 'apps'" class="component" :apps="this.analyticsData.apps"></AppDataTable>
+      <UsersDataTable v-else-if="activeTab === 'users'" class="component" :users="this.analyticsData.users"></UsersDataTable>
     </div>
     <div v-else>
       <span>There is no data to show</span>
@@ -29,6 +30,7 @@ import AppDataTable from './components/tables/AppsDataTable';
 import RangeDatePicker from './components/RangeDatePicker.vue';
 import getAnalyticsData from './services/analytics';
 import AnalyticsChart from './components/AnalyticsChart';
+import UsersDataTable from './components/tables/UsersDataTable';
 
 export default {
   data() {
@@ -43,7 +45,8 @@ export default {
     AnalyticsSummary,
     AppDataTable,
     RangeDatePicker,
-    AnalyticsChart
+    AnalyticsChart,
+    UsersDataTable
   },
   methods: {
     loadData: function(startDate, endDate) {
