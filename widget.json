@@ -19,8 +19,6 @@
       "bootstrap-js"
     ],
     "assets": [
-      "dist/css/index.css",
-      "dist/app.js",
       "vendor/jquery.dataTables.min.css",
       "vendor/responsive.dataTables.min.css",
       "vendor/jquery.dataTables.min.js",
@@ -30,7 +28,9 @@
       "vendor/jszip.min.js",
       "vendor/pdfmake.min.js",
       "vendor/vfs_fonts.js",
-      "vendor/hichartsExportModule.js"
+      "vendor/hichartsExportModule.js",
+      "dist/css/index.css",
+      "dist/app.js"
     ]
   },
   "build": {
