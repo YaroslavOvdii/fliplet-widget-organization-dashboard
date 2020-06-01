@@ -14361,12 +14361,12 @@ var generateApps = function generateApps(amount, dateRange) {
     apps.push({
       id: id,
       name: 'Internal Comms',
-      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      updatedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedAppleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedGoogleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      publishedWebAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
+      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      updatedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedAppleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedGoogleAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      publishedWebAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
       stats: {
         users: {
           count: faker__WEBPACK_IMPORTED_MODULE_0___default.a.random.number({
@@ -14422,8 +14422,8 @@ var generateUsers = function generateUsers(amount, dateRange) {
   while (users.length < amount) {
     users.push({
       email: faker__WEBPACK_IMPORTED_MODULE_0___default.a.internet.email(),
-      lastSeenAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
-      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standart'),
+      lastSeenAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
+      createdAt: setCorrectDate(faker__WEBPACK_IMPORTED_MODULE_0___default.a.date.between(dateRange.startDate, dateRange.endDate), 'standard'),
       stats: {
         studioSessions: {
           count: faker__WEBPACK_IMPORTED_MODULE_0___default.a.random.number({
@@ -14565,7 +14565,7 @@ var setCorrectDate = function setCorrectDate(date, format) {
     case 'ISO':
       return date.toISOString();
 
-    case 'standart':
+    case 'standard':
       return date;
 
     default:
@@ -104146,7 +104146,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     initTable: function initTable() {
       this.component = $(this.$refs.table).DataTable({
-        scrollX: true
+        scrollX: true,
+        dom: 'Blfrtip',
+        buttons: [{
+          extend: 'excelHtml5',
+          text: 'Export to Excel'
+        }, {
+          extend: 'csvHtml5',
+          text: 'Export to CSV'
+        }],
+        lengthMenu: [10, 25, 50, 100, 500],
+        pageLength: 10
       });
       $(window).trigger('resize');
     },
