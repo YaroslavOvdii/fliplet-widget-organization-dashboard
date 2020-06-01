@@ -12,6 +12,7 @@
         Previous Period
       </small>
     </div>
+    <span v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="link">{{ cellValue.title }}</span>
     <span v-else>
       {{ cellValue }}
     </span>
@@ -42,6 +43,33 @@ export default {
   methods: {
     transformDate: function(date) {
       return moment(date).format('D MMM YYYY');
+    },
+    openUserEditor: function(options) {
+      Fliplet.Studio.emit('overlay', {
+        name: 'edit-organization-user',
+        options: {
+          size: 'large',
+          title: 'Edit User',
+          userId: options.userId
+        }
+      });
+    },
+    openAppAnalytics: function(options) {
+      Fliplet.Studio.emit('overlay', {
+        name: 'app-analytics',
+        options: {
+          size: 'large',
+          title: options.title,
+          appId: options.appId
+        }
+      });
+    },
+    onCellAction: function(options) {
+      if ('appId' in options) {
+        this.openAppAnalytics(options);
+      } else {
+        this.openUserEditor(options);
+      }
     }
   },
   mounted: function() {

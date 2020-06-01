@@ -103882,7 +103882,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.apps.forEach(function (app) {
         _this.rows.push([{
-          value: app.name
+          value: {
+            title: app.name,
+            appId: 272316
+          },
+          type: 'action'
         }, {
           value: app.createdAt,
           type: 'date'
@@ -104129,7 +104133,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     initTable: function initTable() {
       this.component = $(this.$refs.table).DataTable({
-        scrollX: true
+        scrollX: true,
+        dom: 'Blfrtip',
+        buttons: [{
+          extend: 'excelHtml5',
+          text: 'Export to Excel'
+        }, {
+          extend: 'csvHtml5',
+          text: 'Export to CSV'
+        }],
+        lengthMenu: [10, 25, 50, 100, 500],
+        pageLength: 10
       });
       $(window).trigger('resize');
     },
@@ -104220,6 +104234,20 @@ var render = function() {
           _vm._v(" "),
           _c("small", [_vm._v("\n      Previous Period\n    ")])
         ])
+      : _vm.cellType === "action"
+      ? _c(
+          "span",
+          {
+            staticClass: "link",
+            on: {
+              click: function($event) {
+                $event.stopPropagation()
+                return _vm.onCellAction(_vm.cellValue)
+              }
+            }
+          },
+          [_vm._v(_vm._s(_vm.cellValue.title))]
+        )
       : _c("span", [_vm._v("\n    " + _vm._s(_vm.cellValue) + "\n  ")])
   ])
 }
@@ -104264,6 +104292,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -104286,6 +104315,33 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     transformDate: function transformDate(date) {
       return moment(date).format('D MMM YYYY');
+    },
+    openUserEditor: function openUserEditor(options) {
+      Fliplet.Studio.emit('overlay', {
+        name: 'edit-organization-user',
+        options: {
+          size: 'large',
+          title: 'Edit User',
+          userId: options.userId
+        }
+      });
+    },
+    openAppAnalytics: function openAppAnalytics(options) {
+      Fliplet.Studio.emit('overlay', {
+        name: 'app-analytics',
+        options: {
+          size: 'large',
+          title: options.title,
+          appId: options.appId
+        }
+      });
+    },
+    onCellAction: function onCellAction(options) {
+      if ('appId' in options) {
+        this.openAppAnalytics(options);
+      } else {
+        this.openUserEditor(options);
+      }
     }
   },
   mounted: function mounted() {
@@ -105646,7 +105702,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.users.forEach(function (user) {
         _this.rows.push([{
-          value: user.email
+          value: {
+            title: user.email,
+            userId: 37875
+          },
+          type: 'action'
         }, {
           value: user.lastSeenAt,
           type: 'date'
