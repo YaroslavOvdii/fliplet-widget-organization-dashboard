@@ -104316,7 +104316,7 @@ __webpack_require__.r(__webpack_exports__);
     transformDate: function transformDate(date) {
       return moment(date).format('D MMM YYYY');
     },
-    openUserEditor: function openUserEditor(options) {
+    openUserProfile: function openUserProfile(options) {
       Fliplet.Studio.emit('overlay', {
         name: 'edit-organization-user',
         options: {
@@ -104340,7 +104340,7 @@ __webpack_require__.r(__webpack_exports__);
       if ('appId' in options) {
         this.openAppAnalytics(options);
       } else {
-        this.openUserEditor(options);
+        this.openUserProfile(options);
       }
     }
   },

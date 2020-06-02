@@ -44,7 +44,7 @@ export default {
     transformDate: function(date) {
       return moment(date).format('D MMM YYYY');
     },
-    openUserEditor: function(options) {
+    openUserProfile: function(options) {
       Fliplet.Studio.emit('overlay', {
         name: 'edit-organization-user',
         options: {
@@ -68,7 +68,7 @@ export default {
       if ('appId' in options) {
         this.openAppAnalytics(options);
       } else {
-        this.openUserEditor(options);
+        this.openUserProfile(options);
       }
     }
   },
