@@ -56,6 +56,8 @@
     border-radius: 2px;
     height: 32px;
     border: 1px solid rgba(0, 0, 0, 0.1) !important; }
+  .range-date-picker .disabled {
+    opacity: 0.7; }
 
 .date-dropdown {
   background-color: #fff;
@@ -63,7 +65,8 @@
   margin: 0 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 2px;
-  height: 32px; }
+  height: 32px;
+  cursor: pointer; }
 
 .dataTable {
   width: 100%;
@@ -79,6 +82,23 @@
     width: 250px;
     background-color: transparent;
     margin-bottom: 10px; }
+  .dataTable .dataTables_wrapper .dt-buttons button {
+    float: right;
+    position: relative;
+    top: -48px;
+    margin-right: 15px;
+    padding: 6px 12px;
+    background: transparent;
+    border-radius: 25px;
+    border: 1px solid #333;
+    color: #333;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 1.4; }
+    .dataTable .dataTables_wrapper .dt-buttons button:hover {
+      background: #333;
+      border: 1px solid #333;
+      color: #fff; }
   .dataTable .dataTables_wrapper select {
     background-color: transparent;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -94,6 +114,8 @@
       margin-top: 5px;
       font-size: 12px;
       padding-left: 5px; }
+    .dataTable .table-responsive tr {
+      background-color: transparent; }
     .dataTable .table-responsive td, .dataTable .table-responsive th {
       word-wrap: break-word; }
     .dataTable .table-responsive .multiline-cell {

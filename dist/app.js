@@ -13611,84 +13611,95 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "org-usage-dashboard" }, [
-    this.isLoading
-      ? _c("div", { staticClass: "spinner-holder animated" }, [
-          _c("div", { staticClass: "spinner-overlay" }, [_vm._v("Loading...")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Loading...")])
-        ])
-      : this.hasError
-      ? _c("div", [
-          _c("span", { staticClass: "text-danger" }, [
-            _vm._v(_vm._s(this.errorMessage))
-          ])
-        ])
-      : Object.keys(this.analyticsData).length > 0
-      ? _c(
-          "div",
-          [
-            _c("RangeDatePicker"),
-            _vm._v(" "),
-            _c("AnalyticsChart", {
-              staticClass: "component",
-              attrs: {
-                appsSessions: this.analyticsData.appSessions,
-                studioSessions: this.analyticsData.studioSessions
-              }
-            }),
-            _vm._v(" "),
-            _c("AnalyticsSummary", {
-              staticClass: "component",
-              attrs: { analyticsData: this.analyticsData.stats }
-            }),
-            _vm._v(" "),
-            _c("ul", { staticClass: "tabs" }, [
-              _c(
-                "li",
-                {
-                  class: { active: _vm.activeTab === "apps" },
-                  attrs: { role: "presentation" },
-                  on: {
-                    click: function($event) {
-                      _vm.activeTab = "apps"
-                    }
-                  }
-                },
-                [_vm._v("Apps")]
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  class: { active: _vm.activeTab === "users" },
-                  attrs: { role: "presentation" },
-                  on: {
-                    click: function($event) {
-                      _vm.activeTab = "users"
-                    }
-                  }
-                },
-                [_vm._v("Users")]
-              )
+  return _c(
+    "div",
+    { staticClass: "org-usage-dashboard" },
+    [
+      _vm.showDatePicker
+        ? _c("RangeDatePicker", {
+            attrs: { onChange: _vm.loadData, isEnabled: !_vm.isLoading }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      this.isLoading
+        ? _c("div", { staticClass: "spinner-holder animated" }, [
+            _c("div", { staticClass: "spinner-overlay" }, [
+              _vm._v("Loading...")
             ]),
             _vm._v(" "),
-            _vm.activeTab === "apps"
-              ? _c("AppDataTable", {
-                  staticClass: "component",
-                  attrs: { apps: this.analyticsData.apps }
-                })
-              : _vm.activeTab === "users"
-              ? _c("UsersDataTable", {
-                  staticClass: "component",
-                  attrs: { users: this.analyticsData.users }
-                })
-              : _vm._e()
-          ],
-          1
-        )
-      : _c("div", [_c("span", [_vm._v("There is no data to show")])])
-  ])
+            _c("p", [_vm._v("Loading...")])
+          ])
+        : this.hasError
+        ? _c("div", [
+            _c("span", { staticClass: "text-danger" }, [
+              _vm._v(_vm._s(this.errorMessage))
+            ])
+          ])
+        : Object.keys(this.analyticsData).length > 0
+        ? _c(
+            "div",
+            [
+              _c("AnalyticsChart", {
+                staticClass: "component",
+                attrs: {
+                  appsSessions: this.analyticsData.appSessions,
+                  studioSessions: this.analyticsData.studioSessions
+                }
+              }),
+              _vm._v(" "),
+              _c("AnalyticsSummary", {
+                staticClass: "component",
+                attrs: { analyticsData: this.analyticsData.stats }
+              }),
+              _vm._v(" "),
+              _c("ul", { staticClass: "tabs" }, [
+                _c(
+                  "li",
+                  {
+                    class: { active: _vm.activeTab === "apps" },
+                    attrs: { role: "presentation" },
+                    on: {
+                      click: function($event) {
+                        _vm.activeTab = "apps"
+                      }
+                    }
+                  },
+                  [_vm._v("Apps")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    class: { active: _vm.activeTab === "users" },
+                    attrs: { role: "presentation" },
+                    on: {
+                      click: function($event) {
+                        _vm.activeTab = "users"
+                      }
+                    }
+                  },
+                  [_vm._v("Users")]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.activeTab === "apps"
+                ? _c("AppDataTable", {
+                    staticClass: "component",
+                    attrs: { apps: this.analyticsData.apps }
+                  })
+                : _vm.activeTab === "users"
+                ? _c("UsersDataTable", {
+                    staticClass: "component",
+                    attrs: { users: this.analyticsData.users }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        : _c("div", [_c("span", [_vm._v("There is no data to show")])])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -13755,7 +13766,8 @@ __webpack_require__.r(__webpack_exports__);
       analyticsData: {},
       errorMessage: '',
       hasError: false,
-      activeTab: 'apps'
+      activeTab: 'apps',
+      showDatePicker: false
     };
   },
   components: {
@@ -13769,6 +13781,10 @@ __webpack_require__.r(__webpack_exports__);
     loadData: function loadData(startDate, endDate) {
       var _this = this;
 
+      if (this.isLoading) {
+        return;
+      }
+
       this.isLoading = true;
       Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["default"])(startDate, endDate).then(function (result) {
         _this.analyticsData = result;
@@ -13777,6 +13793,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.errorMessage = Fliplet.parseError(error);
       })["finally"](function () {
         _this.isLoading = false;
+        _this.showDatePicker = true;
       });
     }
   },
@@ -104129,7 +104146,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     initTable: function initTable() {
       this.component = $(this.$refs.table).DataTable({
-        scrollX: true
+        scrollX: true,
+        dom: 'Blfrtip',
+        buttons: [{
+          extend: 'excelHtml5',
+          text: 'Export to Excel'
+        }, {
+          extend: 'csvHtml5',
+          text: 'Export to CSV'
+        }],
+        lengthMenu: [10, 25, 50, 100, 500],
+        pageLength: 10
       });
       $(window).trigger('resize');
     },
@@ -104359,14 +104386,17 @@ var render = function() {
       _c("DateDropdown", {
         attrs: {
           dropdownHandler: _vm.dropdownHandler,
+          isEnabled: _vm.isEnabled,
           customDates: _vm.customDates
         }
       }),
       _vm._v(" "),
       _c("date-range-picker", {
         ref: "picker",
+        class: { disabled: !_vm.isEnabled },
         attrs: {
           opens: "left",
+          disabled: !_vm.isEnabled,
           "locale-data": _vm.dateFormat,
           autoApply: true,
           ranges: false,
@@ -104446,6 +104476,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -104470,9 +104502,17 @@ __webpack_require__.r(__webpack_exports__);
     DateDropdown: _DateDropdown_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     DateRangePicker: vue2_daterange_picker__WEBPACK_IMPORTED_MODULE_0___default.a
   },
+  props: {
+    onChange: Function,
+    isEnabled: Boolean
+  },
   methods: {
     updateValues: function updateValues() {
       this.customDates = true;
+
+      if (this.onChange && typeof this.onChange === 'function') {
+        this.onChange(this.dateRange.startDate, this.dateRange.endDate);
+      }
     },
     dropdownHandler: function dropdownHandler(range) {
       if (range === 'none') {
@@ -104484,6 +104524,10 @@ __webpack_require__.r(__webpack_exports__);
       this.customDates = false;
       this.dateRange.startDate = startDate.setDate(endDate.getDate() - range);
       this.dateRange.endDate = endDate;
+
+      if (this.onChange && typeof this.onChange === 'function') {
+        this.onChange(this.dateRange.startDate, this.dateRange.endDate);
+      }
     }
   }
 });
@@ -104564,7 +104608,7 @@ var render = function() {
         }
       ],
       staticClass: "date-dropdown",
-      attrs: { name: "dateRange", id: "dateRange" },
+      attrs: { name: "dateRange", id: "dateRange", disabled: !_vm.isEnabled },
       on: {
         change: [
           function($event) {
@@ -104641,6 +104685,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -104649,6 +104694,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     dropdownHandler: Function,
+    isEnabled: Boolean,
     customDates: Boolean
   },
   watch: {
