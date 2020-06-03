@@ -66,7 +66,7 @@ export default {
       this.users.forEach(user => {
         this.rows.push(
           [
-            { value: user.email },
+            { value: { title: user.email, userId: 37875}, type: 'action' },
             { value: user.lastSeenAt, type: 'date'},
             { value: user.createdAt, type: 'date'},
             { value: user.stats.studioSessions.count },

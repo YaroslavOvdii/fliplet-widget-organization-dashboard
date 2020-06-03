@@ -78,7 +78,7 @@ export default {
       this.apps.forEach(app => {
         this.rows.push(
           [
-            { value: app.name },
+            { value: { title: app.name, appId: 272316 }, type: 'action' },
             { value: app.createdAt, type: 'date' },
             { value: app.updatedAt, type: 'date'},
             { value: app.publishedAt, type: 'date'},
