@@ -13870,7 +13870,11 @@ var render = function() {
     _vm._l(_vm.summaryData, function(item, index) {
       return _c("SummaryCell", {
         key: index,
-        attrs: { data: item, description: _vm.cellInformation[index] }
+        attrs: {
+          data: item,
+          description: _vm.cellInformation[index],
+          tooltip: _vm.cellTooltip[index]
+        }
       })
     }),
     1
@@ -13908,11 +13912,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       cellInformation: ['Studio sessions', 'Total users', 'New studio users', 'Apps created', 'Apps edited', 'Apps published'],
+      cellTooltip: ['The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.', 'The total number of Studio users.', 'The total number of Studio users that logged in for the first time.', 'The total number of apps created', 'The total number of apps that had screens altered within Studio', 'The total number of apps that had app updates published via Studio.'],
       summaryData: undefined
     };
   },
@@ -14002,8 +14008,9 @@ var render = function() {
     _c(
       "p",
       [
-        _vm._v(_vm._s(_vm.description) + " "),
-        _c("Tooltip", { attrs: { content: _vm.description } })
+        _c("Tooltip", { attrs: { content: _vm.tooltip } }, [
+          _vm._v(_vm._s(_vm.description))
+        ])
       ],
       1
     )
@@ -14054,6 +14061,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     description: String,
+    tooltip: String,
     data: Array
   },
   mounted: function mounted() {
@@ -105504,10 +105512,17 @@ __webpack_require__.r(__webpack_exports__);
             color: '#808080'
           }]
         },
-        navigation: {
-          buttonOptions: {
-            enabled: false
-          }
+        exporting: {
+          chartOptions: {
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true
+                }
+              }
+            }
+          },
+          fallbackToExportServer: false
         },
         legend: {
           layout: 'horizontal',
@@ -105536,7 +105551,10 @@ __webpack_require__.r(__webpack_exports__);
             enabled: false,
             connectorAllowed: false
           }
-        }]
+        }],
+        credits: {
+          enabled: false
+        }
       }
     };
   },
