@@ -15,35 +15,35 @@ export default {
       cols: [
         {
           name: 'Users',
-          help: 'Test description'
+          help: ''
         },
         {
           name: 'Last seen',
-          help: 'Test description'
+          help: 'The users last logged in date'
         },
         {
           name: 'Created',
-          help: 'Test description'
+          help: 'The date the user was created'
         },
         {
           name: 'Studio sessions',
-          help: 'Test description'
+          help: 'The number of Studio sessions the user has.\n A session is a group of interactions without 30 min of inactivity.'
         },
         {
           name: 'Viewer sessions',
-          help: 'Test description'
+          help: 'The number of Fliplet Viewer sessions the user has. \n A session is a group of interactions without 30 min of inactivity.'
         },
         {
           name: 'App Publishes',
-          help: 'Test description'
+          help: 'The number of times the user has published an app updated in Studio'
         },
         {
           name: 'Apps available',
-          help: 'Test description'
+          help: 'The number of apps the user has access to in Studio'
         },
         {
           name: 'Apps created',
-          help: 'Test description'
+          help: 'The number of apps the user has created in Studio'
         }
       ],
       rows: [],

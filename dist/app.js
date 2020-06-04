@@ -14125,7 +14125,12 @@ var render = function() {
           ref: "info",
           attrs: { "data-content": _vm.content, "data-trigger": "hover" }
         },
-        [_c("i", { staticClass: "fa fa-info-circle" })]
+        [
+          _vm._t("default"),
+          _vm._v(" "),
+          _c("i", { staticClass: "fa fa-info-circle" })
+        ],
+        2
       )
     : _vm._e()
 }
@@ -14155,13 +14160,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    content: String
+    content: String,
+    options: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    }
   },
   methods: {
     initPopover: function initPopover() {
-      $(this.$refs.info).popover();
+      $(this.$refs.info).popover(this.options);
     }
   },
   mounted: function mounted() {
@@ -103846,37 +103858,37 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cols: [{
         name: 'App',
-        help: 'Test description'
+        help: ''
       }, {
         name: 'Created',
-        help: 'Test description'
+        help: 'The date the app was created in Studio'
       }, {
         name: 'Last Edit',
-        help: 'Test description'
+        help: 'The date a screen was last editing in Studio'
       }, {
         name: 'Last publish',
-        help: 'Test description'
+        help: 'The date an app update was last published in Studio'
       }, {
         name: 'Apple',
-        help: 'Test description'
+        help: 'The first time an app was built for iOS'
       }, {
         name: 'Android',
-        help: 'Test description'
+        help: 'The first time an app was built for Android'
       }, {
         name: 'Web',
-        help: 'Test description'
+        help: 'The first time an app was published to web'
       }, {
         name: 'Users',
-        help: 'Test description'
+        help: 'Total app users across all apps.\n A user is a unique device and, if the app has a login, a unique logged in user.'
       }, {
         name: 'Sessions',
-        help: 'Test description'
+        help: 'The total number of app sessions.\n A session is a group of interactions without 30 min of inactivity.'
       }, {
         name: 'Edits',
-        help: 'Test description'
+        help: 'The total times screens were edited in Studio'
       }, {
         name: 'Published',
-        help: 'Test description'
+        help: 'The total times the an app updated was published in Studio'
       }],
       rows: [],
       isDataTransformed: false
@@ -104021,7 +104033,10 @@ var render = function() {
                 [
                   _vm._v("\n          " + _vm._s(col.name) + "\n          "),
                   _c("Tooltip", {
-                    attrs: { content: col.help },
+                    attrs: {
+                      options: { placement: "bottom" },
+                      content: col.help
+                    },
                     on: {
                       click: function($event) {
                         $event.stopPropagation()
@@ -105504,10 +105519,17 @@ __webpack_require__.r(__webpack_exports__);
             color: '#808080'
           }]
         },
-        navigation: {
-          buttonOptions: {
-            enabled: false
-          }
+        exporting: {
+          chartOptions: {
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true
+                }
+              }
+            }
+          },
+          fallbackToExportServer: false
         },
         legend: {
           layout: 'horizontal',
@@ -105536,7 +105558,10 @@ __webpack_require__.r(__webpack_exports__);
             enabled: false,
             connectorAllowed: false
           }
-        }]
+        }],
+        credits: {
+          enabled: false
+        }
       }
     };
   },
@@ -105694,28 +105719,28 @@ __webpack_require__.r(__webpack_exports__);
     return {
       cols: [{
         name: 'Users',
-        help: 'Test description'
+        help: ''
       }, {
         name: 'Last seen',
-        help: 'Test description'
+        help: 'The users last logged in date'
       }, {
         name: 'Created',
-        help: 'Test description'
+        help: 'The date the user was created'
       }, {
         name: 'Studio sessions',
-        help: 'Test description'
+        help: 'The number of Studio sessions the user has.\n A session is a group of interactions without 30 min of inactivity.'
       }, {
         name: 'Viewer sessions',
-        help: 'Test description'
+        help: 'The number of Fliplet Viewer sessions the user has. \n A session is a group of interactions without 30 min of inactivity.'
       }, {
         name: 'App Publishes',
-        help: 'Test description'
+        help: 'The number of times the user has published an app updated in Studio'
       }, {
         name: 'Apps available',
-        help: 'Test description'
+        help: 'The number of apps the user has access to in Studio'
       }, {
         name: 'Apps created',
-        help: 'Test description'
+        help: 'The number of apps the user has created in Studio'
       }],
       rows: [],
       isDataTransformed: false

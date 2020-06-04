@@ -5,7 +5,7 @@
         <tr>
           <th v-for="(col, colIndex) in columns" :key="col">
             {{ col.name }}
-            <Tooltip @click.stop :content="col.help"></Tooltip>
+            <Tooltip @click.stop :options="{ placement: 'bottom' }" :content="col.help"></Tooltip>
             <input @click.stop @input="filter($event, colIndex)" data type="text" class="filter" />
           </th>
         </tr>
