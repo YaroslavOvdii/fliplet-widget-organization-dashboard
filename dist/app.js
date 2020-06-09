@@ -14128,7 +14128,7 @@ var render = function() {
         [
           _vm._t("default"),
           _vm._v(" "),
-          _c("i", { staticClass: "fa fa-info-circle" })
+          _c("i", { staticClass: "fa fa-lg fa-info-circle" })
         ],
         2
       )

@@ -1,7 +1,7 @@
 <template>
   <span v-if="content" :data-content="content" data-trigger="hover" ref="info">
     <slot></slot>
-    <i class="fa fa-info-circle"></i>
+    <i class="fa fa-lg fa-info-circle"></i>
   </span>
 </template>
 
