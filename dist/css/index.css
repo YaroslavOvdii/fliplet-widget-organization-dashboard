@@ -42,8 +42,7 @@
     margin-top: 10px;
     padding: 5px;
     font-size: 13px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    cursor: default; }
+    border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
 .range-date-picker {
   display: flex;

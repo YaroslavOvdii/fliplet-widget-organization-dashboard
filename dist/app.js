@@ -14008,9 +14008,10 @@ var render = function() {
     _c(
       "p",
       [
-        _c("Tooltip", { attrs: { content: _vm.tooltip } }, [
-          _vm._v(_vm._s(_vm.description))
-        ])
+        _vm._v(_vm._s(_vm.description) + " "),
+        _c("Tooltip", {
+          attrs: { content: _vm.tooltip, options: { placement: "top" } }
+        })
       ],
       1
     )
