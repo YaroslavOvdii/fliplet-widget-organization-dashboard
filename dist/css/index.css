@@ -71,6 +71,11 @@
 .dataTable {
   width: 100%;
   margin-top: 20px; }
+  .dataTable .popover {
+    white-space: nowrap;
+    width: auto;
+    height: auto;
+    max-width: 100%; }
   .dataTable .dataTables_wrapper .dataTables_filter {
     display: none; }
   .dataTable .dataTables_wrapper input {

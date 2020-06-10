@@ -2,6 +2,13 @@
   width: 100%;
   margin-top: 20px;
 
+  .popover {
+    white-space: nowrap;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+  }
+
   .dataTables_wrapper .dataTables_filter {
     display: none;
   }
