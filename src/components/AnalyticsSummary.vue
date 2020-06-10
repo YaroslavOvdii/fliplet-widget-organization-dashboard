@@ -4,6 +4,7 @@
       v-for="(item, index) in summaryData"
       :data="item"
       :description="cellInformation[index]"
+      :tooltip="cellTooltip[index]"
       :key="index"
     ></SummaryCell>
   </div>
@@ -22,6 +23,14 @@ export default {
         'Apps created',
         'Apps edited',
         'Apps published'
+      ],
+      cellTooltip: [
+        'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.',
+        'The total number of Studio users.',
+        'The total number of Studio users that logged in for the first time.',
+        'The total number of apps created',
+        'The total number of apps that had screens altered within Studio',
+        'The total number of apps that had app updates published via Studio.'
       ],
       summaryData: undefined
     };

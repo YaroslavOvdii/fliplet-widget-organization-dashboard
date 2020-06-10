@@ -4,7 +4,7 @@
     <small v-if="data.count > data.previousPeriodCount" class="text-success">(&#8593; {{ perсent }}%)</small>
     <small v-else class="text-danger">(&#8595; {{ perсent }}%)</small>
     <small>{{ data.previousPeriodCount }} previous period</small>
-    <p>{{ description }} <Tooltip :content="description"></Tooltip></p>
+    <p>{{ description }} <Tooltip :content="tooltip" :options= "{ placement: 'top' }"></Tooltip></p>
   </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
   },
   props: {
     description: String,
+    tooltip: String,
     data: Array
   },
   mounted() {
