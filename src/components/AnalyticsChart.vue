@@ -38,10 +38,17 @@ export default {
             color: '#808080'
           }]
         },
-        navigation: {
-          buttonOptions: {
-            enabled: false
-          }
+        exporting: {
+          chartOptions: {
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true
+                }
+              }
+            }
+          },
+          fallbackToExportServer: false
         },
         legend: {
           layout: 'horizontal',
@@ -73,7 +80,10 @@ export default {
               connectorAllowed: false
             }
           }
-        ]
+        ],
+        credits: {
+          enabled: false
+        }
       }
     };
   },

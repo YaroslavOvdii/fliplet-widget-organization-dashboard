@@ -15,47 +15,47 @@ export default {
       cols: [
         {
           name: 'App',
-          help: 'Test description'
+          help: ''
         },
         {
           name: 'Created',
-          help: 'Test description'
+          help: 'The date the app was created in Studio'
         },
         {
           name: 'Last Edit',
-          help: 'Test description'
+          help: 'The date a screen was last editing in Studio'
         },
         {
           name: 'Last publish',
-          help: 'Test description'
+          help: 'The date an app update was last published in Studio'
         },
         {
           name: 'Apple',
-          help: 'Test description'
+          help: 'The first time an app was built for iOS'
         },
         {
           name: 'Android',
-          help: 'Test description'
+          help: 'The first time an app was built for Android'
         },
         {
           name: 'Web',
-          help: 'Test description'
+          help: 'The first time an app was published to web'
         },
         {
           name: 'Users',
-          help: 'Test description'
+          help: 'Total app users across all apps.\n A user is a unique device and, if the app has a login, a unique logged in user.'
         },
         {
           name: 'Sessions',
-          help: 'Test description'
+          help: 'The total number of app sessions.\n A session is a group of interactions without 30 min of inactivity.'
         },
         {
           name: 'Edits',
-          help: 'Test description'
+          help: 'The total times screens were edited in Studio'
         },
         {
           name: 'Published',
-          help: 'Test description'
+          help: 'The total times the an app updated was published in Studio'
         }
       ],
       rows: [],
@@ -78,7 +78,7 @@ export default {
       this.apps.forEach(app => {
         this.rows.push(
           [
-            { value: app.name },
+            { value: { title: app.name, appId: app.id }, type: 'action' },
             { value: app.createdAt, type: 'date' },
             { value: app.updatedAt, type: 'date'},
             { value: app.publishedAt, type: 'date'},
