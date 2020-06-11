@@ -42,6 +42,10 @@ export default {
   },
   methods: {
     transformDate: function(date) {
+      if (date === null) {
+        return '-';
+      }
+
       return moment(date).format('D MMM YYYY');
     },
     openUserProfile: function(options) {

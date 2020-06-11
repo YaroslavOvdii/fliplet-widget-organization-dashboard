@@ -70,11 +70,17 @@ export default {
           this.isLoading = false;
           this.showDatePicker = true;
         });
+    },
+    generateDates: function() {
+      let startDate = moment().add(-1, 'month').format('YYYY-MM-DD');
+      let endDate = moment().format('YYYY-MM-DD');
+
+      return {startDate, endDate};
     }
   },
   mounted: function() {
     // TODO: at the start of the app we should load data for the current month
-    this.loadData('2020-04-01', '2020-05-01');
+    this.loadData(this.generateDates());
     Fliplet.Widget.autosize();
   },
   updated() {
