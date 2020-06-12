@@ -75,7 +75,7 @@ export default {
       let startDate = moment().add(-1, 'month').format('YYYY-MM-DD');
       let endDate = moment().format('YYYY-MM-DD');
 
-      return {startDate, endDate};
+      return { startDate, endDate };
     }
   },
   mounted: function() {
