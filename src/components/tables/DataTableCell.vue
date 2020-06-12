@@ -44,7 +44,7 @@ export default {
   methods: {
     transformDate: function(date) {
       if (date === null) {
-        return '-';
+        return '—';
       }
 
       return moment(date).format('D MMM YYYY');

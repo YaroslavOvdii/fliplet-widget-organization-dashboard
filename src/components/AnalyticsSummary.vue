@@ -28,7 +28,6 @@ export default {
           'The total number of Studio users that logged in for the first time.'
         ],
         ['studioUsers', 'Studio users', 'The total number of Studio users.'],
-        ['totalAppUsers', 'Total app users', 'Total app users'],
         ['appsCreated', 'Apps created', 'The total number of apps created.'],
         [
           'appsEdited',
@@ -41,6 +40,7 @@ export default {
           'The total number of apps that had app updates published via Studio.'
         ],
         ['appSessions', 'App sessions', 'App sessions'],
+        ['totalAppUsers', 'Total app users', 'Total app users'],
         ['uniqueAppUsers', 'Unique app users', 'Unique app users']
       ]
     };

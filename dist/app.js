@@ -13925,7 +13925,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cellInformation: [['studioSessions', 'Studio sessions', 'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.'], ['newStudioUsers', 'New studio users', 'The total number of Studio users that logged in for the first time.'], ['studioUsers', 'Studio users', 'The total number of Studio users.'], ['totalAppUsers', 'Total app users', 'Total app users'], ['appsCreated', 'Apps created', 'The total number of apps created.'], ['appsEdited', 'Apps edited', 'The total number of apps that had screens altered within Studio.'], ['appsPublished', 'Apps published', 'The total number of apps that had app updates published via Studio.'], ['appSessions', 'App sessions', 'App sessions'], ['uniqueAppUsers', 'Unique app users', 'Unique app users']]
+      cellInformation: [['studioSessions', 'Studio sessions', 'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.'], ['newStudioUsers', 'New studio users', 'The total number of Studio users that logged in for the first time.'], ['studioUsers', 'Studio users', 'The total number of Studio users.'], ['appsCreated', 'Apps created', 'The total number of apps created.'], ['appsEdited', 'Apps edited', 'The total number of apps that had screens altered within Studio.'], ['appsPublished', 'Apps published', 'The total number of apps that had app updates published via Studio.'], ['appSessions', 'App sessions', 'App sessions'], ['totalAppUsers', 'Total app users', 'Total app users'], ['uniqueAppUsers', 'Unique app users', 'Unique app users']]
     };
   },
   components: {
@@ -14930,7 +14930,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     transformDate: function transformDate(date) {
       if (date === null) {
-        return '-';
+        return '—';
       }
 
       return moment(date).format('D MMM YYYY');
