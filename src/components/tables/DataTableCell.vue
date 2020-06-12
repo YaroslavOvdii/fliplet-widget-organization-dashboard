@@ -3,8 +3,9 @@
     <span v-if="cellType === 'date'">{{ this.transformDate(cellValue) }}</span>
     <div v-else-if="cellType === 'dynamic'" class="multiline-cell">
       <p>{{ cellValue[0] }}</p>
-      <small v-if="cellValue[0] > cellValue[1]" class="text-success">(&#8593;{{ this.perсent }}%)</small>
-      <small v-else class="text-danger">(&#8595;{{ this.perсent }}%)</small>
+      <small v-if="cellValue[0] === cellValue[1]">({{ perсent }})</small>
+      <small v-else-if="cellValue[0] > cellValue[1]" class="text-success">(&#8593;{{ this.perсent }})</small>
+      <small v-else class="text-danger">(&#8595;{{ this.perсent }})</small>
       <small>
         {{ cellValue[1] }}
       </small>

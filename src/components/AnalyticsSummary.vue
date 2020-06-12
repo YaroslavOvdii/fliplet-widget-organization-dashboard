@@ -1,10 +1,10 @@
 <template>
   <div class="analytics-container">
     <SummaryCell
-      v-for="(item, index) in summaryData"
-      :data="item"
-      :description="cellInformation[index]"
-      :tooltip="cellTooltip[index]"
+      v-for="(item, index) in cellInformation"
+      :data="analyticsData[item[0]]"
+      :title="item[1]"
+      :tooltip="item[2]"
       :key="index"
     ></SummaryCell>
   </div>
@@ -17,22 +17,32 @@ export default {
   data() {
     return {
       cellInformation: [
-        'Studio sessions',
-        'Total users',
-        'New studio users',
-        'Apps created',
-        'Apps edited',
-        'Apps published'
-      ],
-      cellTooltip: [
-        'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.',
-        'The total number of Studio users.',
-        'The total number of Studio users that logged in for the first time.',
-        'The total number of apps created',
-        'The total number of apps that had screens altered within Studio',
-        'The total number of apps that had app updates published via Studio.'
-      ],
-      summaryData: undefined
+        [
+          'studioSessions',
+          'Studio sessions',
+          'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.'
+        ],
+        [
+          'newStudioUsers',
+          'New studio users',
+          'The total number of Studio users that logged in for the first time.'
+        ],
+        ['studioUsers', 'Studio users', 'The total number of Studio users.'],
+        ['totalAppUsers', 'Total app users', 'Total app users'],
+        ['appsCreated', 'Apps created', 'The total number of apps created.'],
+        [
+          'appsEdited',
+          'Apps edited',
+          'The total number of apps that had screens altered within Studio.'
+        ],
+        [
+          'appsPublished',
+          'Apps published',
+          'The total number of apps that had app updates published via Studio.'
+        ],
+        ['appSessions', 'App sessions', 'App sessions'],
+        ['uniqueAppUsers', 'Unique app users', 'Unique app users']
+      ]
     };
   },
   components: {
@@ -40,9 +50,6 @@ export default {
   },
   props: {
     analyticsData: Object
-  },
-  created() {
-    this.summaryData = Object.values(this.analyticsData);
   }
 };
 </script>
