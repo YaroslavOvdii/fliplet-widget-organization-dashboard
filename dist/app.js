@@ -14317,8 +14317,10 @@ var getAnalyticsData = function getAnalyticsData(startDate, endDate) {
   });
 };
 
-var calculateDynamic = function calculateDynamic(currentValue, previousValue) {
-  if (currentValue === previousValue || previousValue !== 0 && !previousValue) {
+var calculateDynamic = function calculateDynamic(currentValue) {
+  var previousValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+  if (currentValue === previousValue) {
     return 0 + '%';
   }
 

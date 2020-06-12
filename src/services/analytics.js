@@ -2,8 +2,8 @@ const getAnalyticsData = (startDate, endDate) => {
   return Fliplet.Organizations.Analytics.get({ startDate, endDate });
 };
 
-export const calculateDynamic = (currentValue, previousValue) => {
-  if (currentValue === previousValue || previousValue !== 0 && !previousValue) {
+export const calculateDynamic = (currentValue, previousValue = 0) => {
+  if (currentValue === previousValue) {
     return 0 + '%';
   }
 
