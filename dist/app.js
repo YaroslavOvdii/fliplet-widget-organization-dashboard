@@ -13875,13 +13875,13 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "analytics-container" },
-    _vm._l(_vm.summaryData, function(item, index) {
+    _vm._l(_vm.cellInformation, function(item, index) {
       return _c("SummaryCell", {
         key: index,
         attrs: {
-          data: item,
-          description: _vm.cellInformation[index],
-          tooltip: _vm.cellTooltip[index]
+          data: _vm.analyticsData[item[0]],
+          title: item[1],
+          tooltip: item[2]
         }
       })
     }),
@@ -13925,9 +13925,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cellInformation: ['Studio sessions', 'Total users', 'New studio users', 'Apps created', 'Apps edited', 'Apps published'],
-      cellTooltip: ['The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.', 'The total number of Studio users.', 'The total number of Studio users that logged in for the first time.', 'The total number of apps created', 'The total number of apps that had screens altered within Studio', 'The total number of apps that had app updates published via Studio.'],
-      summaryData: undefined
+      cellInformation: [['studioSessions', 'Studio sessions', 'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.'], ['newStudioUsers', 'New studio users', 'The total number of Studio users that logged in for the first time.'], ['studioUsers', 'Studio users', 'The total number of Studio users.'], ['totalAppUsers', 'Total app users', 'Total app users'], ['appsCreated', 'Apps created', 'The total number of apps created.'], ['appsEdited', 'Apps edited', 'The total number of apps that had screens altered within Studio.'], ['appsPublished', 'Apps published', 'The total number of apps that had app updates published via Studio.'], ['appSessions', 'App sessions', 'App sessions'], ['uniqueAppUsers', 'Unique app users', 'Unique app users']]
     };
   },
   components: {
@@ -13935,9 +13933,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     analyticsData: Object
-  },
-  created: function created() {
-    this.summaryData = Object.values(this.analyticsData);
   }
 });
 
@@ -14001,12 +13996,14 @@ var render = function() {
   return _c("div", { staticClass: "summary-cell" }, [
     _c("h2", [_vm._v(_vm._s(_vm.data.count))]),
     _vm._v(" "),
-    _vm.data.count > _vm.data.previousPeriodCount
+    _vm.data.count === _vm.data.previousPeriodCount
+      ? _c("small", [_vm._v("(" + _vm._s(_vm.perсent) + ")")])
+      : _vm.data.count > _vm.data.previousPeriodCount
       ? _c("small", { staticClass: "text-success" }, [
-          _vm._v("(↑ " + _vm._s(_vm.perсent) + "%)")
+          _vm._v("(↑ " + _vm._s(_vm.perсent) + ")")
         ])
       : _c("small", { staticClass: "text-danger" }, [
-          _vm._v("(↓ " + _vm._s(_vm.perсent) + "%)")
+          _vm._v("(↓ " + _vm._s(_vm.perсent) + ")")
         ]),
     _vm._v(" "),
     _c("small", [
@@ -14016,7 +14013,7 @@ var render = function() {
     _c(
       "p",
       [
-        _vm._v(_vm._s(_vm.description) + " "),
+        _vm._v(_vm._s(_vm.title) + " "),
         _c("Tooltip", {
           attrs: { content: _vm.tooltip, options: { placement: "top" } }
         })
@@ -14057,6 +14054,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -14069,9 +14067,9 @@ __webpack_require__.r(__webpack_exports__);
     Tooltip: _Tooltip_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    description: String,
+    title: String,
     tooltip: String,
-    data: Array
+    data: Object
   },
   mounted: function mounted() {
     this.perсent = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_1__["calculateDynamic"])(this.data.count, this.data.previousPeriodCount);
@@ -14319,16 +14317,22 @@ var getAnalyticsData = function getAnalyticsData(startDate, endDate) {
   });
 };
 
-var calculateDynamic = function calculateDynamic(currentValue, previousValue) {
-  if (!previousValue || currentValue === previousValue) {
-    return 0;
+var calculateDynamic = function calculateDynamic(currentValue) {
+  var previousValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+  if (currentValue === previousValue) {
+    return 0 + '%';
+  }
+
+  if (previousValue === 0) {
+    return currentValue;
   }
 
   if (currentValue > previousValue) {
-    return Math.round((currentValue - previousValue) / previousValue * 100);
+    return Math.round((currentValue - previousValue) / previousValue * 100) + '%';
   }
 
-  return Math.round((previousValue - currentValue) / previousValue * 100);
+  return Math.round((previousValue - currentValue) / previousValue * 100) + '%';
 };
 /* harmony default export */ __webpack_exports__["default"] = (getAnalyticsData);
 
@@ -14828,12 +14832,14 @@ var render = function() {
       ? _c("div", { staticClass: "multiline-cell" }, [
           _c("p", [_vm._v(_vm._s(_vm.cellValue[0]))]),
           _vm._v(" "),
-          _vm.cellValue[0] > _vm.cellValue[1]
+          _vm.cellValue[0] === _vm.cellValue[1]
+            ? _c("small", [_vm._v("(" + _vm._s(_vm.perсent) + ")")])
+            : _vm.cellValue[0] > _vm.cellValue[1]
             ? _c("small", { staticClass: "text-success" }, [
-                _vm._v("(↑" + _vm._s(this.perсent) + "%)")
+                _vm._v("(↑" + _vm._s(this.perсent) + ")")
               ])
             : _c("small", { staticClass: "text-danger" }, [
-                _vm._v("(↓" + _vm._s(this.perсent) + "%)")
+                _vm._v("(↓" + _vm._s(this.perсent) + ")")
               ]),
           _vm._v(" "),
           _c("small", [
@@ -14880,6 +14886,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(398);
+//
 //
 //
 //
@@ -16345,7 +16352,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.rows.push([{
           value: {
             title: user.email,
-            userId: 37875
+            userId: user.id
           },
           type: 'action'
         }, {
