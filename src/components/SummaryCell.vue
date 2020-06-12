@@ -1,10 +1,11 @@
 <template>
   <div class="summary-cell">
     <h2>{{ data.count }}</h2>
-    <small v-if="data.count > data.previousPeriodCount" class="text-success">(&#8593; {{ perсent }}%)</small>
-    <small v-else class="text-danger">(&#8595; {{ perсent }}%)</small>
+    <small v-if="data.count === data.previousPeriodCount">({{ perсent }})</small>
+    <small v-else-if="data.count > data.previousPeriodCount" class="text-success">(&#8593; {{ perсent }})</small>
+    <small v-else class="text-danger">(&#8595; {{ perсent }})</small>
     <small>{{ data.previousPeriodCount }} previous period</small>
-    <p>{{ description }} <Tooltip :content="tooltip" :options= "{ placement: 'top' }"></Tooltip></p>
+    <p>{{ title }} <Tooltip :content="tooltip" :options= "{ placement: 'top' }"></Tooltip></p>
   </div>
 </template>
 
@@ -22,9 +23,9 @@ export default {
     Tooltip
   },
   props: {
-    description: String,
+    title: String,
     tooltip: String,
-    data: Array
+    data: Object
   },
   mounted() {
     this.perсent = calculateDynamic(this.data.count, this.data.previousPeriodCount);
