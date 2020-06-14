@@ -14936,13 +14936,16 @@ __webpack_require__.r(__webpack_exports__);
       return moment(date).format('D MMM YYYY');
     },
     openUserProfile: function openUserProfile(options) {
-      Fliplet.Studio.emit('overlay', {
-        name: 'edit-organization-user',
-        options: {
-          size: 'large',
-          title: 'Edit User',
-          userId: options.userId
-        }
+      Fliplet.Organizations.get().then(function (organizations) {
+        Fliplet.Studio.emit('overlay', {
+          name: 'edit-organization-user',
+          options: {
+            size: 'large',
+            title: 'Edit User',
+            userId: options.userId,
+            organizationId: organizations[0].id
+          }
+        });
       });
     },
     openAppAnalytics: function openAppAnalytics(options) {

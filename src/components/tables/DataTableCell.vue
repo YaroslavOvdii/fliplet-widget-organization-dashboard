@@ -50,14 +50,18 @@ export default {
       return moment(date).format('D MMM YYYY');
     },
     openUserProfile: function(options) {
-      Fliplet.Studio.emit('overlay', {
-        name: 'edit-organization-user',
-        options: {
-          size: 'large',
-          title: 'Edit User',
-          userId: options.userId
-        }
-      });
+      Fliplet.Organizations.get()
+        .then(organizations => {
+          Fliplet.Studio.emit('overlay', {
+            name: 'edit-organization-user',
+            options: {
+              size: 'large',
+              title: 'Edit User',
+              userId: options.userId,
+              organizationId: organizations[0].id
+            }
+          });
+        });
     },
     openAppAnalytics: function(options) {
       Fliplet.Studio.emit('overlay', {
