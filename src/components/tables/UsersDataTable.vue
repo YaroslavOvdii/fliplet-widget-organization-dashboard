@@ -83,6 +83,7 @@ export default {
   },
   mounted: function() {
     this.transformData();
+    Fliplet.Widget.autosize();
   }
 };
 </script>

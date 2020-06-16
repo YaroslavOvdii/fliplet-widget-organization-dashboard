@@ -14765,6 +14765,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.initTable();
+    $('.dataTables_length').find('select').on('change', function () {
+      Fliplet.Widget.autosize();
+    });
   }
 });
 
@@ -16379,6 +16382,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.transformData();
+    Fliplet.Widget.autosize();
   }
 });
 
