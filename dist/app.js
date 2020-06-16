@@ -14912,7 +14912,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      perсent: 0
+      perсent: 0,
+      organizationId: 0
     };
   },
   props: {
@@ -14941,7 +14942,8 @@ __webpack_require__.r(__webpack_exports__);
         options: {
           size: 'large',
           title: 'Edit User',
-          userId: options.userId
+          userId: options.userId,
+          organizationId: this.organizationId
         }
       });
     },
@@ -14966,6 +14968,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     if (this.cellType === 'dynamic') {
       this.perсent = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_0__["calculateDynamic"])(this.cellValue[0], this.cellValue[1]);
+    }
+
+    if (this.cellType === 'action') {
+      this.organizationId = Fliplet.Env.get('organizationId');
     }
   }
 });
