@@ -52,17 +52,13 @@ export default {
   },
   methods: {
     loadData: function(startDate, endDate) {
-      if (this.isLoading) {
-        return;
-      }
-
       this.isLoading = true;
 
       getAnalyticsData(startDate, endDate)
-        .then((result) => {
+        .then(result => {
           this.analyticsData = result;
         })
-        .catch((error) => {
+        .catch(error => {
           this.hasError = true;
           this.errorMessage = Fliplet.parseError(error);
         })
@@ -70,17 +66,17 @@ export default {
           this.isLoading = false;
           this.showDatePicker = true;
         });
-    },
-    generateDates: function() {
-      let startDate = moment().add(-1, 'month').format('YYYY-MM-DD');
-      let endDate = moment().format('YYYY-MM-DD');
-
-      return { startDate, endDate };
     }
   },
-  mounted: function() {
+  created() {
+    this.isLoading = true;
+  },
+  mounted() {
     // TODO: at the start of the app we should load data for the current month
-    this.loadData(this.generateDates());
+    const startDate = moment().add(-1, 'month');
+    const endDate = moment();
+
+    this.loadData(startDate, endDate);
     Fliplet.Widget.autosize();
   },
   updated() {

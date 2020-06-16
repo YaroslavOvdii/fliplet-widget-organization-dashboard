@@ -13781,10 +13781,6 @@ __webpack_require__.r(__webpack_exports__);
     loadData: function loadData(startDate, endDate) {
       var _this = this;
 
-      if (this.isLoading) {
-        return;
-      }
-
       this.isLoading = true;
       Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["default"])(startDate, endDate).then(function (result) {
         _this.analyticsData = result;
@@ -13795,19 +13791,16 @@ __webpack_require__.r(__webpack_exports__);
         _this.isLoading = false;
         _this.showDatePicker = true;
       });
-    },
-    generateDates: function generateDates() {
-      var startDate = moment().add(-1, 'month').format('YYYY-MM-DD');
-      var endDate = moment().format('YYYY-MM-DD');
-      return {
-        startDate: startDate,
-        endDate: endDate
-      };
     }
+  },
+  created: function created() {
+    this.isLoading = true;
   },
   mounted: function mounted() {
     // TODO: at the start of the app we should load data for the current month
-    this.loadData(this.generateDates());
+    var startDate = moment().add(-1, 'month');
+    var endDate = moment();
+    this.loadData(startDate, endDate);
     Fliplet.Widget.autosize();
   },
   updated: function updated() {
