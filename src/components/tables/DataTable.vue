@@ -77,6 +77,9 @@ export default {
   },
   mounted: function() {
     this.initTable();
+    $('.dataTables_length').find('select').on('change', function() {
+      Fliplet.Widget.autosize();
+    });
   }
 };
 </script>

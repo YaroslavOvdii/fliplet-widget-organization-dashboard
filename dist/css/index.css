@@ -1,3 +1,6 @@
+body {
+  overflow: hidden; }
+
 .org-usage-dashboard {
   overflow: hidden; }
   .org-usage-dashboard .spinner-holder p {
