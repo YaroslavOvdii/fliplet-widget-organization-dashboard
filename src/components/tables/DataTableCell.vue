@@ -1,6 +1,7 @@
 <template>
   <div>
-    <span v-if="cellType === 'date'">{{ this.transformDate(cellValue) }}</span>
+    <span v-if="!cellValue && cellValue !== 0">—</span>
+    <span v-else-if="cellType === 'date'">{{ this.transformDate(cellValue) }}</span>
     <div v-else-if="cellType === 'dynamic'" class="multiline-cell">
       <p>{{ cellValue[0] }}</p>
       <small v-if="cellValue[0] === cellValue[1]">({{ perсent }})</small>
@@ -32,10 +33,7 @@ export default {
   },
   props: {
     cellValue: {
-      type: Array,
-      default() {
-        return [];
-      }
+      type: Object
     },
     cellType: {
       type: String,
@@ -44,10 +42,6 @@ export default {
   },
   methods: {
     transformDate: function(date) {
-      if (date === null) {
-        return '—';
-      }
-
       return moment(date).format('D MMM YYYY');
     },
     openUserProfile: function(options) {
