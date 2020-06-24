@@ -14822,7 +14822,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.cellType === "date"
+    !_vm.cellValue && _vm.cellValue !== 0
+      ? _c("span", [_vm._v("—")])
+      : _vm.cellType === "date"
       ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
       : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
@@ -14904,6 +14906,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -14914,10 +14917,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     cellValue: {
-      type: Array,
-      "default": function _default() {
-        return [];
-      }
+      type: Object
     },
     cellType: {
       type: String,
@@ -14926,10 +14926,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     transformDate: function transformDate(date) {
-      if (date === null) {
-        return '—';
-      }
-
       return moment(date).format('D MMM YYYY');
     },
     openUserProfile: function openUserProfile(options) {
