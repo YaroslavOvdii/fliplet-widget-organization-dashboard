@@ -51,6 +51,8 @@ export default {
   },
   methods: {
     initTable: function() {
+      $.fn.dataTable.moment('D MMM YYYY');
+
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
         dom: 'Blfrtip',

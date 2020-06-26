@@ -25,6 +25,7 @@
       "vendor/dataTables.responsive.min.js",
       "vendor/dataTables.buttons.js",
       "vendor/dataTables.buttons.html5.min.js",
+      "vendor/dataTables.datetime-moment.js",
       "vendor/jszip.min.js",
       "vendor/pdfmake.min.js",
       "vendor/vfs_fonts.js",
