@@ -13918,7 +13918,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cellInformation: [['studioSessions', 'Studio sessions', 'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.'], ['newStudioUsers', 'New studio users', 'The total number of Studio users that logged in for the first time.'], ['studioUsers', 'Studio users', 'The total number of Studio users.'], ['appsCreated', 'Apps created', 'The total number of apps created.'], ['appsEdited', 'Apps edited', 'The total number of apps that had screens altered within Studio.'], ['appsPublished', 'Apps published', 'The total number of apps that had app updates published via Studio.'], ['appSessions', 'App sessions', 'App sessions'], ['totalAppUsers', 'Total app users', 'Total app users'], ['uniqueAppUsers', 'Unique app users', 'Unique app users']]
+      cellInformation: [['studioSessions', 'Studio sessions', 'The total number of Studio sessions. A session is a group of interactions without 30 min of inactivity.'], ['newStudioUsers', 'New studio users', 'The total number of Studio users that logged in for the first time.'], ['studioUsers', 'Studio users', 'The total number of Studio users.'], ['appsCreated', 'Apps created', 'The total number of apps created.'], ['appsEdited', 'Apps edited', 'The total number of apps that had screens altered within Studio.'], ['appsPublished', 'Apps published', 'The total number of apps that had app updates published via Studio.'], ['appSessions', 'App sessions', 'The total number of app sessions. A session is a group of interactions without 30 min of inactivity.'], ['totalAppUsers', 'Total app users', 'The total number of app users.'], ['uniqueAppUsers', 'Unique app users', 'The total number of unique app users.']]
     };
   },
   components: {
@@ -14626,6 +14626,9 @@ var render = function() {
                       },
                       input: function($event) {
                         return _vm.filter($event, colIndex)
+                      },
+                      keydown: function($event) {
+                        return _vm.onKeydown($event)
                       }
                     }
                   })
@@ -14755,6 +14758,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     filter: function filter(event, colIndex) {
       this.component.columns(colIndex).search(event.target.value).draw();
+    },
+    onKeydown: function onKeydown(event) {
+      if (event.which === 65 && (event.ctrlKey || event.metaKey)) {
+        this.selectAll(event.currentTarget);
+      }
+    },
+    selectAll: function selectAll(input) {
+      input.select();
     }
   },
   mounted: function mounted() {
@@ -14851,7 +14862,7 @@ var render = function() {
       ? _c(
           "span",
           {
-            staticClass: "link",
+            staticClass: "link btn-link",
             on: {
               click: function($event) {
                 $event.stopPropagation()
@@ -15032,7 +15043,7 @@ var render = function() {
     [
       _c("DateDropdown", {
         attrs: {
-          dropdownHandler: _vm.dropdownHandler,
+          onDropdownChange: _vm.onDropdownChange,
           isEnabled: _vm.isEnabled,
           customDates: _vm.customDates
         }
@@ -15161,7 +15172,7 @@ __webpack_require__.r(__webpack_exports__);
         this.onChange(this.dateRange.startDate, this.dateRange.endDate);
       }
     },
-    dropdownHandler: function dropdownHandler(range) {
+    onDropdownChange: function onDropdownChange(range) {
       if (range === 'none') {
         return;
       }
@@ -15254,7 +15265,7 @@ var render = function() {
           expression: "selectedRange"
         }
       ],
-      staticClass: "date-dropdown",
+      staticClass: "date-dropdown form-control",
       attrs: { name: "dateRange", id: "dateRange", disabled: !_vm.isEnabled },
       on: {
         change: [
@@ -15272,7 +15283,7 @@ var render = function() {
               : $$selectedVal[0]
           },
           function($event) {
-            return _vm.dropdownHandler(_vm.selectedRange)
+            return _vm.onDropdownChange(_vm.selectedRange)
           }
         ]
       }
@@ -15340,7 +15351,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   props: {
-    dropdownHandler: Function,
+    onDropdownChange: Function,
     isEnabled: Boolean,
     customDates: Boolean
   },

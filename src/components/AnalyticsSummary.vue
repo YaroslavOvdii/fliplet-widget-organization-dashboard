@@ -39,9 +39,17 @@ export default {
           'Apps published',
           'The total number of apps that had app updates published via Studio.'
         ],
-        ['appSessions', 'App sessions', 'App sessions'],
-        ['totalAppUsers', 'Total app users', 'Total app users'],
-        ['uniqueAppUsers', 'Unique app users', 'Unique app users']
+        [
+          'appSessions',
+          'App sessions',
+          'The total number of app sessions. A session is a group of interactions without 30 min of inactivity.'
+        ],
+        ['totalAppUsers', 'Total app users', 'The total number of app users.'],
+        [
+          'uniqueAppUsers',
+          'Unique app users',
+          'The total number of unique app users.'
+        ]
       ]
     };
   },

@@ -6,7 +6,7 @@
           <th v-for="(col, colIndex) in columns" :key="col">
             {{ col.name }}
             <Tooltip @click.stop :options="{ placement: 'bottom' }" :content="col.help"></Tooltip>
-            <input @click.stop @input="filter($event, colIndex)" data type="text" class="filter" />
+            <input @click.stop @input="filter($event, colIndex)" @keydown="onKeydown($event)" data type="text" class="filter" />
           </th>
         </tr>
       </thead>
@@ -75,6 +75,14 @@ export default {
       this.component.columns(colIndex)
         .search(event.target.value)
         .draw();
+    },
+    onKeydown: function(event) {
+      if (event.which === 65 && (event.ctrlKey || event.metaKey)) {
+        this.selectAll(event.currentTarget);
+      }
+    },
+    selectAll: function(input) {
+      input.select();
     }
   },
   mounted: function() {
