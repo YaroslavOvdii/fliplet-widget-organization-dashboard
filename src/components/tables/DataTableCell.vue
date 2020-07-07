@@ -14,7 +14,7 @@
         Previous Period
       </small>
     </div>
-    <span v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="link">{{ cellValue.title }}</span>
+    <span v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="link btn-link">{{ cellValue.title }}</span>
     <span v-else>
       {{ cellValue }}
     </span>

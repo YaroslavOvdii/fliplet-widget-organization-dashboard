@@ -1,10 +1,10 @@
 <template>
   <select
     v-model="selectedRange"
-    @change="dropdownHandler(selectedRange)"
+    @change="onDropdownChange(selectedRange)"
     name="dateRange"
     id="dateRange"
-    class="date-dropdown"
+    class="date-dropdown form-control"
     :disabled="!isEnabled"
   >
     <option value="1">Last 24 hours</option>
@@ -25,7 +25,7 @@ export default {
     };
   },
   props: {
-    dropdownHandler: Function,
+    onDropdownChange: Function,
     isEnabled: Boolean,
     customDates: Boolean
   },

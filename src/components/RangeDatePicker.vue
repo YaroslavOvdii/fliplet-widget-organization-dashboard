@@ -1,6 +1,6 @@
 <template>
   <div class="range-date-picker">
-    <DateDropdown :dropdownHandler="dropdownHandler" :isEnabled="isEnabled" :customDates="customDates"></DateDropdown>
+    <DateDropdown :onDropdownChange="onDropdownChange" :isEnabled="isEnabled" :customDates="customDates"></DateDropdown>
     <date-range-picker
       ref="picker"
       opens="left"
@@ -60,7 +60,7 @@ export default {
         this.onChange(this.dateRange.startDate, this.dateRange.endDate);
       }
     },
-    dropdownHandler(range) {
+    onDropdownChange(range) {
       if (range === 'none') {
         return;
       }
