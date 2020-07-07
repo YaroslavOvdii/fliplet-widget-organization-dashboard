@@ -13987,7 +13987,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "summary-cell" }, [
-    _c("h2", [_vm._v(_vm._s(_vm.data.count))]),
+    _c("h2", [_vm._v(_vm._s(_vm.data.count.toLocaleString("en")))]),
     _vm._v(" "),
     _vm.data.count === _vm.data.previousPeriodCount
       ? _c("small", [_vm._v("(" + _vm._s(_vm.perсent) + ")")])
@@ -14000,7 +14000,10 @@ var render = function() {
         ]),
     _vm._v(" "),
     _c("small", [
-      _vm._v(_vm._s(_vm.data.previousPeriodCount) + " previous period")
+      _vm._v(
+        _vm._s(_vm.data.previousPeriodCount.toLocaleString("en")) +
+          " previous period"
+      )
     ]),
     _vm._v(" "),
     _c(
@@ -14840,7 +14843,7 @@ var render = function() {
       ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
       : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
-          _c("p", [_vm._v(_vm._s(_vm.cellValue[0]))]),
+          _c("p", [_vm._v(_vm._s(_vm.cellValue[0].toLocaleString("en")))]),
           _vm._v(" "),
           _vm.cellValue[0] === _vm.cellValue[1]
             ? _c("small", [_vm._v("(" + _vm._s(_vm.perсent) + ")")])
@@ -14853,7 +14856,11 @@ var render = function() {
               ]),
           _vm._v(" "),
           _c("small", [
-            _vm._v("\n      " + _vm._s(_vm.cellValue[1]) + "\n    ")
+            _vm._v(
+              "\n      " +
+                _vm._s(_vm.cellValue[1].toLocaleString("en")) +
+                "\n    "
+            )
           ]),
           _vm._v(" "),
           _c("small", [_vm._v("\n      Previous Period\n    ")])
