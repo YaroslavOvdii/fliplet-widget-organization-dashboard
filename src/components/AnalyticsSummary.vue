@@ -44,11 +44,15 @@ export default {
           'App sessions',
           'The total number of app sessions. A session is a group of interactions without 30 min of inactivity.'
         ],
-        ['totalAppUsers', 'Total app users', 'The total number of app users.'],
+        [
+          'totalAppUsers',
+          'Total app users',
+          'Total app users across all apps. A user is a unique device and, if the app has a login, a unique logged in user.'
+        ],
         [
           'uniqueAppUsers',
           'Unique app users',
-          'The total number of unique app users.'
+          'Total app users excluding duplicate visits from authenticated users.'
         ]
       ]
     };
