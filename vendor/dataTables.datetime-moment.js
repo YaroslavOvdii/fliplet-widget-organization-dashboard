@@ -43,8 +43,7 @@
         d = $.trim( d );
       }
 
-      // Null and empty values are acceptable
-      if ( d === '' || d === null ) {
+      if ( d === '' || d === null || d === '—' ) {
         return 'moment-' + format;
       }
 
