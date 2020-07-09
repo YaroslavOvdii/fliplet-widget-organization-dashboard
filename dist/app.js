@@ -13623,9 +13623,7 @@ var render = function() {
       _vm._v(" "),
       this.isLoading
         ? _c("div", { staticClass: "spinner-holder animated" }, [
-            _c("div", { staticClass: "spinner-overlay" }, [
-              _vm._v("Loading...")
-            ]),
+            _c("div", { staticClass: "spinner-overlay" }),
             _vm._v(" "),
             _c("p", [_vm._v("Loading...")])
           ])

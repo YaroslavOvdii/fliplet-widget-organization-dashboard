@@ -2,7 +2,7 @@
   <div class="org-usage-dashboard">
     <RangeDatePicker :onChange="loadData" :isEnabled="!isLoading" v-if="showDatePicker"></RangeDatePicker>
     <div v-if="this.isLoading" class="spinner-holder animated">
-      <div class="spinner-overlay">Loading...</div>
+      <div class="spinner-overlay"></div>
       <p>Loading...</p>
     </div>
     <div v-else-if="this.hasError">
