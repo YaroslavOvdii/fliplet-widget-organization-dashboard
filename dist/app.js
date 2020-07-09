@@ -14742,6 +14742,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     initTable: function initTable() {
       $.fn.dataTable.moment('D MMM YYYY');
+      $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
         dom: 'Blfrtip',
