@@ -3,6 +3,8 @@ body {
 
 .org-usage-dashboard {
   overflow: hidden; }
+  .org-usage-dashboard .highcharts-button-box {
+    fill: transparent; }
   .org-usage-dashboard .spinner-holder p {
     text-align: center; }
   .org-usage-dashboard .analytics-container, .org-usage-dashboard .tabs {
@@ -41,7 +43,8 @@ body {
   border-right: 1px solid rgba(0, 0, 0, 0.1); }
   .summary-cell h2 {
     margin-top: 10px;
-    font-size: 34px; }
+    font-size: 34px;
+    color: #474974; }
   .summary-cell small {
     display: block;
     font-size: 10px; }
@@ -105,7 +108,7 @@ body {
   .dataTable .dataTables_wrapper .dt-buttons button {
     float: right;
     position: relative;
-    top: -48px;
+    top: -57px;
     margin-right: 15px;
     text-transform: uppercase;
     font-size: 12px;
@@ -117,7 +120,8 @@ body {
     border-radius: 100px;
     padding: 10px 16px;
     border-color: #eae9ec;
-    border: none; }
+    border: none;
+    outline: none; }
     .dataTable .dataTables_wrapper .dt-buttons button:hover {
       background-color: #474974;
       color: white;
