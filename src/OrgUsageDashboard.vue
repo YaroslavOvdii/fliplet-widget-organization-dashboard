@@ -28,7 +28,7 @@
 import AnalyticsSummary from './components/AnalyticsSummary.vue';
 import AppDataTable from './components/tables/AppsDataTable';
 import RangeDatePicker from './components/RangeDatePicker.vue';
-import getAnalyticsData from './services/analytics';
+import getAnalyticsData, { handleSessions } from './services/analytics';
 import AnalyticsChart from './components/AnalyticsChart';
 import UsersDataTable from './components/tables/UsersDataTable';
 
@@ -56,6 +56,8 @@ export default {
 
       getAnalyticsData(startDate, endDate)
         .then(result => {
+          result.appSessions = handleSessions(startDate, endDate, result.appSessions);
+          result.studioSessions = handleSessions(startDate, endDate, result.studioSessions);
           this.analyticsData = result;
         })
         .catch(error => {
@@ -72,7 +74,6 @@ export default {
     this.isLoading = true;
   },
   mounted() {
-    // TODO: at the start of the app we should load data for the current month
     const startDate = moment().add(-1, 'month');
     const endDate = moment();
 
