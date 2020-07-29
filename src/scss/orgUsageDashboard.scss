@@ -5,6 +5,10 @@ body {
 .org-usage-dashboard {
   overflow: hidden;
 
+  .highcharts-button-box {
+    fill: transparent;
+  }
+
   .spinner-holder p {
       text-align: center;
   }
