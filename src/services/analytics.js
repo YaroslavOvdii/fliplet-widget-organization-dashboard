@@ -18,7 +18,7 @@ export const calculateDynamic = (currentValue, previousValue = 0) => {
   return Math.round((( previousValue - currentValue ) / previousValue) * 100) + '%';
 };
 
-export const handleSessions  = (startDate, endDate, sessions) => {
+export const handleSessions = (startDate, endDate, sessions) => {
   let result = [];
 
   for (let date = new Date(startDate); date <= new Date(endDate); date.setDate(date.getDate() + 1)) {
@@ -26,7 +26,7 @@ export const handleSessions  = (startDate, endDate, sessions) => {
     const hasSessions = sessions.some(item => item.day === formattedDate);
 
     if (!hasSessions) {
-      result.push({day: formattedDate, count: 0});
+      result.push({ day: formattedDate, count: 0 });
     }
   }
 
