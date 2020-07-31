@@ -13650,6 +13650,22 @@ var render = function() {
                 attrs: { analyticsData: this.analyticsData.stats }
               }),
               _vm._v(" "),
+              _c("AlertMessage", {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: this.isStartDateBeforehand,
+                    expression: "this.isStartDateBeforehand"
+                  }
+                ],
+                staticClass: "component",
+                attrs: {
+                  message:
+                    "<b>Studio sessions</b> data is only avaliable from June 24th 2020"
+                }
+              }),
+              _vm._v(" "),
               _c("ul", { staticClass: "tabs" }, [
                 _c(
                   "li",
@@ -13725,6 +13741,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(398);
 /* harmony import */ var _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(436);
 /* harmony import */ var _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(441);
+/* harmony import */ var _components_AlertMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(446);
 //
 //
 //
@@ -13751,6 +13768,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 
@@ -13765,7 +13784,8 @@ __webpack_require__.r(__webpack_exports__);
       errorMessage: '',
       hasError: false,
       activeTab: 'apps',
-      showDatePicker: false
+      showDatePicker: false,
+      isStartDateBeforehand: false
     };
   },
   components: {
@@ -13773,13 +13793,15 @@ __webpack_require__.r(__webpack_exports__);
     AppDataTable: _components_tables_AppsDataTable__WEBPACK_IMPORTED_MODULE_1__["default"],
     RangeDatePicker: _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"],
-    UsersDataTable: _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__["default"]
+    UsersDataTable: _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__["default"],
+    AlertMessage: _components_AlertMessage__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   methods: {
     loadData: function loadData(startDate, endDate) {
       var _this = this;
 
       this.isLoading = true;
+      this.isStartDateBeforehand = moment(startDate).isBefore('2020-06-24');
       Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["default"])(startDate, endDate).then(function (result) {
         result.appSessions = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["handleSessions"])(startDate, endDate, result.appSessions);
         result.studioSessions = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["handleSessions"])(startDate, endDate, result.studioSessions);
@@ -16517,6 +16539,102 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.transformData();
     Fliplet.Widget.autosize();
+  }
+});
+
+/***/ }),
+/* 446 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(447);
+/* harmony import */ var _AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(449);
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(397);
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/components/AlertMessage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+/* 447 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(448);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+/* 448 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {
+    class: ["alert", _vm.alertClass],
+    domProps: { innerHTML: _vm._s(_vm.message) }
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+/* 449 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(450);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+/* 450 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    message: String,
+    alertClass: {
+      type: String,
+      "default": 'alert-warning'
+    }
   }
 });
 

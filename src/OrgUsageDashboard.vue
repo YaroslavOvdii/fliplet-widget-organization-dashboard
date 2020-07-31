@@ -11,6 +11,7 @@
     <div v-else-if="Object.keys(this.analyticsData).length > 0">
       <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
       <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
+      <AlertMessage v-show="this.isStartDateBeforehand" class="component" message='<b>Studio sessions</b> data is only avaliable from June 24th 2020' />
       <ul class="tabs">
         <li role="presentation" @click="activeTab = 'apps'" :class="{active: activeTab === 'apps'}">Apps</li>
         <li role="presentation" @click="activeTab = 'users'" :class="{active: activeTab === 'users'}">Users</li>
@@ -31,6 +32,7 @@ import RangeDatePicker from './components/RangeDatePicker.vue';
 import getAnalyticsData, { handleSessions } from './services/analytics';
 import AnalyticsChart from './components/AnalyticsChart';
 import UsersDataTable from './components/tables/UsersDataTable';
+import AlertMessage from './components/AlertMessage';
 
 export default {
   data() {
@@ -40,7 +42,8 @@ export default {
       errorMessage: '',
       hasError: false,
       activeTab: 'apps',
-      showDatePicker: false
+      showDatePicker: false,
+      isStartDateBeforehand: false
     };
   },
   components: {
@@ -48,11 +51,13 @@ export default {
     AppDataTable,
     RangeDatePicker,
     AnalyticsChart,
-    UsersDataTable
+    UsersDataTable,
+    AlertMessage
   },
   methods: {
     loadData: function(startDate, endDate) {
       this.isLoading = true;
+      this.isStartDateBeforehand = moment(startDate).isBefore('2020-06-24');
 
       getAnalyticsData(startDate, endDate)
         .then(result => {
