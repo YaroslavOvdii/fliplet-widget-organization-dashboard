@@ -1,7 +1,7 @@
 <template>
   <span v-if="content" :data-content="content" data-trigger="hover" ref="info">
     <slot></slot>
-    <i :class="[icon]"></i>
+    <i :class="['fa', icon]"></i>
   </span>
 </template>
 
@@ -17,7 +17,7 @@ export default {
     },
     icon: {
       type: String,
-      default: 'fa fa-lg fa-info-circle'
+      default: 'fa-info-circle'
     }
   },
   methods: {

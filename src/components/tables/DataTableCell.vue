@@ -16,8 +16,8 @@
     </div>
     <div v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="action-holder">
       <span class="link btn-link">{{ cellValue.title }}</span>
-      <Tooltip v-if="'appId' in cellValue" :content="'See app analytics'" :icon="'fa fa-area-chart'" />
-      <Tooltip v-else :content="'Edit user'" :icon="'fa fa-pencil'" />
+      <Tooltip v-if="'appId' in cellValue" :content="'See app analytics'" :icon="'fa-area-chart'" />
+      <Tooltip v-else :content="'Edit user'" :icon="'fa-pencil'" />
     </div>
     <span v-else>
       {{ cellValue }}

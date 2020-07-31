@@ -14135,7 +14135,7 @@ var render = function() {
           ref: "info",
           attrs: { "data-content": _vm.content, "data-trigger": "hover" }
         },
-        [_vm._t("default"), _vm._v(" "), _c("i", { class: [_vm.icon] })],
+        [_vm._t("default"), _vm._v(" "), _c("i", { class: ["fa", _vm.icon] })],
         2
       )
     : _vm._e()
@@ -14178,7 +14178,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     icon: {
       type: String,
-      "default": 'fa fa-lg fa-info-circle'
+      "default": 'fa-info-circle'
     }
   },
   methods: {
@@ -15006,13 +15006,10 @@ var render = function() {
             _vm._v(" "),
             "appId" in _vm.cellValue
               ? _c("Tooltip", {
-                  attrs: {
-                    content: "See app analytics",
-                    icon: "fa fa-area-chart"
-                  }
+                  attrs: { content: "See app analytics", icon: "fa-area-chart" }
                 })
               : _c("Tooltip", {
-                  attrs: { content: "Edit user", icon: "fa fa-pencil" }
+                  attrs: { content: "Edit user", icon: "fa-pencil" }
                 })
           ],
           1
