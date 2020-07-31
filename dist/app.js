@@ -13791,6 +13791,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.isLoading = false;
         _this.showDatePicker = true;
       });
+    },
+    init: function init() {
+      Fliplet.Studio.onMessage(function (event) {
+        if (event.data && event.data.event === 'overlay-close') {
+          setTimeout(function () {
+            Fliplet.Widget.autosize();
+          }, 500);
+        }
+      });
     }
   },
   created: function created() {
@@ -13799,6 +13808,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var startDate = moment().add(-1, 'month');
     var endDate = moment();
+    this.init();
     this.loadData(startDate, endDate);
     Fliplet.Widget.autosize();
   },
