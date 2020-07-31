@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     transformDate: function(date) {
-      return moment(date).format('D MMM YYYY');
+      return moment(date).format(moment().creationData().locale._longDateFormat.LL);
     },
     openUserProfile: function(options) {
       Fliplet.Studio.emit('overlay', {
