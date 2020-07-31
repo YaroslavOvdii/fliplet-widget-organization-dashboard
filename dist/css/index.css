@@ -147,9 +147,9 @@ body {
       background-color: transparent; }
     .dataTable .table-responsive td, .dataTable .table-responsive th {
       word-wrap: break-word; }
-    .dataTable .table-responsive td i {
+    .dataTable .table-responsive tbody tr i {
       display: none; }
-    .dataTable .table-responsive td:hover i {
+    .dataTable .table-responsive tbody tr:hover i {
       display: inline-block; }
     .dataTable .table-responsive .multiline-cell {
       text-align: center; }
