@@ -14135,11 +14135,7 @@ var render = function() {
           ref: "info",
           attrs: { "data-content": _vm.content, "data-trigger": "hover" }
         },
-        [
-          _vm._t("default"),
-          _vm._v(" "),
-          _c("i", { staticClass: "fa fa-lg fa-info-circle" })
-        ],
+        [_vm._t("default"), _vm._v(" "), _c("i", { class: ["fa", _vm.icon] })],
         2
       )
     : _vm._e()
@@ -14179,6 +14175,10 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return {};
       }
+    },
+    icon: {
+      type: String,
+      "default": 'fa-info-circle'
     }
   },
   methods: {
@@ -14869,10 +14869,12 @@ __webpack_require__.r(__webpack_exports__);
         dom: 'Blfrtip',
         buttons: [{
           extend: 'excelHtml5',
-          text: 'Export to Excel'
+          text: 'Export to Excel',
+          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD'))
         }, {
           extend: 'csvHtml5',
-          text: 'Export to CSV'
+          text: 'Export to CSV',
+          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD'))
         }],
         lengthMenu: [10, 25, 50, 100, 500],
         pageLength: 10
@@ -14987,9 +14989,9 @@ var render = function() {
         ])
       : _vm.cellType === "action"
       ? _c(
-          "span",
+          "div",
           {
-            staticClass: "link btn-link",
+            staticClass: "action-holder",
             on: {
               click: function($event) {
                 $event.stopPropagation()
@@ -14997,7 +14999,20 @@ var render = function() {
               }
             }
           },
-          [_vm._v(_vm._s(_vm.cellValue.title))]
+          [
+            _c("span", { staticClass: "link btn-link" }, [
+              _vm._v(_vm._s(_vm.cellValue.title))
+            ]),
+            _vm._v(" "),
+            "appId" in _vm.cellValue
+              ? _c("Tooltip", {
+                  attrs: { content: "See app analytics", icon: "fa-area-chart" }
+                })
+              : _c("Tooltip", {
+                  attrs: { content: "Edit user", icon: "fa-pencil" }
+                })
+          ],
+          1
         )
       : _c("span", [_vm._v("\n    " + _vm._s(_vm.cellValue) + "\n  ")])
   ])
@@ -15023,6 +15038,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(398);
+/* harmony import */ var _Tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(392);
+//
+//
+//
+//
 //
 //
 //
@@ -15047,6 +15067,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -15062,6 +15083,9 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       "default": 'raw'
     }
+  },
+  components: {
+    Tooltip: _Tooltip__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     transformDate: function transformDate(date) {

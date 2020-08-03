@@ -14,7 +14,11 @@
         Previous Period
       </small>
     </div>
-    <span v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="link btn-link">{{ cellValue.title }}</span>
+    <div v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="action-holder">
+      <span class="link btn-link">{{ cellValue.title }}</span>
+      <Tooltip v-if="'appId' in cellValue" :content="'See app analytics'" :icon="'fa-area-chart'" />
+      <Tooltip v-else :content="'Edit user'" :icon="'fa-pencil'" />
+    </div>
     <span v-else>
       {{ cellValue }}
     </span>
@@ -23,6 +27,7 @@
 
 <script>
 import { calculateDynamic } from '../../services/analytics';
+import Tooltip from '../Tooltip';
 
 export default {
   data() {
@@ -39,6 +44,9 @@ export default {
       type: String,
       default: 'raw'
     }
+  },
+  components: {
+    Tooltip
   },
   methods: {
     transformDate: function(date) {
