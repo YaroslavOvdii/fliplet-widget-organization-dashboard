@@ -13615,6 +13615,15 @@ var render = function() {
     "div",
     { staticClass: "org-usage-dashboard" },
     [
+      _c("Message", {
+        staticClass: "component",
+        attrs: {
+          type: "alert-info",
+          message:
+            "<p><strong>This feature is currently in beta.</strong> We are actively refining the functionality and collecting feedback. If you have any questions please <a href='#'>contact us</a>.<p>"
+        }
+      }),
+      _vm._v(" "),
       _vm.showDatePicker
         ? _c("RangeDatePicker", {
             attrs: { onChange: _vm.loadData, isEnabled: !_vm.isLoading }
@@ -13742,6 +13751,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(436);
 /* harmony import */ var _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(441);
 /* harmony import */ var _components_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(446);
+//
 //
 //
 //

@@ -1,5 +1,6 @@
 <template>
   <div class="org-usage-dashboard">
+    <Message class="component" type="alert-info" message="<p><strong>This feature is currently in beta.</strong> We are actively refining the functionality and collecting feedback. If you have any questions please <a href='#'>contact us</a>.<p>" />
     <RangeDatePicker :onChange="loadData" :isEnabled="!isLoading" v-if="showDatePicker"></RangeDatePicker>
     <div v-if="this.isLoading" class="spinner-holder animated">
       <div class="spinner-overlay"></div>
