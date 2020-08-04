@@ -73,6 +73,15 @@ export default {
           this.isLoading = false;
           this.showDatePicker = true;
         });
+    },
+    init: function() {
+      Fliplet.Studio.onMessage(function(event) {
+        if (event.data && event.data.event === 'overlay-close') {
+          setTimeout(() => {
+            Fliplet.Widget.autosize();
+          }, 500);
+        }
+      });
     }
   },
   created() {
@@ -82,6 +91,7 @@ export default {
     const startDate = moment().add(-1, 'month');
     const endDate = moment();
 
+    this.init();
     this.loadData(startDate, endDate);
     Fliplet.Widget.autosize();
   },
