@@ -13662,7 +13662,7 @@ var render = function() {
                 staticClass: "component",
                 attrs: {
                   message:
-                    "<b>Studio sessions</b> data is only avaliable from June 24th 2020"
+                    "Data for <b>studio sessions, new studio users and apps edited</b> are only available from June 24th 2020."
                 }
               }),
               _vm._v(" "),
