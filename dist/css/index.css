@@ -155,3 +155,6 @@ body {
       text-align: center; }
       .dataTable .table-responsive .multiline-cell small {
         display: block; }
+
+.alert {
+  margin-top: 10px; }
