@@ -15270,6 +15270,7 @@ var render = function() {
         class: { disabled: !_vm.isEnabled },
         attrs: {
           opens: "left",
+          "max-date": new Date(),
           disabled: !_vm.isEnabled,
           "locale-data": _vm.dateFormat,
           autoApply: true,
@@ -15330,6 +15331,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DateDropdown_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(426);
 /* harmony import */ var vue2_daterange_picker_dist_vue2_daterange_picker_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(431);
 /* harmony import */ var vue2_daterange_picker_dist_vue2_daterange_picker_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_daterange_picker_dist_vue2_daterange_picker_css__WEBPACK_IMPORTED_MODULE_2__);
+//
 //
 //
 //
