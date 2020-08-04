@@ -13655,14 +13655,14 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: this.isStartDateBeforehand,
-                    expression: "this.isStartDateBeforehand"
+                    value: this.isDataPartiallyAvailable,
+                    expression: "this.isDataPartiallyAvailable"
                   }
                 ],
                 staticClass: "component",
                 attrs: {
                   message:
-                    "Data for <b>studio sessions, new studio users and apps edited</b> are only available from June 24th 2020."
+                    "Data for <b>studio sessions, new studio users/<b> and <b>apps edited</b> are only available from June 24th 2020."
                 }
               }),
               _vm._v(" "),
@@ -13785,7 +13785,7 @@ __webpack_require__.r(__webpack_exports__);
       hasError: false,
       activeTab: 'apps',
       showDatePicker: false,
-      isStartDateBeforehand: false
+      isDataPartiallyAvailable: false
     };
   },
   components: {
@@ -13801,7 +13801,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.isLoading = true;
-      this.isStartDateBeforehand = moment(startDate).isBefore('2020-06-24');
+      this.isDataPartiallyAvailable = moment(startDate).isBefore('2020-06-24');
       Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["default"])(startDate, endDate).then(function (result) {
         result.appSessions = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["handleSessions"])(startDate, endDate, result.appSessions);
         result.studioSessions = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["handleSessions"])(startDate, endDate, result.studioSessions);
