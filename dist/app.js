@@ -13615,14 +13615,20 @@ var render = function() {
     "div",
     { staticClass: "org-usage-dashboard" },
     [
-      _c("Message", {
-        staticClass: "component",
-        attrs: {
-          type: "alert-info",
-          message:
-            "<p><strong>This feature is currently in beta.</strong> We are actively refining the functionality and collecting feedback. If you have any questions please <a href='#'>contact us</a>.<p>"
-        }
-      }),
+      _c("Message", { attrs: { type: "alert-info" } }, [
+        _c("p", [
+          _c("strong", [_vm._v("This feature is currently in beta.")]),
+          _vm._v(
+            "\n      We are actively refining the functionality and collecting feedback. If you have any questions please\n      "
+          ),
+          _c(
+            "a",
+            { attrs: { href: "#" }, on: { click: _vm.openChatOverlay } },
+            [_vm._v("contact us")]
+          ),
+          _vm._v(".\n    ")
+        ])
+      ]),
       _vm._v(" "),
       _vm.showDatePicker
         ? _c("RangeDatePicker", {
@@ -13659,21 +13665,27 @@ var render = function() {
                 attrs: { analyticsData: this.analyticsData.stats }
               }),
               _vm._v(" "),
-              _c("Message", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: this.isDataPartiallyAvailable,
-                    expression: "this.isDataPartiallyAvailable"
-                  }
-                ],
-                staticClass: "component",
-                attrs: {
-                  message:
-                    "Data for <b>studio sessions, new studio users/<b> and <b>apps edited</b> are only available from June 24th 2020."
-                }
-              }),
+              _c(
+                "Message",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: this.isDataPartiallyAvailable,
+                      expression: "this.isDataPartiallyAvailable"
+                    }
+                  ],
+                  staticClass: "component"
+                },
+                [
+                  _vm._v("\n      Data for "),
+                  _c("b", [_vm._v("studio sessions, new studio users")]),
+                  _vm._v(" and "),
+                  _c("b", [_vm._v("apps edited")]),
+                  _vm._v(" are only available from June 24th 2020.\n    ")
+                ]
+              ),
               _vm._v(" "),
               _c("ul", { staticClass: "tabs" }, [
                 _c(
@@ -13779,6 +13791,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -13832,6 +13852,9 @@ __webpack_require__.r(__webpack_exports__);
           }, 500);
         }
       });
+    },
+    openChatOverlay: function openChatOverlay() {
+      Fliplet.Studio.emit('open-live-chat');
     }
   },
   created: function created() {
@@ -16643,10 +16666,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", {
-    class: ["alert", _vm.type],
-    domProps: { innerHTML: _vm._s(_vm.message) }
-  })
+  return _c("div", { class: ["alert", _vm.type] }, [_vm._t("default")], 2)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -16672,9 +16692,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    message: String,
     type: {
       type: String,
       "default": 'alert-warning'
