@@ -11,7 +11,7 @@
     <div v-else-if="Object.keys(this.analyticsData).length > 0">
       <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
       <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
-      <AlertMessage v-show="this.isStartDateBeforehand" class="component" message='Data for <b>studio sessions, new studio users and apps edited</b> are only available from June 24th 2020.' />
+      <Message v-show="this.isStartDateBeforehand" class="component" message='Data for <b>studio sessions, new studio users and apps edited</b> are only available from June 24th 2020.' />
       <ul class="tabs">
         <li role="presentation" @click="activeTab = 'apps'" :class="{active: activeTab === 'apps'}">Apps</li>
         <li role="presentation" @click="activeTab = 'users'" :class="{active: activeTab === 'users'}">Users</li>
@@ -32,7 +32,7 @@ import RangeDatePicker from './components/RangeDatePicker.vue';
 import getAnalyticsData, { handleSessions } from './services/analytics';
 import AnalyticsChart from './components/AnalyticsChart';
 import UsersDataTable from './components/tables/UsersDataTable';
-import AlertMessage from './components/AlertMessage';
+import Message from './components/Message';
 
 export default {
   data() {
@@ -52,7 +52,7 @@ export default {
     RangeDatePicker,
     AnalyticsChart,
     UsersDataTable,
-    AlertMessage
+    Message
   },
   methods: {
     loadData: function(startDate, endDate) {

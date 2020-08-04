@@ -1,12 +1,12 @@
 <template>
-  <div :class="['alert', alertClass]" v-html="message"></div>
+  <div :class="['alert', type]" v-html="message"></div>
 </template>
 
 <script>
 export default {
   props: {
     message: String,
-    alertClass: {
+    type: {
       type: String,
       default: 'alert-warning'
     }

@@ -13650,7 +13650,7 @@ var render = function() {
                 attrs: { analyticsData: this.analyticsData.stats }
               }),
               _vm._v(" "),
-              _c("AlertMessage", {
+              _c("Message", {
                 directives: [
                   {
                     name: "show",
@@ -13741,7 +13741,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(398);
 /* harmony import */ var _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(436);
 /* harmony import */ var _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(441);
-/* harmony import */ var _components_AlertMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(446);
+/* harmony import */ var _components_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(446);
 //
 //
 //
@@ -13794,7 +13794,7 @@ __webpack_require__.r(__webpack_exports__);
     RangeDatePicker: _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"],
     UsersDataTable: _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__["default"],
-    AlertMessage: _components_AlertMessage__WEBPACK_IMPORTED_MODULE_6__["default"]
+    Message: _components_Message__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   methods: {
     loadData: function loadData(startDate, endDate) {
@@ -16548,8 +16548,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(447);
-/* harmony import */ var _AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(449);
+/* harmony import */ var _Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(447);
+/* harmony import */ var _Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(449);
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(397);
 
 
@@ -16559,9 +16559,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -16571,7 +16571,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "src/components/AlertMessage.vue"
+component.options.__file = "src/components/Message.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
@@ -16580,10 +16580,10 @@ component.options.__file = "src/components/AlertMessage.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(448);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(448);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_template_id_9185b48a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -16600,7 +16600,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", {
-    class: ["alert", _vm.alertClass],
+    class: ["alert", _vm.type],
     domProps: { innerHTML: _vm._s(_vm.message) }
   })
 }
@@ -16615,8 +16615,8 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(450);
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AlertMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(450);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 /* 450 */
@@ -16631,7 +16631,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     message: String,
-    alertClass: {
+    type: {
       type: String,
       "default": 'alert-warning'
     }
