@@ -3,7 +3,7 @@
     <span v-if="!cellValue && cellValue !== 0">—</span>
     <span v-else-if="cellType === 'date'">{{ this.transformDate(cellValue) }}</span>
     <div v-else-if="cellType === 'dynamic'" class="multiline-cell">
-      <p>{{ cellValue[0].toLocaleString('en') }}</p>
+      <p :data-orderValue="cellValue[0].toLocaleString('en')" class="order-value">{{ cellValue[0].toLocaleString('en') }}</p>
       <small v-if="cellValue[0] === cellValue[1]">({{ perсent }})</small>
       <small v-else-if="cellValue[0] > cellValue[1]" class="text-success">(&#8593;{{ this.perсent }})</small>
       <small v-else class="text-danger">(&#8595;{{ this.perсent }})</small>

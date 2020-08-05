@@ -52,7 +52,7 @@ export default {
   methods: {
     initTable: function() {
       $.fn.dataTable.moment('D MMM YYYY');
-      $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
+      $.fn.dataTable.numString(/^<div><div class="multiline-cell">/);
 
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,

@@ -14928,7 +14928,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     initTable: function initTable() {
       $.fn.dataTable.moment('D MMM YYYY');
-      $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
+      $.fn.dataTable.numString(/^<div><div class="multiline-cell">/);
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
         dom: 'Blfrtip',
@@ -15030,7 +15030,16 @@ var render = function() {
       ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
       : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
-          _c("p", [_vm._v(_vm._s(_vm.cellValue[0].toLocaleString("en")))]),
+          _c(
+            "p",
+            {
+              staticClass: "order-value",
+              attrs: {
+                "data-orderValue": _vm.cellValue[0].toLocaleString("en")
+              }
+            },
+            [_vm._v(_vm._s(_vm.cellValue[0].toLocaleString("en")))]
+          ),
           _vm._v(" "),
           _vm.cellValue[0] === _vm.cellValue[1]
             ? _c("small", [_vm._v("(" + _vm._s(_vm.perсent) + ")")])
