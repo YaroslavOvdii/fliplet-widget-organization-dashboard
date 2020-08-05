@@ -16,9 +16,7 @@ $.fn.dataTable.numString = function(format) {
   $.fn.dataTable.ext.type.order[
     'numString-' + format.source + '-pre'
   ] = function(data) {
-    var num = data.replace(/\D/g, '');
-
-    return num * 1;
+    return $(data).find('.order-value').data('ordervalue') * 1;
   };
   // end plug-in
 };

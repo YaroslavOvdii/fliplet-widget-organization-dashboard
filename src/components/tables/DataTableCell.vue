@@ -3,7 +3,7 @@
     <span v-if="!cellValue && cellValue !== 0">—</span>
     <span v-else-if="cellType === 'date'">{{ this.transformDate(cellValue) }}</span>
     <div v-else-if="cellType === 'dynamic'" class="multiline-cell">
-      <p>{{ cellValue[0].toLocaleString('en') }}</p>
+      <p :data-orderValue="cellValue[0].toLocaleString('en')" class="order-value">{{ cellValue[0].toLocaleString('en') }}</p>
       <small v-if="cellValue[0] === cellValue[1]">({{ perсent }})</small>
       <small v-else-if="cellValue[0] > cellValue[1]" class="text-success">(&#8593;{{ this.perсent }})</small>
       <small v-else class="text-danger">(&#8595;{{ this.perсent }})</small>
@@ -14,7 +14,11 @@
         Previous Period
       </small>
     </div>
-    <span v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="link btn-link">{{ cellValue.title }}</span>
+    <div v-else-if="cellType === 'action'" @click.stop="onCellAction(cellValue)" class="action-holder">
+      <span class="link btn-link">{{ cellValue.title }}</span>
+      <Tooltip v-if="'appId' in cellValue" :content="'See app analytics'" :icon="'fa-area-chart'" />
+      <Tooltip v-else :content="'Edit user'" :icon="'fa-pencil'" />
+    </div>
     <span v-else>
       {{ cellValue }}
     </span>
@@ -23,6 +27,7 @@
 
 <script>
 import { calculateDynamic } from '../../services/analytics';
+import Tooltip from '../Tooltip';
 
 export default {
   data() {
@@ -39,6 +44,9 @@ export default {
       type: String,
       default: 'raw'
     }
+  },
+  components: {
+    Tooltip
   },
   methods: {
     transformDate: function(date) {

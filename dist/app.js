@@ -13615,6 +13615,21 @@ var render = function() {
     "div",
     { staticClass: "org-usage-dashboard" },
     [
+      _c("Message", { attrs: { type: "alert-info" } }, [
+        _c("p", [
+          _c("strong", [_vm._v("This feature is currently in beta.")]),
+          _vm._v(
+            "\n      We are actively refining the functionality and collecting feedback. If you have any questions please\n      "
+          ),
+          _c(
+            "a",
+            { attrs: { href: "#" }, on: { click: _vm.openChatOverlay } },
+            [_vm._v("contact us")]
+          ),
+          _vm._v(".\n    ")
+        ])
+      ]),
+      _vm._v(" "),
       _vm.showDatePicker
         ? _c("RangeDatePicker", {
             attrs: { onChange: _vm.loadData, isEnabled: !_vm.isLoading }
@@ -13649,6 +13664,28 @@ var render = function() {
                 staticClass: "component",
                 attrs: { analyticsData: this.analyticsData.stats }
               }),
+              _vm._v(" "),
+              _c(
+                "Message",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: this.isDataPartiallyAvailable,
+                      expression: "this.isDataPartiallyAvailable"
+                    }
+                  ],
+                  staticClass: "component"
+                },
+                [
+                  _vm._v("\n      Data for "),
+                  _c("b", [_vm._v("studio sessions, new studio users")]),
+                  _vm._v(" and "),
+                  _c("b", [_vm._v("apps edited")]),
+                  _vm._v(" are only available from June 24th 2020.\n    ")
+                ]
+              ),
               _vm._v(" "),
               _c("ul", { staticClass: "tabs" }, [
                 _c(
@@ -13725,6 +13762,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(398);
 /* harmony import */ var _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(436);
 /* harmony import */ var _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(441);
+/* harmony import */ var _components_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(446);
 //
 //
 //
@@ -13751,6 +13789,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -13765,7 +13814,8 @@ __webpack_require__.r(__webpack_exports__);
       errorMessage: '',
       hasError: false,
       activeTab: 'apps',
-      showDatePicker: false
+      showDatePicker: false,
+      isDataPartiallyAvailable: false
     };
   },
   components: {
@@ -13773,13 +13823,15 @@ __webpack_require__.r(__webpack_exports__);
     AppDataTable: _components_tables_AppsDataTable__WEBPACK_IMPORTED_MODULE_1__["default"],
     RangeDatePicker: _components_RangeDatePicker_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     AnalyticsChart: _components_AnalyticsChart__WEBPACK_IMPORTED_MODULE_4__["default"],
-    UsersDataTable: _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__["default"]
+    UsersDataTable: _components_tables_UsersDataTable__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Message: _components_Message__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   methods: {
     loadData: function loadData(startDate, endDate) {
       var _this = this;
 
       this.isLoading = true;
+      this.isDataPartiallyAvailable = moment(startDate).isBefore('2020-06-24');
       Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["default"])(startDate, endDate).then(function (result) {
         result.appSessions = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["handleSessions"])(startDate, endDate, result.appSessions);
         result.studioSessions = Object(_services_analytics__WEBPACK_IMPORTED_MODULE_3__["handleSessions"])(startDate, endDate, result.studioSessions);
@@ -13791,6 +13843,18 @@ __webpack_require__.r(__webpack_exports__);
         _this.isLoading = false;
         _this.showDatePicker = true;
       });
+    },
+    init: function init() {
+      Fliplet.Studio.onMessage(function (event) {
+        if (event.data && event.data.event === 'overlay-close') {
+          setTimeout(function () {
+            Fliplet.Widget.autosize();
+          }, 500);
+        }
+      });
+    },
+    openChatOverlay: function openChatOverlay() {
+      Fliplet.Studio.emit('open-live-chat');
     }
   },
   created: function created() {
@@ -13799,6 +13863,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var startDate = moment().add(-1, 'month');
     var endDate = moment();
+    this.init();
     this.loadData(startDate, endDate);
     Fliplet.Widget.autosize();
   },
@@ -14135,11 +14200,7 @@ var render = function() {
           ref: "info",
           attrs: { "data-content": _vm.content, "data-trigger": "hover" }
         },
-        [
-          _vm._t("default"),
-          _vm._v(" "),
-          _c("i", { staticClass: "fa fa-lg fa-info-circle" })
-        ],
+        [_vm._t("default"), _vm._v(" "), _c("i", { class: ["fa", _vm.icon] })],
         2
       )
     : _vm._e()
@@ -14179,6 +14240,10 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return {};
       }
+    },
+    icon: {
+      type: String,
+      "default": 'fa-info-circle'
     }
   },
   methods: {
@@ -14863,16 +14928,19 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     initTable: function initTable() {
       $.fn.dataTable.moment(moment().creationData().locale._longDateFormat.LL);
-      $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
+      $.fn.dataTable.numString(/^<div><div class="multiline-cell">/);
+
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
         dom: 'Blfrtip',
         buttons: [{
           extend: 'excelHtml5',
-          text: 'Export to Excel'
+          text: 'Export to Excel',
+          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD'))
         }, {
           extend: 'csvHtml5',
-          text: 'Export to CSV'
+          text: 'Export to CSV',
+          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD'))
         }],
         lengthMenu: [10, 25, 50, 100, 500],
         pageLength: 10
@@ -14963,7 +15031,16 @@ var render = function() {
       ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
       : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
-          _c("p", [_vm._v(_vm._s(_vm.cellValue[0].toLocaleString("en")))]),
+          _c(
+            "p",
+            {
+              staticClass: "order-value",
+              attrs: {
+                "data-orderValue": _vm.cellValue[0].toLocaleString("en")
+              }
+            },
+            [_vm._v(_vm._s(_vm.cellValue[0].toLocaleString("en")))]
+          ),
           _vm._v(" "),
           _vm.cellValue[0] === _vm.cellValue[1]
             ? _c("small", [_vm._v("(" + _vm._s(_vm.perсent) + ")")])
@@ -14987,9 +15064,9 @@ var render = function() {
         ])
       : _vm.cellType === "action"
       ? _c(
-          "span",
+          "div",
           {
-            staticClass: "link btn-link",
+            staticClass: "action-holder",
             on: {
               click: function($event) {
                 $event.stopPropagation()
@@ -14997,7 +15074,20 @@ var render = function() {
               }
             }
           },
-          [_vm._v(_vm._s(_vm.cellValue.title))]
+          [
+            _c("span", { staticClass: "link btn-link" }, [
+              _vm._v(_vm._s(_vm.cellValue.title))
+            ]),
+            _vm._v(" "),
+            "appId" in _vm.cellValue
+              ? _c("Tooltip", {
+                  attrs: { content: "See app analytics", icon: "fa-area-chart" }
+                })
+              : _c("Tooltip", {
+                  attrs: { content: "Edit user", icon: "fa-pencil" }
+                })
+          ],
+          1
         )
       : _c("span", [_vm._v("\n    " + _vm._s(_vm.cellValue) + "\n  ")])
   ])
@@ -15023,6 +15113,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_analytics__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(398);
+/* harmony import */ var _Tooltip__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(392);
+//
+//
+//
+//
 //
 //
 //
@@ -15047,6 +15142,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -15062,6 +15158,9 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       "default": 'raw'
     }
+  },
+  components: {
+    Tooltip: _Tooltip__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
     transformDate: function transformDate(date) {
@@ -15181,6 +15280,7 @@ var render = function() {
         class: { disabled: !_vm.isEnabled },
         attrs: {
           opens: "left",
+          "max-date": new Date(),
           disabled: !_vm.isEnabled,
           "locale-data": _vm.dateFormat,
           autoApply: true,
@@ -15241,6 +15341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DateDropdown_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(426);
 /* harmony import */ var vue2_daterange_picker_dist_vue2_daterange_picker_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(431);
 /* harmony import */ var vue2_daterange_picker_dist_vue2_daterange_picker_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_daterange_picker_dist_vue2_daterange_picker_css__WEBPACK_IMPORTED_MODULE_2__);
+//
 //
 //
 //
@@ -16517,6 +16618,100 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.transformData();
     Fliplet.Widget.autosize();
+  }
+});
+
+/***/ }),
+/* 446 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(447);
+/* harmony import */ var _Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(449);
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(397);
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/components/Message.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+/* 447 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(448);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_template_id_61d2d687___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+/* 448 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: ["alert", _vm.type] }, [_vm._t("default")], 2)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+/* 449 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(450);
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_5_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Message_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+/* 450 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    type: {
+      type: String,
+      "default": 'alert-warning'
+    }
   }
 });
 

@@ -4,6 +4,7 @@
     <date-range-picker
       ref="picker"
       opens="left"
+      :max-date="new Date()"
       :disabled="!isEnabled"
       :locale-data="dateFormat"
       :autoApply=true
