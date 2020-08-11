@@ -39,7 +39,7 @@ export default {
         endDate
       },
       dateFormat: {
-        format: 'dd/mm/yyyy',
+        format: 'mmm d, yyyy',
         separator: ' - '
       },
       customDates: false

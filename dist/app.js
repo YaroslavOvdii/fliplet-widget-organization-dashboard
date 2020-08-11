@@ -15377,7 +15377,7 @@ __webpack_require__.r(__webpack_exports__);
         endDate: endDate
       },
       dateFormat: {
-        format: 'dd/mm/yyyy',
+        format: 'mmm d, yyyy',
         separator: ' - '
       },
       customDates: false
