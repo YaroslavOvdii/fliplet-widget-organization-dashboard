@@ -1,5 +1,12 @@
 <template>
   <div class="org-usage-dashboard">
+    <Message type="alert-info">
+      <p>
+        <strong>This feature is currently in beta.</strong>
+        We are actively refining the functionality and collecting feedback. If you have any questions please
+        <a href='#' @click="openChatOverlay">contact us</a>.
+      </p>
+    </Message>
     <RangeDatePicker :onChange="loadData" :isEnabled="!isLoading" v-if="showDatePicker"></RangeDatePicker>
     <div v-if="this.isLoading" class="spinner-holder animated">
       <div class="spinner-overlay"></div>
@@ -11,6 +18,9 @@
     <div v-else-if="Object.keys(this.analyticsData).length > 0">
       <AnalyticsChart class="component" :appsSessions="this.analyticsData.appSessions" :studioSessions="this.analyticsData.studioSessions"></AnalyticsChart>
       <AnalyticsSummary class="component" :analyticsData="this.analyticsData.stats"></AnalyticsSummary>
+      <Message v-show="this.isDataPartiallyAvailable" class="component">
+        Data for <b>studio sessions, new studio users</b> and <b>apps edited</b> are only available from June 24th 2020.
+      </Message>
       <ul class="tabs">
         <li role="presentation" @click="activeTab = 'apps'" :class="{active: activeTab === 'apps'}">Apps</li>
         <li role="presentation" @click="activeTab = 'users'" :class="{active: activeTab === 'users'}">Users</li>
@@ -31,6 +41,7 @@ import RangeDatePicker from './components/RangeDatePicker.vue';
 import getAnalyticsData, { handleSessions } from './services/analytics';
 import AnalyticsChart from './components/AnalyticsChart';
 import UsersDataTable from './components/tables/UsersDataTable';
+import Message from './components/Message';
 
 export default {
   data() {
@@ -40,7 +51,8 @@ export default {
       errorMessage: '',
       hasError: false,
       activeTab: 'apps',
-      showDatePicker: false
+      showDatePicker: false,
+      isDataPartiallyAvailable: false
     };
   },
   components: {
@@ -48,11 +60,13 @@ export default {
     AppDataTable,
     RangeDatePicker,
     AnalyticsChart,
-    UsersDataTable
+    UsersDataTable,
+    Message
   },
   methods: {
     loadData: function(startDate, endDate) {
       this.isLoading = true;
+      this.isDataPartiallyAvailable = moment(startDate).isBefore('2020-06-24');
 
       getAnalyticsData(startDate, endDate)
         .then(result => {
@@ -68,6 +82,18 @@ export default {
           this.isLoading = false;
           this.showDatePicker = true;
         });
+    },
+    init: function() {
+      Fliplet.Studio.onMessage(function(event) {
+        if (event.data && event.data.event === 'overlay-close') {
+          setTimeout(() => {
+            Fliplet.Widget.autosize();
+          }, 500);
+        }
+      });
+    },
+    openChatOverlay: function() {
+      Fliplet.Studio.emit('open-live-chat');
     }
   },
   created() {
@@ -77,6 +103,7 @@ export default {
     const startDate = moment().add(-1, 'month');
     const endDate = moment();
 
+    this.init();
     this.loadData(startDate, endDate);
     Fliplet.Widget.autosize();
   },

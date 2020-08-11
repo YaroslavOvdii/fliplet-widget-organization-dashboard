@@ -84,6 +84,16 @@
       word-wrap: break-word;
     }
 
+    tbody tr {
+      i {
+        display: none;
+      }
+
+      &:hover i {
+        display: inline-block;
+      }
+    }
+
     .multiline-cell {
       text-align: center;
 

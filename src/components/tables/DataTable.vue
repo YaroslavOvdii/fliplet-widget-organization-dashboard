@@ -60,11 +60,13 @@ export default {
         buttons: [
           {
             extend: 'excelHtml5',
-            text: 'Export to Excel'
+            text: 'Export to Excel',
+            title: `Fliplet usage ${moment().format('YYYY-MM-DD')}`
           },
           {
             extend: 'csvHtml5',
-            text: 'Export to CSV'
+            text: 'Export to CSV',
+            title: `Fliplet usage ${moment().format('YYYY-MM-DD')}`
           }
         ],
         lengthMenu: [10, 25, 50, 100, 500],
