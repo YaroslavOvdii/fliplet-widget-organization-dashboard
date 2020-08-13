@@ -14927,8 +14927,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     initTable: function initTable() {
-      $.fn.dataTable.moment('D MMM YYYY');
-      $.fn.dataTable.numString(/^<div><div class="multiline-cell">/);
+      $.fn.dataTable.moment(moment.localeData().longDateFormat('ll'));
+      $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
         dom: 'Blfrtip',
@@ -15163,7 +15163,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     transformDate: function transformDate(date) {
-      return moment(date).format('D MMM YYYY');
+      return moment(date).format(moment().creationData().locale._longDateFormat.LL);
     },
     openUserProfile: function openUserProfile(options) {
       Fliplet.Studio.emit('overlay', {
