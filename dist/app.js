@@ -14935,16 +14935,39 @@ __webpack_require__.r(__webpack_exports__);
         buttons: [{
           extend: 'excelHtml5',
           text: 'Export to Excel',
-          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD'))
+          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD')),
+          exportOptions: {
+            format: {
+              body: this.exportFormat
+            }
+          }
         }, {
           extend: 'csvHtml5',
           text: 'Export to CSV',
-          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD'))
+          title: "Fliplet usage ".concat(moment().format('YYYY-MM-DD')),
+          exportOptions: {
+            format: {
+              body: this.exportFormat
+            }
+          }
         }],
         lengthMenu: [10, 25, 50, 100, 500],
         pageLength: 10
       });
       $(window).trigger('resize');
+    },
+    exportFormat: function exportFormat(data, row, column, node) {
+      var dataCell = this.rows[row][column];
+
+      if (dataCell.type && dataCell.type === 'date') {
+        return node.innerText === '—' ? '—' : moment(node.innerText).format('YYYY/MM/DD');
+      }
+
+      if (dataCell.type && dataCell.type === 'dynamic') {
+        return $(node).find('p').text();
+      }
+
+      return node.innerText;
     },
     filter: function filter(event, colIndex) {
       this.component.columns(colIndex).search(event.target.value).draw();
