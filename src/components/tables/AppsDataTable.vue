@@ -43,7 +43,11 @@ export default {
         },
         {
           name: 'Users',
-          help: 'Total app users across all apps.\n A user is a unique device and, if the app has a login, a unique logged in user.'
+          help: 'Total number of logged-in users.'
+        },
+        {
+          name: 'Devices',
+          help: 'Total number of unique devices.'
         },
         {
           name: 'Sessions',
@@ -86,6 +90,7 @@ export default {
             { value: app.publishedGoogleAt, type: 'date'},
             { value: app.publishedWebAt, type: 'date'},
             { value: [app.stats.users.count, app.stats.users.previousPeriodCount], type: 'dynamic'},
+            { value: [app.stats.devices.count, app.stats.devices.previousPeriodCount], type: 'dynamic'},
             { value: [app.stats.sessions.count, app.stats.sessions.previousPeriodCount], type: 'dynamic'},
             { value: [app.stats.updates.count, app.stats.updates.previousPeriodCount], type: 'dynamic'},
             { value: [app.stats.publishes.count, app.stats.publishes.previousPeriodCount], type: 'dynamic'}

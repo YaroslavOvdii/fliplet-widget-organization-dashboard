@@ -14639,7 +14639,10 @@ __webpack_require__.r(__webpack_exports__);
         help: 'The first time an app was published to web'
       }, {
         name: 'Users',
-        help: 'Total app users across all apps.\n A user is a unique device and, if the app has a login, a unique logged in user.'
+        help: 'Total number of logged-in users.'
+      }, {
+        name: 'Devices',
+        help: 'Total number of unique devices.'
       }, {
         name: 'Sessions',
         help: 'The total number of app sessions.\n A session is a group of interactions without 30 min of inactivity.'
@@ -14696,6 +14699,9 @@ __webpack_require__.r(__webpack_exports__);
           type: 'date'
         }, {
           value: [app.stats.users.count, app.stats.users.previousPeriodCount],
+          type: 'dynamic'
+        }, {
+          value: [app.stats.devices.count, app.stats.devices.previousPeriodCount],
           type: 'dynamic'
         }, {
           value: [app.stats.sessions.count, app.stats.sessions.previousPeriodCount],
