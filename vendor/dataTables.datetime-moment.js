@@ -47,7 +47,7 @@
         return 'moment-' + format;
       }
 
-      return moment( d, format, locale, true ).isValid() ?
+      return moment( d, format, locale ).isValid() ?
         'moment-' + format :
         null;
     } );
@@ -65,9 +65,9 @@
       }
 
       // eslint-disable-next-line no-nested-ternary
-      return !moment(d, format, locale, true).isValid() ?
+      return !moment(d, format, locale).isValid() ?
         (reverseEmpties ? -Infinity : Infinity) :
-        parseInt( moment( d, format, locale, true ).format( 'x' ), 10 );
+        parseInt( moment( d, format, locale ).format( 'x' ), 10 );
     };
   };
 }));
