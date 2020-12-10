@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     initTable: function() {
-      $.fn.dataTable.moment(moment.localeData().longDateFormat('ll'));
+      $.fn.dataTable.moment(/^<div><span data-isodate/);
       $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
 
       this.component = $(this.$refs.table).DataTable({

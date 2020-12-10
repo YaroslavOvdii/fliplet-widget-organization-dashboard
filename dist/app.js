@@ -14933,7 +14933,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     initTable: function initTable() {
-      $.fn.dataTable.moment(moment.localeData().longDateFormat('ll'));
+      $.fn.dataTable.moment(/^<div><span data-isodate/);
       $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
@@ -15056,7 +15056,9 @@ var render = function() {
     !_vm.cellValue && _vm.cellValue !== 0
       ? _c("span", [_vm._v("—")])
       : _vm.cellType === "date"
-      ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
+      ? _c("span", { attrs: { "data-isoDate": _vm.cellValue } }, [
+          _vm._v(_vm._s(this.transformDate(_vm.cellValue)))
+        ])
       : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
           _c(
