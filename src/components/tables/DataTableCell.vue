@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <td :data-order="orderValue()">
     <span v-if="!cellValue && cellValue !== 0">—</span>
-    <span v-else-if="cellType === 'date'" :data-isoDate="cellValue">{{ this.transformDate(cellValue) }}</span>
+    <span v-else-if="cellType === 'date'">{{ this.transformDate(cellValue) }}</span>
     <div v-else-if="cellType === 'dynamic'" class="multiline-cell">
-      <p :data-orderValue="cellValue[0].toLocaleString('en')" class="order-value">{{ cellValue[0].toLocaleString('en') }}</p>
+      <p>
+        {{ cellValue[0].toLocaleString('en') }}
+      </p>
       <small v-if="cellValue[0] === cellValue[1]">({{ perсent }})</small>
       <small v-else-if="cellValue[0] > cellValue[1]" class="text-success">(&#8593;{{ this.perсent }})</small>
       <small v-else class="text-danger">(&#8595;{{ this.perсent }})</small>
@@ -22,7 +24,7 @@
     <span v-else>
       {{ cellValue }}
     </span>
-  </div>
+  </td>
 </template>
 
 <script>
@@ -49,6 +51,24 @@ export default {
     Tooltip
   },
   methods: {
+    orderValue: function() {
+      let date = moment(
+        this.cellValue,
+        'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]',
+        true
+      );
+
+      switch (this.cellType) {
+        case 'date':
+          return date.isValid() ? parseInt(date.format('x'), 10) : Infinity;
+        case 'dynamic':
+          return this.cellValue[0];
+        case 'action':
+          return this.cellValue.title;
+        default:
+          return this.cellValue;
+      }
+    },
     transformDate: function(date) {
       return moment(date).format(moment().creationData().locale._longDateFormat.LL);
     },
