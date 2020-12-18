@@ -12,9 +12,7 @@
       </thead>
       <tbody>
         <tr v-for="row in rows" :key="row">
-          <td v-for="cell in row" :key="cell.value">
-            <DataTableCell :cellValue="cell.value" :cellType="cell.type"></DataTableCell>
-          </td>
+          <DataTableCell v-for="cell in row" :key="cell.value" :cellValue="cell.value" :cellType="cell.type"></DataTableCell>
         </tr>
       </tbody>
     </table>
@@ -51,9 +49,6 @@ export default {
   },
   methods: {
     initTable: function() {
-      $.fn.dataTable.moment(moment.localeData().longDateFormat('ll'));
-      $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
-
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
         dom: 'Blfrtip',

@@ -14840,18 +14840,12 @@ var render = function() {
               "tr",
               { key: row },
               _vm._l(row, function(cell) {
-                return _c(
-                  "td",
-                  { key: cell.value },
-                  [
-                    _c("DataTableCell", {
-                      attrs: { cellValue: cell.value, cellType: cell.type }
-                    })
-                  ],
-                  1
-                )
+                return _c("DataTableCell", {
+                  key: cell.value,
+                  attrs: { cellValue: cell.value, cellType: cell.type }
+                })
               }),
-              0
+              1
             )
           }),
           0
@@ -14903,8 +14897,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -14933,8 +14925,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     initTable: function initTable() {
-      $.fn.dataTable.moment(moment.localeData().longDateFormat('ll'));
-      $.fn.dataTable.numString(/^<div><div class="multiline-cell"><p>\d+<\/p>/);
       this.component = $(this.$refs.table).DataTable({
         scrollX: true,
         dom: 'Blfrtip',
@@ -15052,23 +15042,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("td", { attrs: { "data-order": _vm.orderValue() } }, [
     !_vm.cellValue && _vm.cellValue !== 0
       ? _c("span", [_vm._v("—")])
       : _vm.cellType === "date"
       ? _c("span", [_vm._v(_vm._s(this.transformDate(_vm.cellValue)))])
       : _vm.cellType === "dynamic"
       ? _c("div", { staticClass: "multiline-cell" }, [
-          _c(
-            "p",
-            {
-              staticClass: "order-value",
-              attrs: {
-                "data-orderValue": _vm.cellValue[0].toLocaleString("en")
-              }
-            },
-            [_vm._v(_vm._s(_vm.cellValue[0].toLocaleString("en")))]
-          ),
+          _c("p", [
+            _vm._v(
+              "\n      " +
+                _vm._s(_vm.cellValue[0].toLocaleString("en")) +
+                "\n    "
+            )
+          ]),
           _vm._v(" "),
           _vm.cellValue[0] === _vm.cellValue[1]
             ? _c("small", [_vm._v("(" + _vm._s(_vm.perсent) + ")")])
@@ -15169,6 +15156,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -15191,6 +15180,23 @@ __webpack_require__.r(__webpack_exports__);
     Tooltip: _Tooltip__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   methods: {
+    orderValue: function orderValue() {
+      var date = moment(this.cellValue, 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]', true);
+
+      switch (this.cellType) {
+        case 'date':
+          return date.isValid() ? parseInt(date.format('x'), 10) : Infinity;
+
+        case 'dynamic':
+          return this.cellValue[0];
+
+        case 'action':
+          return this.cellValue.title;
+
+        default:
+          return this.cellValue;
+      }
+    },
     transformDate: function transformDate(date) {
       return moment(date).format(moment().creationData().locale._longDateFormat.LL);
     },
